@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\OrderDetail;
+use App\Banner;
 use Illuminate\Http\Request;
 
-class OrderDetailController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class OrderDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderDetail $orderDetail)
+    public function show(Banner $banner)
     {
         //
     }
@@ -52,10 +52,10 @@ class OrderDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderDetail $orderDetail)
+    public function edit(Banner $banner)
     {
         //
     }
@@ -64,10 +64,10 @@ class OrderDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderDetail $orderDetail)
+    public function update(Request $request, Banner $banner)
     {
         //
     }
@@ -75,10 +75,10 @@ class OrderDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrderDetail  $orderDetail
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderDetail $orderDetail)
+    public function destroy(Banner $banner)
     {
         //
     }
