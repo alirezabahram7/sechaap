@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->default(0);
             $table->unsignedBigInteger('product_id');
+            $table->string('type');
             $table->text('description')->nullable();
             $table->timestamps();
         });
