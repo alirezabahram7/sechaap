@@ -6,6 +6,7 @@ use App\Announcement;
 use App\Banner;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -16,10 +17,39 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(30);
+        $orders = Order::all();
         return view('', compact('orders'));
     }
 
+    /**
+     * @param $userId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function filterByUser($userId)
+    {
+        $orders = Order::where('user_id', $userId)->get();
+        return view('', compact('orders'));
+    }
+
+    /**
+     * @param $productId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function filterByProduct($productId)
+    {
+        $orders = Order::where('product_id', $productId)->get();
+        return view('', compact('orders'));
+    }
+
+    /**
+     * @param $typeId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function filterByType($typeId)
+    {
+        $orders = Order::where('type_id', $typeId)->get();
+        return view('', compact('orders'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,16 +70,18 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
+        $trackingCode=Str::random(10);
+        $requestData['tracking_code']=$trackingCode;
         $order = Order::create($requestData);
         // if its type is banner or announcement
         $requestData['order_id'] = $order->id;
-        if ($request->type == 'بنر') {
+        if ($request->type_id == 'بنر') {
             Banner::create($requestData);
         }
-        if ($request->type == 'اعلامیه') {
+        if ($request->type_id == 'اعلامیه') {
             Announcement::create($requestData);
         }
-        return redirect('')->with('message', 'سفارش با موفقیت ثبت شد');
+        return redirect('',$trackingCode)->with('message', 'سفارش با موفقیت ثبت شد');
     }
 
     /**
@@ -88,7 +120,7 @@ class OrderController extends Controller
         // if its type is banner or announcement
 
         if ($request->type == 'بنر') {
-           $order->banner->update($requestData);
+            $order->banner->update($requestData);
         }
         if ($request->type == 'اعلامیه') {
             $order->announcement->update($requestData);
@@ -109,4 +141,5 @@ class OrderController extends Controller
 
         return back()->with('message', 'سفارش با موفقیت حذف شد');
     }
+
 }
