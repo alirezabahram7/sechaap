@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('',compact('categories'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
@@ -35,7 +36,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Category::create($request->all());
+
+       return redirect('')->with('message','دسته بندی با موفقیت ایجاد شد');
     }
 
     /**
@@ -46,7 +49,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('',compact($category));
     }
 
     /**
@@ -57,7 +60,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+       return view('',compact($category));
     }
 
     /**
@@ -69,17 +72,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        return back()->with('message','دسته بندی با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Category $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->with('message','دسته بندی با موفقیت حذف شد');
     }
 }
