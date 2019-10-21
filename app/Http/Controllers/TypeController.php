@@ -14,7 +14,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+        return view('',compact('types'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
@@ -35,7 +36,9 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Type::create($request->all());
+
+        return redirect('')->with('message','نوع جدید با موفقیت ایجاد شد');
     }
 
     /**
@@ -46,7 +49,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('',compact('type'));
     }
 
     /**
@@ -57,7 +60,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('',compact('type'));
     }
 
     /**
@@ -69,17 +72,22 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $type->update($request->all());
+
+        return back()->with('message','نوع با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Type  $type
+     * @param  \App\Type $type
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return back()->with('message','محصول با موفقیت حذف شد');
     }
 }
