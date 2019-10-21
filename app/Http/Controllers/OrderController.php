@@ -27,7 +27,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+       return view('');
     }
 
     /**
@@ -38,7 +38,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Order::create($request->all());
+
+        return redirect('')->with('message','سفارش با موفقیت ثبت شد');
     }
 
     /**
@@ -49,7 +51,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('',compact('order'));
     }
 
     /**
@@ -60,7 +62,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+       return view('',compact('order'));
     }
 
     /**
@@ -72,17 +74,22 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order->update($request->all());
+
+        return back()->with('message','سفارش با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param  \App\Order $order
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return back()->with('message','سفارش با موفقیت حذف شد');
     }
 }
