@@ -6,10 +6,11 @@
 <body>
 <div class="d-flex justify-content-between mt-3">
     {{--@include('layouts.sidebar')--}}
-    <div class="container col-9">
+    <div class="">
         @include('layouts.message')
         @yield('content')
     </div>
 </div>
+@include('layouts.footer')
 </body>
 </html>

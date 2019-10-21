@@ -8,7 +8,7 @@ html, body {
     font-weight: normal;
     font-style: normal;
     height: 100%;
-
+    direction: rtl;
 }
 
 body {
@@ -80,7 +80,7 @@ i.fa {
     padding: 0;
     font-size: 20px;
     color: rgb(66, 65, 65);
-    color: black !important;
+    /*color: black !important;*/
 }
 
 td {
@@ -1075,3 +1075,25 @@ a.text-light:focus, a.text-light:hover {
     color: 
     black !important;
 }
+
+.bg-dark-transparent{
+    background-color: rgba(0,0,0,0.5);
+}
+
+.main-color{
+    background-color: #2a1758;
+    color: white;
+}
+.main-color i{
+    color: white;
+}
+
+.slide-size{
+    height: 500px;
+}
+.services-icons i.fa{
+     color: darkred;
+     font-size: 40px;
+     background-color: whitesmoke;
+     padding: 10px;
+ }
