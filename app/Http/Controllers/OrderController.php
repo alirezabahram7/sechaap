@@ -56,9 +56,19 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('');
+        $type = $request->type;
+        $ext = 'images/*';
+        $ext_name = 'عکس';
+        if ($type == 'book' || $type == 'thesis' || $type == 'color') {
+            $ext = 'application/pdf';
+            $ext_name = 'پی دی اف';
+        } else if ($type == 'plot') {
+            $ext = 'application/pdf | image/vnd.dwg';
+            $ext_name = 'پی دی اف و فایل dwg';
+        }
+        return view('pages.create-order', compact('type','ext','ext_name'));
     }
 
     /**
@@ -70,8 +80,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        $trackingCode=Str::random(10);
-        $requestData['tracking_code']=$trackingCode;
+        $trackingCode = Str::random(10);
+        $requestData['tracking_code'] = $trackingCode;
         $order = Order::create($requestData);
         // if its type is banner or announcement
         $requestData['order_id'] = $order->id;
@@ -81,7 +91,7 @@ class OrderController extends Controller
         if ($request->type_id == 'اعلامیه') {
             Announcement::create($requestData);
         }
-        return redirect('',$trackingCode)->with('message', 'سفارش با موفقیت ثبت شد');
+        return redirect('', $trackingCode)->with('message', 'سفارش با موفقیت ثبت شد');
     }
 
     /**

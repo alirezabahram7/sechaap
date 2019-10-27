@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/order/create','OrderController@create')->name('order.create');
+Route::get('/product/{type_id}','ProductController@showByType')->name('products');

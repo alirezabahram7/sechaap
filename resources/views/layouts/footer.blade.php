@@ -13,27 +13,27 @@
                     <h5 class="font-weight-bold text-uppercase mb-4" style="color:white;">مارا دنبال کنید</h5>
                     <!-- Facebook -->
                     <a  class="btn-floating btn-fb" href="#">
-                        <img src="./mainImg/icons/1.png" alt="" srcset="">
+                        <img src="{{ asset('./mainImg/icons/1.png') }}" alt="" srcset="">
                     </a>
                     <!-- Twitter -->
                     <a class="btn-floating btn-tw" href="#">
-                        <img src="./mainImg/icons/2.png" alt="" srcset="">
+                        <img src="{{ asset('./mainImg/icons/2.png') }}" alt="" srcset="">
                     </a>
                     <!-- Google +-->
                     <a  class="btn-floating btn-gplus" href="#">
-                        <img src="./mainImg/icons/3.png" alt="" srcset="">
+                        <img src="{{ asset('./mainImg/icons/3.png') }}" alt="" srcset="">
                     </a>
                     <!-- insta-->
                     <a  class="btn-floating btn-ins" href="#">
-                        <img src="./mainImg/icons/4.ico" alt="" srcset="">
+                        <img src="{{ asset('./mainImg/icons/4.ico') }}" alt="" srcset="">
                     </a>
                     <!-- telegram-->
                     <a  href="#">
-                        <img src="./mainImg/icons/5.ico" alt="" srcset="">
+                        <img src="{{ asset('./mainImg/icons/5.ico') }}" alt="" srcset="">
                     </a>
                     <!-- whatsapp-->
                     <a  href="#">
-                        <img src="./mainImg/icons/6.ico" alt="" srcset="">
+                        <img src="{{asset('./mainImg/icons/6.ico')}}" alt="" srcset="">
                     </a>
                 </div>
             </div>

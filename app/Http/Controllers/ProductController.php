@@ -34,7 +34,7 @@ class ProductController extends Controller
     public function showByType($typeId) {
         $products = Product::where('type_id',$typeId)->paginate(30);
 
-        return view('',compact('products'));
+        return view('pages.products',compact('products'));
     }
     /**
      * Show the form for creating a new resource.
