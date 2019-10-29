@@ -4,7 +4,7 @@
     @include('layouts.header')
 </head>
 <body>
-<div class=" mt-3">
+<div class="mt-3">
     {{--@include('layouts.sidebar')--}}
     <div class="">
         @include('layouts.message')

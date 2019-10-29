@@ -106,7 +106,7 @@ td {
     /*border: 2px solid rgba(202,31,49,100);*/
 }
 .dropdown-menu{
-    border: 5px solid whitesmoke;
+
 }
 .dropdown-content {
     display: none;
@@ -133,6 +133,11 @@ td {
     display: block;
 }
 
+.login-dropdown{
+    width: 300px;
+    z-index: 1000;
+    position: relative;
+}
 .my-filter-box{
     margin-bottom:2%;
     padding: 2%;
@@ -924,7 +929,26 @@ border: dotted 1px #f0f0f0;
 .navbar-expand-md{}
 .navbar-toggler{}
 .navbar-toggler-icon{}
-.navbar-collapse{}
+.navbar-collapse{
+
+}
+
+
+.collapse.show {
+    padding: 10px;
+    background-color: whitesmoke;
+    color: whitesmoke;
+    display: block;
+    position: relative;
+    z-index: 100;
+    text-align: center;
+    box-shadow: 0 0 black;
+}
+.collapse.show.text-danger {
+
+    color: whitesmoke;
+
+}
 .nav-link{}
 
 .fixed-top{}
@@ -1004,6 +1028,9 @@ background-color:
 
 .bg-danger{
     background-color: rgba(202,31,49,100);
+}
+.bg-whitesmoke{
+    background-color: whitesmoke;
 }
 .bg-light{}
 .bg-secondary{}
