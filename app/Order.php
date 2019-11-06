@@ -22,7 +22,7 @@ class Order extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function type() {
-        return $this->hasOneThrough(Type::class,Product::class);
+    public function status(){
+        return $this->belongsTo(OrderStatus::class,'order_status_id');
     }
 }

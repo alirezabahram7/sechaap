@@ -25,11 +25,11 @@
         <!-- Login Form -->
         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
             {{ csrf_field() }}
-            <input type="text" id="login" class="fadeIn second" name="email" placeholder="نام کاربری">
+            <input type="text" id="login" class="fadeIn second" name="phone" placeholder="شماره موبایل">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="رمز عبور">
             <button type="submit" class="fadeIn fourth " style="font-family: 'IRANSansWeb';">ورود</button>
         </form>
-
+        <a type="submit" class="underlineHover text-danger" href="/register" style="font-family: 'IRANSansWeb';color: tomato">ثبت نام</a>
         <!-- Remind Passowrd -->
         <div id="formFooter">
             <a class="underlineHover text-secondary" href="{{ route('password.request') }}" style="font-family: 'IRANSansWeb';">رمز عبور را فراموش کرده ام</a>

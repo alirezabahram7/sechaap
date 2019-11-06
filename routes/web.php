@@ -20,3 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/order/create','OrderController@create')->name('order.create');
 Route::get('/product/{type_id}','ProductController@showByType')->name('products');
+
+Route::get('/profile','UserController@profile')->name('profile');
+Route::get('/editpass','UserController@editPass')->name('edit.pass');
+Route::post('/updatepass','UserController@updatePass')->name('pass.update');
+
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
