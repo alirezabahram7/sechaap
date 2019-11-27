@@ -8,7 +8,11 @@
                 <div class="card-header bg-secondary-color">{{ __('ثبت نام') }}</div>
 
                 <div class="card-body d-flex justify-content-center">
+                    @isset($url)
+                        <form method="POST" action='{{ url("$url/register") }}'>
+                    @else
                     <form method="POST" action="{{ route('register') }}">
+                    @endisset
                         @csrf
 
                         <div class="form-group row">

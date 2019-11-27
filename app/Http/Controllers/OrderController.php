@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('', compact('orders'));
+        return view('pages.admin.total_orders', compact('orders'));
     }
 
     /**
@@ -28,7 +28,7 @@ class OrderController extends Controller
     public function filterByUser($userId)
     {
         $orders = Order::where('user_id', $userId)->get();
-        return view('', compact('orders'));
+        return view('pages.admin.total_orders', compact('orders'));
     }
 
     /**
@@ -38,7 +38,7 @@ class OrderController extends Controller
     public function filterByProduct($productId)
     {
         $orders = Order::where('product_id', $productId)->get();
-        return view('', compact('orders'));
+        return view('pages.admin.total_orders', compact('orders'));
     }
 
     /**
@@ -48,7 +48,13 @@ class OrderController extends Controller
     public function filterByType($typeId)
     {
         $orders = Order::where('type_id', $typeId)->get();
-        return view('', compact('orders'));
+        return view('pages.admin.total_orders', compact('orders'));
+    }
+
+    public function filterByStatus($statusId)
+    {
+        $orders = Order::where('order_status_id', $statusId)->get();
+        return view('pages.admin.total_orders', compact('orders'));
     }
 
     /**

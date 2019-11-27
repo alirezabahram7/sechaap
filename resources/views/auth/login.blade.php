@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>ورود به پنل</title>
@@ -19,21 +19,37 @@
 
         <!-- Icon -->
         <div class="fadeIn first pt-5" style="padding-top:20px;">
-            <img class="img-responsive login-icon" src="/mainImg/login.svg" id="icon" alt="User Icon"/>
+            @isset($url)
+                <img class="img-responsive login-icon" src="/mainImg/login.png" id="icon" alt="User Icon"/>
+            @else
+                <img class="img-responsive login-icon" src="/mainImg/login.svg" id="icon" alt="User Icon"/>
+            @endisset
         </div>
 
         <!-- Login Form -->
-        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-            {{ csrf_field() }}
-            <input type="text" id="login" class="fadeIn second" name="phone" placeholder="شماره موبایل">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="رمز عبور">
-            <button type="submit" class="fadeIn fourth " style="font-family: 'IRANSansWeb';">ورود</button>
-        </form>
-        <a type="submit" class="underlineHover text-danger" href="/register" style="font-family: 'IRANSansWeb';color: tomato">ثبت نام</a>
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-            <a class="underlineHover text-secondary" href="{{ route('password.request') }}" style="font-family: 'IRANSansWeb';">رمز عبور را فراموش کرده ام</a>
-        </div>
+        @isset($url)
+            <form method="POST" action='{{ url("$url/login") }}' aria-label="{{ __('Login') }}">
+        @else
+             <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+        @endisset
+                {{ csrf_field() }}
+                <input type="text" id="login" class="fadeIn second" name="phone" placeholder="شماره موبایل">
+                <input type="password" id="password" class="fadeIn third" name="password"
+                       placeholder="رمز عبور">
+                <button type="submit" class="fadeIn fourth " style="font-family: 'IRANSansWeb';">ورود</button>
+            </form>
+                    @isset($url)
+                        {{--<a type="submit" class="underlineHover text-danger" href="{{ url("$url/register") }}"--}}
+                           {{--style="font-family: 'IRANSansWeb';color: tomato">ثبت نام</a>--}}
+                    @else
+            <a type="submit" class="underlineHover text-danger" href="/register"
+               style="font-family: 'IRANSansWeb';color: tomato">ثبت نام</a>
+                    @endisset
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover text-secondary" href="{{ route('password.request') }}"
+                   style="font-family: 'IRANSansWeb';">رمز عبور را فراموش کرده ام</a>
+            </div>
 
     </div>
 </div>

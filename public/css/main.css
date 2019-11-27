@@ -23,31 +23,32 @@ body {
     font-weight: bold;
     font-size: 14px;
     text-align: center;
-    background-color: #3c3c3c;
+    background-color: rgba(4,103,124,100);
     color: whitesmoke;
     font-family: 'IRANSansWeb';
 }
  .myTableBox{
      padding: 1%;
-     background-color: #3c3c3c;
+     background-color: rgba(4,103,124,100);
      color: white;
  }
 .dataTables_length label {
-    /*color: white;*/
+    color: white;
     font-family: 'IRANSansWeb';
 }
 
 .dataTables_paginate a{
-    /*color: white;*/
-}
+    color: white;
+}d
 .dataTables_info #myTable_info{
     color: white;
 }
 .dataTables_filter label {
-    /*color: white;*/
+    color: white;
     font-family: 'IRANSansWeb';
     margin: 10px;
 }
+
 td {
     font-weight: bold;
     color: black;
@@ -219,7 +220,6 @@ td.active a{
   bottom: 0;
   top: 0;
   z-index: -1;
-  background: #fff231;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition-property: transform;
@@ -229,6 +229,10 @@ td.active a{
   -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
+.table-hover tbody tr:not(.sub-menu):before {
+    background: #fff231;
+}
+
 .table-hover tbody tr:hover:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
@@ -242,7 +246,7 @@ td.active a{
 
 .sidebar i.fa {
     font-size: medium;
-    color: white;
+    /*color: white;*/
 }
 
 .sidebar td {
@@ -791,6 +795,8 @@ border: dotted 1px #f0f0f0;
 .banner-for-personalization{
     height: 200px;
     width: 100%;
+    position: relative;
+
 }
 
 .itembox_lists {
@@ -973,7 +979,7 @@ border: dotted 1px #f0f0f0;
 .border-0{}
 
 .float-left{}
-.float-right{background: #6f6f6f !important;}
+/*.float-right{background: #6f6f6f !important;}*/
 
 .form-control{}
 .form-group{}
@@ -1158,4 +1164,20 @@ a.text-light:focus, a.text-light:hover {
 .bg-main-color{
     background-color: rgba(202,31,49,100);
     color: whitesmoke;
+}
+
+.text-on-image{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    text-align: center;
+   padding-top: 20px;
+}
+
+.mybadge{
+    padding: 6px;
+    border-radius: 10px;
 }

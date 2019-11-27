@@ -24,4 +24,4 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
 </head>
-@include('layouts.navbar')
+

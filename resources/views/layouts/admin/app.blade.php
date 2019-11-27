@@ -4,14 +4,13 @@
     @include('layouts.header')
 </head>
 <body>
-@include('layouts.navbar')
-<div class="mt-3">
-    {{--@include('layouts.sidebar')--}}
-    <div class="">
+@include('layouts.admin.navbar')
+<div class="d-flex justify-content-between mt-3">
+    @include('layouts.admin.sidebar')
+    <div class="container col-9">
         @include('layouts.message')
         @yield('content')
     </div>
 </div>
-@include('layouts.footer')
 </body>
 </html>

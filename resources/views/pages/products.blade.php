@@ -5,7 +5,12 @@
         <a href="{{route('order.create',['type'=>'book'])}}">
         <img class="banner-for-personalization"
              src="{{ asset('./files/5d3d8cb99e028.jpg') }}">
+            <div class="bg-dark-transparent text-on-image" >
+                <i class="fa fa-paint-brush text-danger"></i>
+               سفارشی سازی
+            </div>
         </a>
+
     </div>
     <div class="container">
         <?php
@@ -34,7 +39,7 @@
                     </div>
                     <div class="align-items-end">
                     <span class="float-right">
-                       {{ $product->price }}
+                       {{ $product->price }}  تومان
                     </span>
                     </div>
                 </div>

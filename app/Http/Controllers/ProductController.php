@@ -110,4 +110,6 @@ class ProductController extends Controller
        $product->delete();
        return back()->with('message','محصول با موفقیت حذف شد');
     }
+
+
 }
