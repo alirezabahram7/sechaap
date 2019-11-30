@@ -46,8 +46,8 @@ h2 {
 }
 
 #formContent {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 50px 2px 50px;
+  border-radius: 2px 50px 2px 50px;
   background: #fff;
   padding: 30px;
   width: 80%;
@@ -55,7 +55,7 @@ h2 {
   position: relative;
   padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.33);
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.33);
   text-align: center;
   /*! font-family: iransans !important; */
 }

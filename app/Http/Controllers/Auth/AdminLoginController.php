@@ -37,9 +37,9 @@ class AdminLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login()
+    public function adminLogin()
     {
-        return view('auth.login', ['url' => 'admin']);
+        return view('auth.admin_login', ['url' => 'admin']);
     }
 
     public function loginAdmin(Request $request)

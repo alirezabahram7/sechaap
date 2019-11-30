@@ -109,7 +109,7 @@
         </tr>
         <tr class="sidebar-tr">
             <td class="sidebar-td">
-                <a href="{{ route('logout') }}">
+                <a href="{{ route('admin.logout') }}">
                     <div class="col-12">
                         <i class="fa fa-sign-out"></i>
                         <div class="d-none d-lg-inline-block">خروج</div>

@@ -1,0 +1,19 @@
+.dropdown-item:hover {
+  background-color: #04677c;
+  color: white;
+}
+
+.nav-link span {
+  color: #ca1f31;
+}
+
+.nav-link:hover {
+  border-radius: 0 20% 0 20%;
+  background-color: #ca1f31;
+  box-shadow: 5px 5px 5px #04677c;
+}
+.nav-link:hover span {
+  color: white;
+}
+
+/*# sourceMappingURL=elements.css.map */

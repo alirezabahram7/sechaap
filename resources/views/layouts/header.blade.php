@@ -3,9 +3,11 @@
     <title>مدیریت مجموعه ها - @yield('title')</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/font-awesome-4.7.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('/scss/main-styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('/scss/elements.css') }}">
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>--}}
     {{--<script src="/js/bootstrap.min.js"></script>--}}
     {{--<link rel="stylesheet" href="/demo/demo.css" />--}}

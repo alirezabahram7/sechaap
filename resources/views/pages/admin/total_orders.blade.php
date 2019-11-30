@@ -24,6 +24,9 @@
                         پرداختی
                     </th>
                     <th class="table-th">
+                        کد رهگیری
+                    </th>
+                    <th class="table-th">
                         شماره تماس سفارش دهنده
                     </th>
                     <th class="table-th">
@@ -48,22 +51,25 @@
                             {{ \Morilog\Jalali\CalendarUtils::convertNumbers($j+1) }}
                         </td>
                         <td class="table-td">
-                            <a href="#">
+                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
                                 {{ $order->product->type->title }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="#">
+                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
                                 {{ $order->product->title }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="#">
+                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
                                 {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->numbers)}}
                             </a>
                         </td>
                         <td class="table-td">
                             {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->price)}} تومان
+                        </td>
+                        <td class="table-td">
+                            {{ $order->tracking_code }}
                         </td>
                         <td class="table-td">
                             {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->phone)}}
@@ -82,7 +88,7 @@
                             {{ $order->status->title }}
                         </td>
                         <td class="table-td">
-                            <a href="#">
+                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>

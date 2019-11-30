@@ -5,14 +5,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-shopping-basket"></i>
-                        <span class="text-danger">سبد خرید</span>
+                        <span class="">سبد خرید</span>
                     </a>
                 </li>
                 @if(!auth()->check())
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <span class="text-danger">
+                         <span class="">
                         ورود یا ثبت نام</span>
                         </a>
                         <div class="dropdown-menu login-dropdown bg-secondary-color" aria-labelledby="navbarDropdown">
@@ -53,7 +53,7 @@
                     <li class="nav-item dropdown d-block d-lg-none col-sm-1"></li>
                     <li class="nav-item dropdown d-block d-lg-none">
                         <a class="nav-link" href="/login" role="button">
-                         <span class="text-danger">
+                         <span class="">
                         ورود یا ثبت نام</span>
                         </a>
                     </li>
@@ -61,7 +61,7 @@
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <span class="text-danger">
+                         <span class="">
                         {{ auth()->user()->name }}
                          </span>
                         </a>
@@ -76,7 +76,7 @@
                     <li class="nav-item dropdown d-block d-lg-none col-sm-1"></li>
                     <li class="nav-item dropdown d-block d-lg-none">
                         <a class="nav-link" href="{{ route('profile') }}" role="button">
-                         <span class="text-danger">
+                         <span class="">
                         {{ auth()->user()->name }}</span>
                         </a>
                     </li>
@@ -102,10 +102,29 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="">
+                            لیست قیمت ها
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <span class="">
+                        محاسبه آنلاین چاپ کتاب و جزوه
+                         </span>
+                    </a>
+                    <div class="dropdown-menu w-100 bg-whitesmoke text-md-center" aria-labelledby="navbarDropdown2">
+                        <a class="dropdown-item" href="#">سیاه سفید</a>
+                        <a class="dropdown-item" href="#">رنگی</a>
+                    </div>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <span class="text-danger">
+                         <span class="">
                         محصولات
                          </span>
                     </a>
@@ -128,14 +147,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <span class="text-danger">
+                        <span class="">
                             درباره ما
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <span class="text-danger">
+                        <span class="">
                             تماس با ما
                         </span>
                     </a>

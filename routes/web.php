@@ -32,8 +32,8 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+Route::get('/admin/login', 'Auth\AdminLoginController@adminLogin')->name('admin.auth.login');
 
-Route::get('/admin/login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
 //Route::get('/admin/register', 'Auth\RegisterController@showAdminRegisterForm');
 
 Route::post('/admin/login', 'Auth\AdminLoginController@loginAdmin');
@@ -41,7 +41,8 @@ Route::post('/admin/login', 'Auth\AdminLoginController@loginAdmin');
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/','AdminController@dashboard')->name('dashboard');
+    Route::get('/logout', 'AdminController@adminLogout')->name('admin.logout');
     Route::get('/order', 'OrderController@index')->name('total.orders');
     Route::get('/order/status/{statusId}', 'OrderController@filterByStatus')->name('status-filtered.orders');
-
+    Route::get('/order/{order}', 'OrderController@edit')->name('edit.order');
 });

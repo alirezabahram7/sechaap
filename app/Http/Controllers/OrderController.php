@@ -119,7 +119,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('', compact('order'));
+        return view('pages.admin.edit_order', compact('order'));
     }
 
     /**

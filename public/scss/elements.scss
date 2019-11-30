@@ -1,0 +1,17 @@
+@import "variables";
+
+.dropdown-item:hover{
+  background-color: $secondary-color;
+  color: white;
+}
+.nav-link span{
+  color: $main-color;
+}
+.nav-link:hover {
+  border-radius: 0 20% 0 20%;
+background-color: $main-color;
+  box-shadow: 5px 5px 5px $secondary-color;
+  span{
+    color: white;
+  }
+}
