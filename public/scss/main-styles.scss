@@ -8,3 +8,13 @@
 body{
   font-family: 'IRANSansWeb';
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: $highlight-color;
+}
+
+::selection {
+  color: white;
+  background: $highlight-color;
+}

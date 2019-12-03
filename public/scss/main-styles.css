@@ -6,4 +6,15 @@ body {
   font-family: "IRANSansWeb";
 }
 
+::-moz-selection {
+  /* Code for Firefox */
+  color: white;
+  background: #30b0ae;
+}
+
+::selection {
+  color: white;
+  background: #30b0ae;
+}
+
 /*# sourceMappingURL=main-styles.css.map */

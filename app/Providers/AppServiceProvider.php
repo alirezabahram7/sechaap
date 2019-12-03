@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\OrderStatus;
 use App\Type;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*',function ($view){
             $types=Type::all();
-            $view->with(compact('types'));
+            $statuses = OrderStatus::all();
+            $view->with(compact('types','statuses'));
         });
     }
 }

@@ -43,6 +43,13 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/','AdminController@dashboard')->name('dashboard');
     Route::get('/logout', 'AdminController@adminLogout')->name('admin.logout');
     Route::get('/order', 'OrderController@index')->name('total.orders');
+    Route::get('/users', 'AdminController@usersList')->name('users.list');
+    Route::get('/users/{user}', 'OrderController@filterByUser')->name('user.orders');
+    Route::patch('/order/{order}', 'OrderController@update')->name('update.order');
     Route::get('/order/status/{statusId}', 'OrderController@filterByStatus')->name('status-filtered.orders');
     Route::get('/order/{order}', 'OrderController@edit')->name('edit.order');
+
+    Route::get('/editpass/{user}', 'AdminController@editPass')->name('admin.edit.pass');
+    Route::post('/updatepass/{user}', 'AdminController@updatePass')->name('admin.pass.update');
+
 });

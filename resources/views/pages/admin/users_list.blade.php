@@ -1,12 +1,7 @@
 @extends('layouts.admin.app')
 @section('title','داشبورد')
 @section('content')
-
-
     <div class="d-flex flex-column justify-content-around dashboard-content">
-        @if(isset($user))
-            @include('layouts.user_info')
-        @endif
         <div class="myTableBox">
             <table class="table table-striped table-hover bg-light list-table" id="myTable">
                 <thead class="myTableHeader">
@@ -15,85 +10,44 @@
                         ردیف
                     </th>
                     <th class="table-th">
-                        نوع محصول
+                        نام کاربر
                     </th>
                     <th class="table-th">
-                        نام محصول
+                        شماره تماس
                     </th>
                     <th class="table-th">
-                        تعداد
+                        تعداد سفارشات
                     </th>
                     <th class="table-th">
-                        پرداختی
+                        تاریخ عضویت
                     </th>
-                    <th class="table-th">
-                        کد رهگیری
-                    </th>
-                    <th class="table-th">
-                        شماره تماس سفارش دهنده
-                    </th>
-                    <th class="table-th">
-                        وضعیت عضویت
-                    </th>
-                    <th class="table-th">
-                        تاریخ
-                    </th>
-                    <th class="table-th">
-                        وضعیت سفارش
-                    </th>
-                    <th class="table-th">
-                        عملیات
-                    </th>
+
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($orders as $j => $order)
+                @foreach($users as $j => $user)
                     <tr class="table-tr">
                         <td class="table-td">
                             {{ \Morilog\Jalali\CalendarUtils::convertNumbers($j+1) }}
                         </td>
                         <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{ $order->product->type->title }}
+                            <a href="{{ route('user.orders',['id'=>$user->id]) }}">
+                                {{ $user->name }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{ $order->product->title }}
+                            <a href="{{ route('user.orders',['id'=>$user->id]) }}">
+                                {{ \Morilog\Jalali\CalendarUtils::convertNumbers($user->phone) }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->numbers)}}
+                            <a href="{{ route('user.orders',['id'=>$user->id]) }}">
+                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($user->orders->count())}}
                             </a>
                         </td>
                         <td class="table-td">
-                            {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->price)}} تومان
-                        </td>
-                        <td class="table-td">
-                            {{ $order->tracking_code }}
-                        </td>
-                        <td class="table-td">
-                            {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->phone)}}
-                        </td>
-                        <td class="table-td">
-                            @if($order->user_id > 0)
-                                <span class="mybadge bg-success text-light">عضو</span>
-                            @else
-                                <span class="bg-secondary text-light">غیر عضو</span>
-                            @endif
-                        </td>
-                        <td class="table-td">
-                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge($order->created_at)->format('%A, %d %B %y')) }}
-                        </td>
-                        <td class="table-td">
-                            {{ $order->status->title }}
-                        </td>
-                        <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %y')) }}
                         </td>
 
                     </tr>

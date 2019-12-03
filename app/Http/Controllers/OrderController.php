@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Announcement;
 use App\Banner;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -22,13 +23,13 @@ class OrderController extends Controller
     }
 
     /**
-     * @param $userId
+     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function filterByUser($userId)
+    public function filterByUser(User $user)
     {
-        $orders = Order::where('user_id', $userId)->get();
-        return view('pages.admin.total_orders', compact('orders'));
+        $orders = Order::where('user_id', $user->id)->get();
+        return view('pages.admin.total_orders', compact('orders','user'));
     }
 
     /**
@@ -135,12 +136,12 @@ class OrderController extends Controller
         $order->update($requestData);
         // if its type is banner or announcement
 
-        if ($request->type == 'بنر') {
-            $order->banner->update($requestData);
-        }
-        if ($request->type == 'اعلامیه') {
-            $order->announcement->update($requestData);
-        }
+//        if ($request->type == 'بنر') {
+//            $order->banner->update($requestData);
+//        }
+//        if ($request->type == 'اعلامیه') {
+//            $order->announcement->update($requestData);
+//        }
         return back()->with('message', 'سفارش با موفقیت ویرایش شد');
     }
 

@@ -16,4 +16,12 @@
   color: white;
 }
 
+.form-header-title {
+  text-align: center;
+  background-color: #ca1f31;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 5px 5px 20px whitesmoke;
+}
+
 /*# sourceMappingURL=elements.css.map */

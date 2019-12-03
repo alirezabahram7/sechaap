@@ -364,9 +364,7 @@ li.mainnav a:active {
 }
 
 .center {
-    margin: auto;
-    width: 100%;
-    border: none;
+    margin: 0 auto;
 }
 
 .footer {

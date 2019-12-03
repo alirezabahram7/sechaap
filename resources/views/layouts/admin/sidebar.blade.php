@@ -66,7 +66,7 @@
 
         <tr class="sidebar-tr">
             <td class="sidebar-td {{(request()->is(['advanced-search','total-search','collections-search'])) ? 'active' : ''}}">
-                <a href="#">
+                <a href="{{ route('users.list') }}">
                     <div class="col-12">
                         <i class="fa fa-users"></i>
                         <div class="d-none d-lg-inline-block">مدیریت کاربران</div>
