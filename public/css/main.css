@@ -190,10 +190,7 @@ td {
     justify-content: right;
 }
 
-td.active{
-    background-color: #6f6f6f;
-    color: white !important;
-}
+
 td.active a{
    
     color: white !important;
@@ -229,20 +226,6 @@ td.active a{
   -webkit-transition: 300ms ease-out;
   transition: 300ms ease-out;
 }
-.table-hover tbody tr:not(.sub-menu):before {
-    background: #fff231;
-}
-
-.table-hover tbody tr:hover:before {
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-}
-
-
-
-
 
 .sidebar i.fa {
     font-size: medium;

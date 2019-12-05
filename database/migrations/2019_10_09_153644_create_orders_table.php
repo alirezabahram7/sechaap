@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('user_name')->nullable();
             $table->string('phone')->default(0);
             $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('type_id');
 //            $table->unsignedBigInteger('type_id');
             $table->unsignedInteger('numbers')->default(1);
             $table->string('price');

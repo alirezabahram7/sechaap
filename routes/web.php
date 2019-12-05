@@ -32,7 +32,7 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
-Route::get('/admin/login', 'Auth\AdminLoginController@adminLogin')->name('admin.auth.login');
+Route::get('/admin/login', 'Auth\AdminLoginControlsler@adminLogin')->name('admin.auth.login');
 
 //Route::get('/admin/register', 'Auth\RegisterController@showAdminRegisterForm');
 
@@ -51,5 +51,17 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::get('/editpass/{user}', 'AdminController@editPass')->name('admin.edit.pass');
     Route::post('/updatepass/{user}', 'AdminController@updatePass')->name('admin.pass.update');
+
+    Route::get('/product', 'ProductController@index')->name('admin.products');
+    Route::get('/product/edit/{product}', 'ProductController@edit')->name('admin.edit.product');
+    Route::patch('/product/{product}', 'ProductController@update')->name('admin.update.product');
+    Route::get('/product/create', 'ProductController@create')->name('admin.create.product');
+    Route::post('/product', 'ProductController@store')->name('admin.store.product');
+
+    Route::get('/image', 'ImageController@edit')->name('admin.edit.images');
+    Route::patch('/image', 'ImageController@update')->name('admin.update.images');
+
+    Route::get('/text', 'TextController@edit')->name('admin.edit.texts');
+    Route::patch('/text', 'TextController@update')->name('admin.update.texts');
 
 });

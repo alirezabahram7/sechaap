@@ -16,12 +16,36 @@
   color: white;
 }
 
+.table-hover tbody tr:not(.sub-menu):before {
+  background: #fff231;
+}
+
+.table-hover tbody tr:hover:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+td.active {
+  background-color: #ca1f31;
+  color: white !important;
+}
+td.active i {
+  color: whitesmoke;
+}
+
 .form-header-title {
   text-align: center;
   background-color: #ca1f31;
   padding: 20px;
   margin-bottom: 40px;
   box-shadow: 5px 5px 20px whitesmoke;
+}
+
+.product-photo {
+  width: 60%;
+  height: 60%;
 }
 
 /*# sourceMappingURL=elements.css.map */

@@ -1,5 +1,5 @@
 @extends('layouts.admin.app')
-@section('title','داشبورد')
+@section('title','لیست محصولات')
 @section('content')
 
 
@@ -21,25 +21,13 @@
                         نام محصول
                     </th>
                     <th class="table-th">
-                        تعداد
+                        قیمت
                     </th>
                     <th class="table-th">
-                        پرداختی
+                        توضیحات
                     </th>
                     <th class="table-th">
-                        کد رهگیری
-                    </th>
-                    <th class="table-th">
-                        شماره تماس سفارش دهنده
-                    </th>
-                    <th class="table-th">
-                        وضعیت عضویت
-                    </th>
-                    <th class="table-th">
-                        تاریخ
-                    </th>
-                    <th class="table-th">
-                        وضعیت سفارش
+                         تاریخ
                     </th>
                     <th class="table-th">
                         عملیات
@@ -48,50 +36,32 @@
                 </thead>
                 <tbody>
 
-                @foreach($orders as $j => $order)
+                @foreach($products as $j => $product)
                     <tr class="table-tr">
                         <td class="table-td">
                             {{ \Morilog\Jalali\CalendarUtils::convertNumbers($j+1) }}
                         </td>
                         <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{ $order->type->title }}
+                            <a href="{{ route('admin.edit.product',['id' => $product->id ]) }}">
+                                {{ $product->type->title }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{ $order->product_id!=null ? $order->product->title:'سفارشی' }}
+                            <a href="{{ route('admin.edit.product',['id' => $product->id ]) }}">
+                                {{ $product->title }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->numbers)}}
-                            </a>
+                            {{\Morilog\Jalali\CalendarUtils::convertNumbers($product->price)}} تومان
                         </td>
                         <td class="table-td">
-                            {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->price)}} تومان
+                            {{ mb_substr($product->description,0,30) }} ...
                         </td>
                         <td class="table-td">
-                            {{ $order->tracking_code }}
+                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge($product->created_at)->format('%A, %d %B %y')) }}
                         </td>
                         <td class="table-td">
-                            {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->phone)}}
-                        </td>
-                        <td class="table-td">
-                            @if($order->user_id > 0)
-                                <span class="mybadge bg-success text-light">عضو</span>
-                            @else
-                                <span class="mybadge bg-secondary text-light">غیر عضو</span>
-                            @endif
-                        </td>
-                        <td class="table-td">
-                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge($order->created_at)->format('%A, %d %B %y')) }}
-                        </td>
-                        <td class="table-td">
-                            {{ $order->status->title }}
-                        </td>
-                        <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
+                            <a href="{{ route('admin.edit.product',['id' => $product->id ]) }}">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>

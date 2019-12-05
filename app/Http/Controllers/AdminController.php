@@ -161,7 +161,7 @@ class AdminController extends Controller
     public function admin_credential_rules(array $data)
     {
         $messages = [
-            'current-password.required' => 'رمز قبلی اشتباه است',
+            'current-password.required' => 'وارد کردن رمز قبلی الزامی ست',
             'password.required' => 'وارد کردن فیلد رمز الزامی است',
         ];
 

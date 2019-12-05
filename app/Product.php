@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $guarded=[];
+    protected $guarded=['photo'];
 
     public function type() {
         return $this->belongsTo(Type::class);

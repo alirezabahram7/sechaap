@@ -20,27 +20,7 @@
                         </div>
                     @endif
 
-                    @if(session('error'))
-                        @foreach(session('error') as $key=>$errors)
-                        <div class="alert alert-danger my-alert">
-                            @if(is_array($errors))
-                            @if(count($errors) > 0)
-                                @foreach ($errors as $error)
-                                    {{ $error }}
-                                @endforeach
-                                @endif
-                                @else
-                                {{ $errors }}
-                            @endif
-                        </div>
-                        @endforeach
-                    @endif
-
-                    @if(session('success'))
-                        <div class="alert alert-success my-alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                  @include('layouts.messages_for_editpass')
 
                     <div class="card-body my-card-body">
                         <form id="form-change-password" role="form" method="POST" action="{{route('admin.pass.update',['id'=>$user->id])}}"
