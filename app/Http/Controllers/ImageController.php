@@ -31,7 +31,7 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -42,7 +42,7 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image  $media
+     * @param  \App\Image $media
      * @return Response
      */
     public function show(Image $media)
@@ -64,23 +64,37 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $media
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Image $media
      * @return Response
      */
     public function update(Request $request)
     {
         $images = $request->all();
-dd($images);
-        foreach ($images as $image){
-            dd($image);
+        foreach ($images as $i => $image) {
+
+//                dd($text);
+            if ($request->has($i)) {
+                if (is_numeric($i)) {
+
+                    $imageFile = $request->file($i);
+                    $name = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+                    $imageFile->move(public_path() . '/files/', $name);
+
+                    $entry = Image::findOrFail($i);
+                    $entry->image = $name;
+
+                    $entry->save();
+                }
+
+            }
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $media
+     * @param  \App\Image $media
      * @return Response
      */
     public function destroy(Image $media)

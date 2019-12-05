@@ -1,58 +1,33 @@
 @extends('layouts.admin.app')
-@section('title','ویرایش محصول')
+@section('title','مدیریت متن ها')
 @section('content')
     <div class="d-flex flex-column justify-content-around dashboard-content">
         <div class="container bg-secondary-color p-4 mb-3">
             <div class="form-header-title">
-                ایجاد محصول جدید
+                مدیریت متن ها
             </div>
             @include('layouts.message')
-            <form action="{{ route('admin.store.product') }}" method="post" class="form-group" enctype="multipart/form-data">
+            <form action="{{ route('admin.update.texts') }}" method="post" class="form-group"
+                  enctype="multipart/form-data">
                 @csrf
+                @method('patch')
                 <div class="">
-                    <div class="d-md-flex d-sm-block justify-content-between">
-                        <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="type_id">گروه محصولی</label>
-                            <select class="form-control my-form-control" name="type_id">
-                                @foreach($types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="title">عنوان محصول</label>
-                            <input type="text" class="form-control my-form-control" name="title"
-                                   value="{{ old('title') }}">
-                        </div>
-                        <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="price">قیمت</label>
-                            <input type="text" class="form-control my-form-control" name="price"
-                                   value="{{ old('price') }}" >
-                        </div>
-                    </div>
-                    <br>
+                    @foreach($texts as $text)
 
-
-                    <div class="form-group my-form-group col-10 text-center">
-                        <label for="description">توضیحات</label>
-                        <textarea type="text" class="form-control my-form-control" name="description"
-                                  rows="6" >{{ old('description') }}</textarea>
-                    </div>
-                    <br>
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="form-group my-form-group">
-                            <label for="photo">بارگزاری تصویر</label>
-                            <div class="input-group d-flex justify-content-center">
-                                <input class="btn btn-primary browndiv text-right" name="photo"
-                                       type="file" accept="image/*">
-                            </div>
+                        <div class="form-group my-form-group col-10 text-center">
+                            <label for="description">ویرایش متن {{ $text->persian_name }} </label>
+                            <textarea type="text" class="form-control my-form-control" name="{{ $text->id }}"
+                                      rows="10" >{{ $text->text }}</textarea>
                         </div>
-                    </div>
 
+                        <br>
+                        <br>
+                        <br>
+
+                    @endforeach
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">
-                            <button type="submit" class="btn btn-danger justify-content-center my-btn">ایجاد
+                            <button type="submit" class="btn btn-danger justify-content-center my-btn">بروزرسانی
                             </button>
                         </div>
                     </div>

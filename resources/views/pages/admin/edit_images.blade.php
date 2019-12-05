@@ -1,5 +1,5 @@
 @extends('layouts.admin.app')
-@section('title','ویرایش محصول')
+@section('title','مدیریت بنرها و تصاویر')
 @section('content')
     <div class="d-flex flex-column justify-content-around dashboard-content">
         <div class="container bg-secondary-color p-4 mb-3">
@@ -13,11 +13,6 @@
                 @method('patch')
                 <div class="">
                     @foreach($images as $image)
-                        <div class="row d-flex justify-content-center">
-                            <img src="{{ asset('files/'.$image->image)}} "
-                                 class="product-photo">
-                        </div>
-                        <br>
 
                         <div class="row d-flex justify-content-center">
                             <div class="form-group my-form-group">
@@ -28,10 +23,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row d-flex justify-content-center">
+                            <img src="{{ asset('files/'.$image->image)}} "
+                                 class="product-photo">
+                        </div>
+                        <br>
+                        <br>
+
                     @endforeach
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">
-                            <button type="submit" class="btn btn-danger justify-content-center my-btn">ایجاد
+                            <button type="submit" class="btn btn-danger justify-content-center my-btn">بروزرسانی
                             </button>
                         </div>
                     </div>

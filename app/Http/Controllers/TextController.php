@@ -71,11 +71,10 @@ class TextController extends Controller
     public function update(Request $request)
     {
         $texts = $request->all();
-
         foreach ($texts as $i => $text) {
-            if ($request->has($i)) {
-
-                $entry = Text::find($i)->first();
+            if (is_numeric($i)) {
+//                dd($text);
+                $entry = Text::findOrFail($i);
                 $entry->text = $text;
 
                 $entry->save();
