@@ -210,4 +210,11 @@ class AdminController extends Controller
 
         return $validator;
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function aboutUs() {
+        return view('pages.about_us');
+    }
 }

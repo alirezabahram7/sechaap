@@ -94,7 +94,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img class="logo-img" src="{{ asset('/mainImg/logo.jpg') }}" alt="سه چاپ">
+            <img class="logo-img" src="{{ asset('/files/'.$images[4]->image) }}" alt="سه چاپ">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,7 +146,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('about.us') }}">
                         <span class="">
                             درباره ما
                         </span>

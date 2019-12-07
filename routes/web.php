@@ -32,7 +32,7 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
-Route::get('/admin/login', 'Auth\AdminLoginControlsler@adminLogin')->name('admin.auth.login');
+Route::get('/admin/login', 'Auth\AdminLoginController@adminLogin')->name('admin.auth.login');
 
 //Route::get('/admin/register', 'Auth\RegisterController@showAdminRegisterForm');
 
@@ -42,7 +42,10 @@ Route::post('/admin/login', 'Auth\AdminLoginController@loginAdmin');
 Route::get('message','MessageController@create')->name('contact.us');
 Route::post('message','MessageController@store')->name('store.message');
 
-Route::prefix('admin')->group(function () {
+Route::get('about-us','AdminController@aboutUs')->name('about.us');
+
+
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/','AdminController@dashboard')->name('dashboard');
     Route::get('/logout', 'AdminController@adminLogout')->name('admin.logout');
     Route::get('/order', 'OrderController@index')->name('total.orders');

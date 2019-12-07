@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>مدیریت مجموعه ها - @yield('title')</title>
+    <title>سه چاپ - خدمات چاپ @yield('title')</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
@@ -16,7 +16,7 @@
     {{--crossorigin="anonymous"></script>--}}
 
     <script src="{{ asset('/js/jquery.min.js') }}"></script>
-    {{--<script src="js/vendor/bootstrap.min.js"></script>--}}
+    {{--<scripta src="js/vendor/bootstrap.min.js"></script>--}}
     <link rel="stylesheet" type="text/css" href="/css/datatables.css">
     <script type="text/javascript" charset="utf8" src="{{ asset('/js/datatables.js') }}"></script>
 
