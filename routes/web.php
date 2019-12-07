@@ -39,7 +39,10 @@ Route::get('/admin/login', 'Auth\AdminLoginControlsler@adminLogin')->name('admin
 Route::post('/admin/login', 'Auth\AdminLoginController@loginAdmin');
 //Route::post('/admin/register', 'Auth\RegisterController@createAdmin');
 
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
+Route::get('message','MessageController@create')->name('contact.us');
+Route::post('message','MessageController@store')->name('store.message');
+
+Route::prefix('admin')->group(function () {
     Route::get('/','AdminController@dashboard')->name('dashboard');
     Route::get('/logout', 'AdminController@adminLogout')->name('admin.logout');
     Route::get('/order', 'OrderController@index')->name('total.orders');
@@ -52,6 +55,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/editpass/{user}', 'AdminController@editPass')->name('admin.edit.pass');
     Route::post('/updatepass/{user}', 'AdminController@updatePass')->name('admin.pass.update');
 
+    Route::get('/edit-admin-pass', 'AdminController@editAdminPass')->name('edit.admin.pass');
+    Route::post('/update-admin-pass', 'AdminController@updateAdminPass')->name('update.admin.pass');
+
     Route::get('/product', 'ProductController@index')->name('admin.products');
     Route::get('/product/edit/{product}', 'ProductController@edit')->name('admin.edit.product');
     Route::patch('/product/{product}', 'ProductController@update')->name('admin.update.product');
@@ -63,5 +69,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::get('/text', 'TextController@edit')->name('admin.edit.texts');
     Route::patch('/text', 'TextController@update')->name('admin.update.texts');
+
+    Route::get('/message', 'MessageController@index')->name('admin.messages.list');
+    Route::get('/message/{message}', 'MessageController@edit')->name('admin.show.message');
+    Route::patch('/message/{message}', 'MessageController@update')->name('admin.update.message');
 
 });

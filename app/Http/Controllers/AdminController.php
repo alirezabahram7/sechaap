@@ -15,10 +15,11 @@ class AdminController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function dashboard(){
+    public function dashboard()
+    {
         return view('pages.admin.dashboard');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +28,7 @@ class AdminController extends Controller
     public function usersList()
     {
         $users = User::all();
-        return view('pages.admin.users_list',compact('users'));
+        return view('pages.admin.users_list', compact('users'));
     }
 
     /**
@@ -43,7 +44,7 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,7 +55,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Admin $admin
      * @return \Illuminate\Http\Response
      */
     public function show(Admin $admin)
@@ -65,7 +66,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Admin $admin
      * @return \Illuminate\Http\Response
      */
     public function edit(Admin $admin)
@@ -76,8 +77,8 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Admin $admin
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Admin $admin)
@@ -88,7 +89,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Admin $admin
      * @return \Illuminate\Http\Response
      */
     public function destroy(Admin $admin)
@@ -105,16 +106,28 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        return redirect()->guest(route( 'admin.auth.login' ));
+        return redirect()->guest(route('admin.auth.login'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+
     public function editPass(User $user)
     {
 
-        return view('pages/admin/editpass',compact('user'));
+        return view('pages/admin/editpass', compact('user'));
+
+    }
+
+    /**
+     * @param Admin $admin
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editAdminPass()
+    {
+        $admin = Admin::first();
+        return view('pages/admin/edit_admin_pass', compact('admin'));
 
     }
 
@@ -134,24 +147,48 @@ class AdminController extends Controller
      */
     public function updatePass(Request $request, User $user)
     {
-            $request_data = $request->All();
-            $validator = $this->admin_credential_rules($request_data);
-            if ($validator->fails()) {
-                // return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
-                return back()->with('error', $validator->getMessageBag()->toArray());
+        $request_data = $request->All();
+        $validator = $this->admin_credential_rules($request_data);
+        if ($validator->fails()) {
+            // return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
+            return back()->with('error', $validator->getMessageBag()->toArray());
+        } else {
+            $current_password = $user->password;
+            if (Hash::check($request_data['current-password'], $current_password)) {
+                $user_id = $user->id;
+                $obj_user = User::find($user_id);
+                $obj_user->password = Hash::make($request_data['password']);;
+                $obj_user->save();
+                return back()->with('success', 'رمز عبور مورد نظر با موفقیت ويرايش شد');
             } else {
-                $current_password = $user->password;
-                if (Hash::check($request_data['current-password'], $current_password)) {
-                    $user_id = $user->id;
-                    $obj_user = User::find($user_id);
-                    $obj_user->password = Hash::make($request_data['password']);;
-                    $obj_user->save();
-                    return back()->with('success', 'رمز عبور مورد نظر با موفقیت ويرايش شد');
-                } else {
-                    $error = array('current-password' => 'رمز قبلی اشتباه است');
-                    return back()->with('error', $error);
-                }
+                $error = array('current-password' => 'رمز قبلی اشتباه است');
+                return back()->with('error', $error);
             }
+        }
+    }
+
+
+    public function updateAdminPass(Request $request)
+    {
+        $admin = Admin::first();
+        $request_data = $request->All();
+        $validator = $this->admin_credential_rules($request_data);
+        if ($validator->fails()) {
+            // return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
+            return back()->with('error', $validator->getMessageBag()->toArray());
+        } else {
+            $current_password = $admin->password;
+            if (Hash::check($request_data['current-password'], $current_password)) {
+                $admin_id = $admin->id;
+                $obj_admin = Admin::find($admin_id);
+                $obj_admin->password = Hash::make($request_data['password']);;
+                $obj_admin->save();
+                return back()->with('success', 'رمز عبور مورد نظر با موفقیت ويرايش شد');
+            } else {
+                $error = array('current-password' => 'رمز قبلی اشتباه است');
+                return back()->with('error', $error);
+            }
+        }
     }
 
     /**

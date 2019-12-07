@@ -5,25 +5,41 @@
         <?php
         $i = 1;
         ?>
-        <div class=" d-flex justify-content-around mb-3">
-            <div class="col-3">
+        <div class=" d-md-flex justify-content-around d-sm-block mb-3">
+            <div class="col-md-3 col-sm-12 mb-3">
+
                 <div class="col-11 card border-primary bg-whitesmoke ">
                     <div class="mt-3 mb-3">
                         <div class="d-flex justify-content-center">
                             <img class="thumbnail img-circle w-25" src="/pic/nopro.png">
                         </div>
-                        <p class="text-center">
-                            {{ auth()->user()->name }}
-                        </p>
-                        <p class="text-center">
-                            {{ auth()->user()->phone }}
-                        </p>
-                        <p class="text-center">
-                            {{ auth()->user()->created_at }}
-                        </p>
-
-                        <div class="d-flex justify-content-center">
-                            <a  class="btn btn-danger" href="{{ route('edit.pass') }}">
+                        <br>
+                        <div class="d-flex justify-content-around bg-warning badge-pill m-2">
+                            <div>
+                                نام :
+                            </div>
+                            <div class="">
+                                {{ auth()->user()->name }}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around bg-success badge-pill m-2">
+                            <div>
+                                شماره تماس :
+                            </div>
+                            <div class="text-center">
+                                {{ \Morilog\Jalali\CalendarUtils::convertNumbers(auth()->user()->phone) }}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around bg-info badge-pill m-2">
+                            <div>
+                                عضویت :
+                            </div>
+                            <div class="text-center">
+                                {{  \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge(auth()->user()->created_at)->format('%A, %d %B %y')) }}
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="btn btn-danger" href="{{ route('edit.pass') }}">
                                 تغییر رمز عبور
                             </a>
                         </div>
@@ -31,59 +47,68 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9 dashboard-content">
-                <table class="table table-striped table-hover bg-light list-table" id="myTable">
-                    <thead class="myTableHeader">
-                    <tr class="table-tr">
-                        <th class="table-th">
-                            ردیف
-                        </th>
-                        <th class="table-th">
-                            نوع محصول
-                        </th>
-                        <th class="table-th">
-                            نام محصول
-                        </th>
-                        <th class="table-th">
-                            هزینه پرداختی
-                        </th>
-                        <th class="table-th">
-                            تاریخ سفارش
-                        </th>
-                        <th class="table-th">
-                            وضعیت سفارش
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
 
-                    @foreach($orders as $j => $order)
+            <div class="col-md-9 col-sm-12 dashboard-content">
+                <div class="myTableBox col-12">
+                    <table class="table table-striped table-hover bg-light list-table" id="myTable">
+                        <thead class="myTableHeader">
                         <tr class="table-tr">
-                            <td class="table-td">
-                                {{$j+1}}
-                            </td>
-                            <td class="table-td">
-                                {{ $order->product->type->title }}
-                            </td>
-                            <td class="table-td">
-                                {{ $order->product->title }}
-                            </td>
-                            <td class="table-td">
-                                {{ $order->price }}
-                            </td>
-                            <td class="table-td">
-                                {{$order->created_at}}
-                            </td>
-                            <td class="table-td">
-                                {{ $order->status->title }}
-                            </td>
+                            <th class="table-th">
+                                ردیف
+                            </th>
+                            <th class="table-th">
+                                نوع محصول
+                            </th>
+                            <th class="table-th">
+                                نام محصول
+                            </th>
+                            <th class="table-th">
+                                هزینه پرداختی
+                            </th>
+                            <th class="table-th">
+                                تاریخ سفارش
+                            </th>
+                            <th class="table-th">
+                                کد رهگیری
+                            </th>
+                            <th class="table-th">
+                                وضعیت سفارش
+                            </th>
                         </tr>
+                        </thead>
+                        <tbody>
 
-                    @endforeach
-                    </tbody>
-                </table>
+                        @foreach($orders as $j => $order)
+                            <tr class="table-tr">
+                                <td class="table-td">
+                                    {{\Morilog\Jalali\CalendarUtils::convertNumbers($j+1)}}
+                                </td>
+                                <td class="table-td">
+                                    {{ $order->product->type->title }}
+                                </td>
+                                <td class="table-td">
+                                    {{ $order->product->title }}
+                                </td>
+                                <td class="table-td">
+                                    {{ \Morilog\Jalali\CalendarUtils::convertNumbers($order->price) }}
+                                </td>
+                                <td class="table-td">
+                                    {{\Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge($order->created_at)->format('%A, %d %B %y'))}}
+                                </td>
+                                <td class="table-td">
+                                    {{$order->tracking_code}}
+                                </td>
+                                <td class="table-td">
+                                    {{ $order->status->title }}
+                                </td>
+                            </tr>
 
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
         <script>
             $(document).ready(function () {

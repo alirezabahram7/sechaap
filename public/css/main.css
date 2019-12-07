@@ -32,6 +32,7 @@ body {
      background-color: rgba(4,103,124,100);
      color: white;
  }
+
 .dataTables_length label {
     color: white;
     font-family: 'IRANSansWeb';
@@ -53,6 +54,22 @@ td {
     font-weight: bold;
     color: black;
     text-align: center;
+}
+
+.td-text-danger > td{
+    color: crimson;
+}
+
+.td-text-danger > td > a{
+    color: crimson;
+}
+
+.td-text-success > td{
+    color: darkgreen;
+}
+
+.td-text-success > td > a{
+    color: darkgreen;
 }
 
 input[type=checkbox] {
@@ -1140,11 +1157,25 @@ a.text-light:focus, a.text-light:hover {
      background-color: whitesmoke;
     border-radius: 10px;
      padding: 2px;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
  }
-
+.services-icons i.fa:hover{
+    background-color: whitesmoke;
+    transform: scale3d(1.2,1.2,0.8);
+    padding: 4px;
+}
+.services-icons:hover{
+    /*background-color: #aeea00;*/
+    /*border-radius: 0 0 40% 40%;*/
+}
 .bg-main-color{
     background-color: rgba(202,31,49,100);
     color: whitesmoke;
+
 }
 
 .text-on-image{

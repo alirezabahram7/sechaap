@@ -6,13 +6,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 slide-size" src="./mainImg/bk4.jpg" alt="First slide">
+            <img class="d-block w-100 slide-size" src="{{ asset('files/'.$images[0]->image) }}" alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100 slide-size" src="./mainImg/bk1.jpg" alt="Second slide">
+            <img class="d-block w-100 slide-size" src="{{ asset('files/'.$images[1]->image) }}" alt="Second slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100 slide-size" src="./mainImg/bk1 - Copy.jpg" alt="Third slide">
+            <img class="d-block w-100 slide-size" src="{{ asset('files/'.$images[2]->image) }}" alt="Third slide">
         </div>
     </div>
     <a class="carousel-control-prev " href="#carouselExampleIndicators" role="button" data-slide="prev">

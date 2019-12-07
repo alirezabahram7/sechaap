@@ -85,7 +85,7 @@
         </div>
         <div>
             <p class="p-5 align-middle d-none d-lg-block ">
-                تماس باما: ۴۲۰۲ ۷۷۶۲-۰۲۱ (۴خط ویژه)|info@ChapMatin.com
+                {{ $texts[4]->text }}
             </p>
         </div>
 
@@ -153,7 +153,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('contact.us') }}">
                         <span class="">
                             تماس با ما
                         </span>

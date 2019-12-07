@@ -184,19 +184,20 @@
         </tr>
 
         <tr class="sidebar-tr">
-            <td class="sidebar-td {{(request()->is(['total-infos'])) ? 'active' : ''}}">
-                <a href="#">
+            <td class="sidebar-td {{(request()->is(['admin/message','admin/message/*'])) ? 'active' : ''}}">
+                <a href="{{ route('admin.messages.list') }}">
                     <div class="col-12">
                         <i class="fa fa-envelope"></i>
                         <div class="d-none d-lg-inline-block">پیام های کاربران</div>
+                        <div class="badge badge-pill badge-warning">{{ \Morilog\Jalali\CalendarUtils::convertNumbers($unreadMessages) }}</div>
                     </div>
                 </a>
             </td>
         </tr>
 
         <tr class="sidebar-tr">
-            <td class="sidebar-td {{(request()->is('editpass')) ? 'active' : ''}}">
-                <a href="#">
+            <td class="sidebar-td {{(request()->is('admin/edit-admin-pass/*')) ? 'active' : ''}}">
+                <a href="{{ route('edit.admin.pass') }}">
                     <div class="col-12">
                         <i class="fa fa-key"></i>
                         <div class="d-none d-lg-inline-block">تغییر رمز عبور</div>
