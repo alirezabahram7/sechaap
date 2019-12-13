@@ -20,6 +20,12 @@ Auth::routes();
 Route::get('/home', function () {
     return view('welcome');
 });
+
+Route::get('cart', 'ProductsController@cart');
+Route::get('add-to-cart/{id}', 'ProductsController@addToCart')->name('add.to.cart');
+Route::patch('update-cart', 'ProductsController@update');
+Route::delete('remove-from-cart', 'ProductsController@remove');
+
 Route::get('/order/create', 'OrderController@create')->name('order.create');
 Route::get('/product/{type_id}', 'ProductController@showByType')->name('products');
 
@@ -27,6 +33,7 @@ Route::get('/profile', 'UserController@profile')->name('profile');
 Route::get('/editpass', 'UserController@editPass')->name('edit.pass');
 Route::post('/updatepass', 'UserController@updatePass')->name('pass.update');
 
+Route::get('/search', 'OrderController@search')->name('code.search');
 
 Route::get('/logout', function () {
     Auth::logout();

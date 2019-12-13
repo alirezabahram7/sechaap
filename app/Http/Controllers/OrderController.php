@@ -29,7 +29,7 @@ class OrderController extends Controller
     public function filterByUser(User $user)
     {
         $orders = Order::where('user_id', $user->id)->get();
-        return view('pages.admin.total_orders', compact('orders','user'));
+        return view('pages.admin.total_orders', compact('orders', 'user'));
     }
 
     /**
@@ -58,6 +58,18 @@ class OrderController extends Controller
         return view('pages.admin.total_orders', compact('orders'));
     }
 
+    public function search(Request $request)
+    {
+        if ($request->tracking_code != '') {
+            $orders[0] = Order::where('tracking_code', $request->tracking_code)->first();
+            if ($orders) {
+                return view('pages.profile', compact('orders'));
+            }
+            return back()->with('error', 'سفارش مورد نظر یافت نشد');
+        }
+        return back();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -75,7 +87,7 @@ class OrderController extends Controller
             $ext = 'application/pdf | image/vnd.dwg';
             $ext_name = 'پی دی اف و فایل dwg';
         }
-        return view('pages.create-order', compact('type','ext','ext_name'));
+        return view('pages.create-order', compact('type', 'ext', 'ext_name'));
     }
 
     /**

@@ -6,48 +6,49 @@
         $i = 1;
         ?>
         <div class=" d-md-flex justify-content-around d-sm-block mb-3">
-            <div class="col-md-3 col-sm-12 mb-3">
+            @if(auth()->check())
+                <div class="col-md-3 col-sm-12 mb-3">
 
-                <div class="col-11 card border-primary bg-whitesmoke ">
-                    <div class="mt-3 mb-3">
-                        <div class="d-flex justify-content-center">
-                            <img class="thumbnail img-circle w-25" src="/pic/nopro.png">
-                        </div>
-                        <br>
-                        <div class="d-flex justify-content-around bg-warning badge-pill m-2">
-                            <div>
-                                نام :
+                    <div class="col-11 card border-primary bg-whitesmoke ">
+                        <div class="mt-3 mb-3">
+                            <div class="d-flex justify-content-center">
+                                <img class="thumbnail img-circle w-25" src="/pic/nopro.png">
                             </div>
-                            <div class="">
-                                {{ auth()->user()->name }}
+                            <br>
+                            <div class="d-flex justify-content-around bg-warning badge-pill m-2">
+                                <div>
+                                    نام :
+                                </div>
+                                <div class="">
+                                    {{ auth()->user()->name }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-around bg-success badge-pill m-2">
-                            <div>
-                                شماره تماس :
+                            <div class="d-flex justify-content-around bg-success badge-pill m-2">
+                                <div>
+                                    شماره تماس :
+                                </div>
+                                <div class="text-center">
+                                    {{ \Morilog\Jalali\CalendarUtils::convertNumbers(auth()->user()->phone) }}
+                                </div>
                             </div>
-                            <div class="text-center">
-                                {{ \Morilog\Jalali\CalendarUtils::convertNumbers(auth()->user()->phone) }}
+                            <div class="d-flex justify-content-around bg-info badge-pill m-2">
+                                <div>
+                                    عضویت :
+                                </div>
+                                <div class="text-center">
+                                    {{  \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge(auth()->user()->created_at)->format('%A, %d %B %y')) }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-around bg-info badge-pill m-2">
-                            <div>
-                                عضویت :
+                            <div class="d-flex justify-content-center mt-3">
+                                <a class="btn btn-danger" href="{{ route('edit.pass') }}">
+                                    تغییر رمز عبور
+                                </a>
                             </div>
-                            <div class="text-center">
-                                {{  \Morilog\Jalali\CalendarUtils::convertNumbers(\Morilog\Jalali\Jalalian::forge(auth()->user()->created_at)->format('%A, %d %B %y')) }}
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-center mt-3">
-                            <a class="btn btn-danger" href="{{ route('edit.pass') }}">
-                                تغییر رمز عبور
-                            </a>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            @endif
             <div class="col-md-9 col-sm-12 dashboard-content">
                 <div class="myTableBox col-12">
                     <table class="table table-striped table-hover bg-light list-table" id="myTable">

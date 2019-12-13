@@ -89,6 +89,7 @@ class ImageController extends Controller
 
             }
         }
+        return back()->with('message','تغییرات با موفقیت اعمال شد');
     }
 
     /**

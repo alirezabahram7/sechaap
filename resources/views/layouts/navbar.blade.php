@@ -20,13 +20,13 @@
                                 {{ csrf_field() }}
                                 <div class="form-group mt-3 ">
                                     <p>
-                                        <input type="text" class="form-control col-8 center" name="phone" id="phone" value=""
-                                               placeholder="موبایل">
+                                        <input type="text" class="form-control col-8 center form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="phone" value=""
+                                               placeholder="موبایل" required autofocus>
                                     </p>
                                     <p>
-                                        <input type="password" class="form-control col-8 center" name="password" id="password"
+                                        <input type="password" class="form-control col-8 center {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password"
                                                value=""
-                                               placeholder="رمزعبور">
+                                               placeholder="رمزعبور" required>
                                     </p>
                                     <p class="fusion-remember-checkbox text-center">
                                         <label
@@ -161,15 +161,29 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0 d-md-flex justify-content-center">
-                <input class="form-control mr-sm-2" type="search" placeholder="جستجو" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0 d-md-flex justify-content-center" method="get" action="{{ route('code.search') }}">
+                @csrf
+                <input class="form-control mr-sm-2" name="tracking_code" type="search" placeholder="کدرهگیری را وارد کنید" aria-label="Search" >
                 <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">جستجو</button>
             </form>
         </div>
     </div>
 </nav>
-
-
+@if ($errors->has('phone'))
+<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+    {{ $errors->first('phone') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+@if ($errors->has('password'))
+        {{ $errors->first('password') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
 
 

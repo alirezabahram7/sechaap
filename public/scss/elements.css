@@ -15,6 +15,9 @@
 .nav-link:hover span {
   color: white;
 }
+.nav-link:hover i {
+  color: white;
+}
 
 .table-hover tbody tr:not(.sub-menu):before {
   background: #fff231;
@@ -50,6 +53,29 @@ td.active i {
 
 .about-us-logo-image {
   box-shadow: 2px 2px 20px whitesmoke;
+}
+
+.itembox_lists {
+  color: black;
+  background: white;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px 0 #04677c, 0 2px 10px 0 #04677c;
+  height: 100% !important;
+  border-radius: 2px !important;
+  width: 50px !important;
+}
+
+i.fa {
+  padding: 0;
+  font-size: 20px;
+  color: #ca1f31;
+  /*color: black !important;*/
+}
+
+i.fa:hover {
+  color: #04677c;
+  /*color: black !important;*/
 }
 
 /*# sourceMappingURL=elements.css.map */

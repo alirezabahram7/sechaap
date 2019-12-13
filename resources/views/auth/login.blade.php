@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @include('layouts.header')
     <meta charset="UTF-8">
     <title>ورود به پنل</title>
     <link rel="stylesheet" href="/css/slogin.css">
@@ -25,14 +26,24 @@
         <!-- Login Form -->
              <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 {{ csrf_field() }}
-                <input type="text" id="login" class="fadeIn second" name="phone" placeholder="شماره موبایل">
-                <input type="password" id="password" class="fadeIn third" name="password"
-                       placeholder="رمز عبور">
+                <input type="text" id="login" class="fadeIn second form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" placeholder="شماره موبایل" required autofocus>
+                 @if ($errors->has('phone'))
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $errors->first('phone') }}</strong>
+                     </span>
+                 @endif
+                <input type="password" id="password" class="fadeIn third form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
+                       placeholder="رمز عبور" required>
+                 @if ($errors->has('password'))
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $errors->first('password') }}</strong>
+                     </span>
+                 @endif
                 <button type="submit" class="fadeIn fourth " style="font-family: 'IRANSansWeb';">ورود</button>
             </form>
 
-            <a type="submit" class="underlineHover text-danger" href="/register"
-               style="font-family: 'IRANSansWeb';color: tomato">ثبت نام</a>
+            <a  class="underlineHover text-danger" href="/register"
+               >ثبت نام</a>
             <!-- Remind Passowrd -->
             <div id="formFooter">
                 <a class="underlineHover text-secondary" href="{{ route('password.request') }}"

@@ -92,7 +92,6 @@ class ProductController extends Controller
         return view('pages.admin.edit_product', compact('product'));
     }
 
-
     /**
      * @param Request $request
      * @param Product $product
