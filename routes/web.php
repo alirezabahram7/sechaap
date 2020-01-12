@@ -84,4 +84,5 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/message/{message}', 'MessageController@edit')->name('admin.show.message');
     Route::patch('/message/{message}', 'MessageController@update')->name('admin.update.message');
 
+    Route::resource('type','TypeController');
 });

@@ -130,6 +130,59 @@
         </tr>
 
         <tr class="sidebar-tr">
+            <td class="sidebar-td {{(request()->is(['admin/type/create','admin/type' ,'admin/type/edit/*','admin/addition/create'])) ? 'active' : ''}}">
+                <a href="#" id="categories-menu">
+                    <div class="col-12">
+                        <i class="fa fa-cog"></i>
+                        <div class="d-none d-lg-inline-block">مدیریت دسته بندی ها</div>
+                        {{--<div class="d-none d-lg-inline-block">لیست سفارشات</div>--}}
+                    </div>
+                </a>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr class="d-none" id="csub-menu">
+            <td>
+                <table class="col-12">
+                    <tr class="sidebar-tr">
+                        <td class="sidebar-td {{(request()->is(['admin/type/create'])) ? 'active' : ''}}">
+                            <a href="{{ url('admin/type/create') }}">
+                                <div class="col-12">
+                                    <i class="fa fa-plus-square"></i>
+                                    <div class="d-none d-lg-inline-block">افزودن دسته بندی جدید</div>
+                                    {{--<div class="d-none d-lg-inline-block">لیست سفارشات</div>--}}
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="sidebar-tr">
+                        <td class="sidebar-td {{(request()->is(['admin/type'])) ? 'active' : ''}}">
+                            <a href="#">
+                                <div class="col-12">
+                                    <i class="fa fa-th-list"></i>
+                                    <div class="d-none d-lg-inline-block">لیست  دسته بندی ها</div>
+                                    {{--<div class="d-none d-lg-inline-block">لیست سفارشات</div>--}}
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="sidebar-tr">
+                        <td class="sidebar-td {{(request()->is(['admin/addition/create'])) ? 'active' : ''}}">
+                            <a href="#">
+                                <div class="col-12">
+                                    <i class="fa fa-cubes"></i>
+                                    <div class="d-none d-lg-inline-block">افزودن نوع</div>
+                                    {{--<div class="d-none d-lg-inline-block">لیست سفارشات</div>--}}
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr class="sidebar-tr">
             <td class="sidebar-td {{(request()->is(['admin/image', 'admin/text'])) ? 'active' : ''}}">
                 <a href="#" id="pages-menu">
                     <div class="col-12">
@@ -230,6 +283,11 @@
 
     $('#pages-menu').on('click', function(e) {
         $('#pgsub-menu').toggleClass("d-none sub-menu");
+        e.preventDefault();
+    });
+
+    $('#categories-menu').on('click', function(e) {
+        $('#csub-menu').toggleClass("d-none sub-menu");
         e.preventDefault();
     });
 </script>

@@ -49,6 +49,11 @@ class ProductController extends Controller
         return view('pages.admin.add_product');
     }
 
+//    public function addKinds()
+//    {
+//        return view('pages.admin.add_product');
+//    }
+
     /**
      * Store a newly created resource in storage.
      *

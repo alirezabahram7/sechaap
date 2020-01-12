@@ -4,7 +4,7 @@
     <div class="d-flex flex-column justify-content-around dashboard-content">
         <div class="container bg-secondary-color p-4 mb-3">
             <div class="form-header-title">
-                ایجاد محصول جدید
+                ایجاد دسته بندی جدید
             </div>
             @include('layouts.message')
             <form action="{{ route('admin.store.product') }}" method="post" class="form-group" enctype="multipart/form-data">
@@ -12,20 +12,12 @@
                 <div class="">
                     <div class="d-md-flex d-sm-block justify-content-between">
                         <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="type_id">گروه محصولی</label>
-                            <select class="form-control my-form-control" name="type_id">
-                                @foreach($types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="title">عنوان محصول</label>h
+                            <label for="title">عنوان دسته بندی</label>
                             <input type="text" class="form-control my-form-control" name="title"
                                    value="{{ old('title') }}">
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="price">قیمت</label>
+                            <label for="price"> قیمت پایه</label>
                             <input type="text" class="form-control my-form-control" name="price"
                                    value="{{ old('price') }}" >
                         </div>

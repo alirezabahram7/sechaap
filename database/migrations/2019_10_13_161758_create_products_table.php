@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('title')->nullable();
             $table->unsignedBigInteger('type_id');
             $table->text('description')->nullable();
-            $table->string('price');
             $table->string('photo')->nullable();
             $table->timestamps();
         });
