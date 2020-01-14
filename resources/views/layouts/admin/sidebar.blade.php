@@ -157,7 +157,7 @@
                     </tr>
                     <tr class="sidebar-tr">
                         <td class="sidebar-td {{(request()->is(['admin/type'])) ? 'active' : ''}}">
-                            <a href="#">
+                            <a href="{{ url('admin/type') }}">
                                 <div class="col-12">
                                     <i class="fa fa-th-list"></i>
                                     <div class="d-none d-lg-inline-block">لیست  دسته بندی ها</div>

@@ -7,7 +7,7 @@
                 ایجاد دسته بندی جدید
             </div>
             @include('layouts.message')
-            <form action="{{ route('admin.store.product') }}" method="post" class="form-group" enctype="multipart/form-data">
+            <form action="{{ url('admin/type') }}" method="post" class="form-group" enctype="multipart/form-data">
                 @csrf
                 <div class="">
                     <div class="d-md-flex d-sm-block justify-content-between">
@@ -15,6 +15,15 @@
                             <label for="title">عنوان دسته بندی</label>
                             <input type="text" class="form-control my-form-control" name="title"
                                    value="{{ old('title') }}">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12 text-center">
+                            <label for="title">نوع چاپ</label>
+                            <select  class="form-control my-form-control" name="category_id">
+                                <option>ندارد</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center">
                             <label for="price"> قیمت پایه</label>
@@ -31,16 +40,6 @@
                                   rows="6" >{{ old('description') }}</textarea>
                     </div>
                     <br>
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="form-group my-form-group">
-                            <label for="photo">بارگزاری تصویر</label>
-                            <div class="input-group d-flex justify-content-center">
-                                <input class="btn btn-primary browndiv text-right" name="photo"
-                                       type="file" accept="image/*">
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Http\Requests\TypeRequest;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,7 +18,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::all();
-        return view('',compact('types'));
+        return view('pages.admin.type_list',compact('types'));
     }
 
 
@@ -25,7 +27,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.add_type');
+        $categories = Category::all();
+        return view('pages.admin.add_type',compact('categories'));
     }
 
     /**
@@ -34,11 +37,11 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(TypeRequest $request)
     {
         Type::create($request->all());
 
-        return redirect('')->with('message','نوع جدید با موفقیت ایجاد شد');
+        return back()->with('message','نوع جدید با موفقیت ایجاد شد');
     }
 
     /**

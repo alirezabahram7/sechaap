@@ -15,6 +15,7 @@ class CreateTypesTable extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->string("title");
             $table->unsignedBigInteger("category_id");
             $table->string('media_type')->nullable();
