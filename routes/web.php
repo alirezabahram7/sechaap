@@ -85,6 +85,11 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::patch('/message/{message}', 'MessageController@update')->name('admin.update.message');
 
     Route::resource('type','TypeController');
+    Route::get('edit-type/{type}','TypeController@edit');
     Route::get('addition-list/{typeId}','AdditionController@typeAdditions');
-    Route::resource('addition','AdditionController');
+    Route::get('create-addition','AdditionController@create')->name('addition.create');
+    Route::get('edit-addition/{addition}','AdditionController@edit')->name('addition.create');
+    Route::post('addition','AdditionController@store')->name('addition.store');
+    Route::patch('addition/{addition}','AdditionController@update')->name('addition.update');
+    Route::get('addition','AdditionController@index')->name('addition.list');
 });

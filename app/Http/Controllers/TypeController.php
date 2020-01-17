@@ -18,7 +18,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::all();
-        return view('pages.admin.type_list',compact('types'));
+        return view('pages.admin.type_list', compact('types'));
     }
 
 
@@ -28,62 +28,66 @@ class TypeController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('pages.admin.add_type',compact('categories'));
+        return view('pages.admin.add_type', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(TypeRequest $request)
     {
         Type::create($request->all());
 
-        return back()->with('message','نوع جدید با موفقیت ایجاد شد');
+        return back()->with('message', 'نوع جدید با موفقیت ایجاد شد');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Type  $type
+     * @param \App\Type $type
      * @return Response
      */
     public function show(Type $type)
     {
-        return view('',compact('type'));
+        return view('', compact('type'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Type  $type
+     * @param \App\Type $type
      * @return Response
      */
     public function edit(Type $type)
     {
-        return view('',compact('type'));
+        return view('pages.admin.edit_type', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Type  $type
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Type $type
      * @return Response
      */
     public function update(Request $request, Type $type)
     {
-        $type->update($request->all());
+        $requestData = $request->all();
+        $requestData['is_offset'] = isset($request->is_offset) ? 1 : null;
+        $requestData['is_digital'] = isset($request->is_digital) ? 1 : null;
 
-        return back()->with('message','نوع با موفقیت ویرایش شد');
+        $type->update($requestData);
+
+        return back()->with('message', 'نوع با موفقیت ویرایش شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Type $type
+     * @param \App\Type $type
      * @return Response
      * @throws \Exception
      */
@@ -91,6 +95,6 @@ class TypeController extends Controller
     {
         $type->delete();
 
-        return back()->with('message','محصول با موفقیت حذف شد');
+        return back()->with('message', 'محصول با موفقیت حذف شد');
     }
 }

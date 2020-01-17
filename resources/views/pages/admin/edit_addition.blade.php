@@ -1,39 +1,46 @@
 @extends('layouts.admin.app')
-@section('title','ویرایش محصول')
+@section('title','ویرایش نوع')
 @section('content')
     <div class="d-flex flex-column justify-content-around dashboard-content">
         <div class="container bg-secondary-color p-4 mb-3">
             <div class="form-header-title">
-                ایجاد دسته بندی جدید
+                ویرایش نوع
             </div>
             @include('layouts.message')
-            <form action="{{ url('admin/type') }}" method="post" class="form-group" enctype="multipart/form-data">
+            <form action="{{ route('addition.update',['id' => $addition->id ]) }}" method="post" class="form-group" enctype="multipart/form-data">
                 @csrf
-                <div class="">
+                @method('patch')
+                <div>
+                    <div class="d-md-flex d-sm-block">
+                    <div class="col-md-4 col-sm-12 justify-content-start text-right">
+                        <label for="type_id">گروه محصولی</label>
+                        <select class="form-control my-form-control" name="type_id">
+                            @foreach($types as $type)
+                                <option value="{{ $type->id }}" {{ $type->id==$addition->type_id ? 'selected':'' }}>{{ $type->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    </div>
+                    <br>
                     <div class="d-md-flex d-sm-block justify-content-between">
+
                         <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="title">عنوان دسته بندی</label>
+                            <label for="title">عنوان نوع</label>
                             <input type="text" class="form-control my-form-control" name="title"
-                                   value="{{ old('title') }}">
+                                   value="{{ $addition->title }}">
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="title">نوع چاپ</label>
-                            <div>
-
-                                <label for="title">افست: </label>
-                                <input type="checkbox" class="my-checkbox" name="is_offset" value="1">
-
-                           &nbsp;&nbsp;&nbsp;
-
-                                <label for="title">دیجیتال: </label>
-                                <input type="checkbox" class="my-checkbox" name="is_digital" value="1">
-
-                            </div>
+                            <label for="type_id">دسته بندی نوع</label>
+                            <select class="form-control my-form-control" name="addition_type_id">
+                                @foreach($additionTypes as $additionType)
+                                    <option value="{{ $additionType->id }}">{{ $additionType->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="price"> قیمت پایه</label>
+                            <label for="price"> قیمت مازاد</label>
                             <input type="text" class="form-control my-form-control" name="price"
-                                   value="{{ old('price') }}" >
+                                   value="{{ $addition->price }}" >
                         </div>
                     </div>
                     <br>
@@ -42,10 +49,9 @@
                     <div class="form-group my-form-group col-10 text-center">
                         <label for="description">توضیحات</label>
                         <textarea type="text" class="form-control my-form-control" name="description"
-                                  rows="6" >{{ old('description') }}</textarea>
+                                  rows="6" >{{ $addition->description }}</textarea>
                     </div>
                     <br>
-
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">
                             <button type="submit" class="btn btn-danger justify-content-center my-btn">ایجاد

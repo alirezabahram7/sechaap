@@ -6,6 +6,7 @@ use App\Addition;
 use App\AdditionType;
 use App\Category;
 use App\Http\Requests\AdditionRequest;
+use App\Type;
 use Illuminate\Http\Request;
 
 class AdditionController extends Controller
@@ -21,6 +22,11 @@ class AdditionController extends Controller
         return view('pages.admin.addition_list',compact('additions'));
     }
 
+    public function index(){
+        $additions = Addition::all();
+        return view('pages.admin.addition_list',compact('additions'));
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -28,9 +34,9 @@ class AdditionController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $types = Type::all();
         $additionTypes = AdditionType::all();
-        return view('pages.admin.add_addition',compact('categories','additionTypes'));
+        return view('pages.admin.add_addition',compact('types','additionTypes'));
     }
 
     /**
@@ -64,7 +70,8 @@ class AdditionController extends Controller
      */
     public function edit(Addition $addition)
     {
-        return view('pages.admin.edit_addition',compact($addition));
+        $additionTypes = AdditionType::all();
+        return view('pages.admin.edit_addition',compact('addition','additionTypes'));
     }
 
     /**

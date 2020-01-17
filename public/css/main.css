@@ -202,7 +202,7 @@ td {
 
 
 td.active a{
-   
+
     color: white !important;
 }
 
@@ -975,11 +975,11 @@ border: dotted 1px #f0f0f0;
 .btn-primary{}
 .btn-warning{border-radius: 0 !important;background: #fff231;border: none;margin-top: 5px;width: 120px;height: 62px;margin-left: 10px;line-height: 4;}
 .btn-warning:hover {
-    color: 
+    color:
 #212529;
 background-color:
     #6f6f6f !important;
-}  
+}
 .btn-info{}
 .btn-sm{}
 
@@ -1054,14 +1054,14 @@ i.text-light{    color: white !important;
     background-color: #fff;
     border-color: #80bdff;
     outline: 0;
-    box-shadow: 0px 1px 1px 1px 
+    box-shadow: 0px 1px 1px 1px
     rgb(122, 9, 200);
 }
 
 
 .breadcrumb-item.active {
 
-    color: 
+    color:
 
     white;
     font-size: 18px;
@@ -1077,7 +1077,7 @@ i.text-light{    color: white !important;
     padding: 10px;
     margin-bottom: 5px;
     list-style: none;
-    background-color: 
+    background-color:
     #6f6f6f;
     border-radius: 2px;
 }
@@ -1096,7 +1096,7 @@ i.text-light{    color: white !important;
 
 .breadcrumb-item.active {
 
-    color: 
+    color:
 
     white;
     font-size: 18px;
@@ -1116,7 +1116,7 @@ i.text-light{    color: white !important;
 }
 
 a.text-light:focus, a.text-light:hover {
-    color: 
+    color:
     black !important;
 }
 
@@ -1178,4 +1178,11 @@ a.text-light:focus, a.text-light:hover {
 .mybadge{
     padding: 6px;
     border-radius: 10px;
+}
+
+.my-checkbox{
+    height: 25px;
+    width: 25px;
+    top: 0;
+    left: 0;
 }

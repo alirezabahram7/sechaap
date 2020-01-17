@@ -130,7 +130,7 @@
         </tr>
 
         <tr class="sidebar-tr">
-            <td class="sidebar-td {{(request()->is(['admin/type/create','admin/type' ,'admin/type/edit/*','admin/addition/create'])) ? 'active' : ''}}">
+            <td class="sidebar-td {{(request()->is(['admin/type/create','admin/type' ,'admin/type/edit/*','admin/create-addition','admin/edit-type/*','admin/edit-addition/*','admin/addition'])) ? 'active' : ''}}">
                 <a href="#" id="categories-menu">
                     <div class="col-12">
                         <i class="fa fa-cog"></i>
@@ -167,8 +167,8 @@
                         </td>
                     </tr>
                     <tr class="sidebar-tr">
-                        <td class="sidebar-td {{(request()->is(['admin/addition/create'])) ? 'active' : ''}}">
-                            <a href="#">
+                        <td class="sidebar-td {{(request()->is(['admin/create-addition'])) ? 'active' : ''}}">
+                            <a href="{{ url('admin/create-addition') }}">
                                 <div class="col-12">
                                     <i class="fa fa-cubes"></i>
                                     <div class="d-none d-lg-inline-block">افزودن نوع</div>
@@ -177,7 +177,17 @@
                             </a>
                         </td>
                     </tr>
-
+                    <tr class="sidebar-tr">
+                        <td class="sidebar-td {{(request()->is(['admin/addition'])) ? 'active' : ''}}">
+                            <a href="{{ url('admin/addition') }}">
+                                <div class="col-12">
+                                    <i class="fa fa-list-ul"></i>
+                                    <div class="d-none d-lg-inline-block">لیست  نوع ها</div>
+                                    {{--<div class="d-none d-lg-inline-block">لیست سفارشات</div>--}}
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
                 </table>
             </td>
         </tr>

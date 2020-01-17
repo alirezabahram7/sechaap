@@ -13,7 +13,10 @@
                         عنوان
                     </th>
                     <th class="table-th">
-                        نوع چاپ
+                         دسته بندی
+                    </th>
+                    <th class="table-th">
+                        نوع
                     </th>
                     <th class="table-th">
                        قیمت پایه
@@ -26,32 +29,41 @@
                 </thead>
                 <tbody>
 
-                @foreach($types as $j => $type)
+                @foreach($additions as $j => $addition)
                     <tr class="table-tr">
                         <td class="table-td">
                             {{ \Morilog\Jalali\CalendarUtils::convertNumbers($j+1) }}
                         </td>
                         <td class="table-td">
-                            <a href="{{ url('admin/edit-type/'.$type->id) }}">
-                                {{ $type->title }}
+                            <a href="{{ url('admin/edit-addition/'.$addition->id) }}">
+                                {{ $addition->title }}
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="{{ url('admin/edit-type/'.$type->id) }}">
-                                @if($type->category_id != null)
-                                {{ $type->category->title }}
-                                    @else
+                            <a href="{{ url('admin/edit-addition/'.$addition->id) }}">
+                                @if($addition->type_id != null)
+                                    {{ $addition->type->title }}
+                                @else
                                     ---
-                                    @endif
+                                @endif
                             </a>
                         </td>
                         <td class="table-td">
-                            <a href="{{ url('admin/edit-type/'.$type->id) }}">
-                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($type->price)}}
+                            <a href="{{ url('admin/edit-addition/'.$addition->id) }}">
+                                @if($addition->addition_type_id != null)
+                                    {{ $addition->additionType->title }}
+                                @else
+                                    ---
+                                @endif
                             </a>
                         </td>
                         <td class="table-td">
-                            {{ mb_substr($type->description,0,20) }} ...
+                            <a href="{{ url('admin/edit-addition/'.$addition->id) }}">
+                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($addition->price)}}
+                            </a>
+                        </td>
+                        <td class="table-td">
+                            {{ mb_substr($addition->description,0,20) }} ...
                         </td>
 
                     </tr>

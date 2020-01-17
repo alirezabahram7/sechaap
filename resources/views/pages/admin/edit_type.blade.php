@@ -7,33 +7,34 @@
                 ایجاد دسته بندی جدید
             </div>
             @include('layouts.message')
-            <form action="{{ url('admin/type') }}" method="post" class="form-group" enctype="multipart/form-data">
+            <form action="{{ url('admin/type/'.$type->id) }}" method="post" class="form-group" enctype="multipart/form-data">
                 @csrf
+                @method('patch')
                 <div class="">
                     <div class="d-md-flex d-sm-block justify-content-between">
                         <div class="form-group col-md-4 col-sm-12 text-center">
                             <label for="title">عنوان دسته بندی</label>
                             <input type="text" class="form-control my-form-control" name="title"
-                                   value="{{ old('title') }}">
+                                   value="{{ $type->title }}">
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center">
                             <label for="title">نوع چاپ</label>
                             <div>
 
                                 <label for="title">افست: </label>
-                                <input type="checkbox" class="my-checkbox" name="is_offset" value="1">
+                                <input type="checkbox" class="my-checkbox" name="is_offset" value="1" {{ $type->is_offset==1 ? 'checked':'' }}>
 
                            &nbsp;&nbsp;&nbsp;
 
                                 <label for="title">دیجیتال: </label>
-                                <input type="checkbox" class="my-checkbox" name="is_digital" value="1">
+                                <input type="checkbox" class="my-checkbox" name="is_digital" value="1" {{ $type->is_digital==1 ? 'checked':'' }}>
 
                             </div>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center">
                             <label for="price"> قیمت پایه</label>
                             <input type="text" class="form-control my-form-control" name="price"
-                                   value="{{ old('price') }}" >
+                                   value="{{ $type->price}}" >
                         </div>
                     </div>
                     <br>
@@ -42,7 +43,7 @@
                     <div class="form-group my-form-group col-10 text-center">
                         <label for="description">توضیحات</label>
                         <textarea type="text" class="form-control my-form-control" name="description"
-                                  rows="6" >{{ old('description') }}</textarea>
+                                  rows="6" >{{ $type->description }}</textarea>
                     </div>
                     <br>
 
