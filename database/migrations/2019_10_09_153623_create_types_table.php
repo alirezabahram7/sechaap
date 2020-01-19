@@ -17,6 +17,8 @@ class CreateTypesTable extends Migration
             $table->bigIncrements('id');
             $table->boolean('is_offset')->default(0);
             $table->boolean('is_digital')->default(0);
+            $table->integer('price');
+            $table->integer('add_price')->default(0);
             $table->string("title");
             $table->unsignedBigInteger("category_id");
             $table->string('media_type')->nullable();

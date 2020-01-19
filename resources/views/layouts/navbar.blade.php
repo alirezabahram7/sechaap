@@ -102,48 +102,57 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="">
-                            لیست قیمت ها
-                        </span>
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          <span class="">
-                        محاسبه آنلاین چاپ کتاب و جزوه
+                       چاپ افست
                          </span>
                     </a>
                     <div class="dropdown-menu w-100 bg-whitesmoke text-md-center" aria-labelledby="navbarDropdown2">
-                        <a class="dropdown-item" href="#">سیاه سفید</a>
-                        <a class="dropdown-item" href="#">رنگی</a>
+                        @foreach($offsetTypes as $offsetType)
+                            <a class="dropdown-item" href="{{route('order.create',['id'=>$offsetType->id,'cat'=>'of'])}}">{{$offsetType->title}}</a>
+                        @endforeach
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          <span class="">
-                        محصولات
+                        چاپ دیجیتال
                          </span>
                     </a>
                     <div class="dropdown-menu w-100 bg-whitesmoke text-md-center" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'book'])}}">چاپ کتاب</a>
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'thesis'])}}">چاپ پایان نامه</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'visit_card'])}}">چاپ کارت
-                            ویزیت</a>
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'envelope'])}}">چاپ پاکت نامه</a>
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'factor'])}}">چاپ فاکتور</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'color'])}}">چاپ رنگی</a>
-                        <a class="dropdown-item" href="{{route('order.create',['type'=>'plot'])}}">چاپ پلات - نقشه</a>
-                        <a class="dropdown-item" href="{{ route('products',['type_id'=>2]) }}">چاپ اعلامیه</a>
-                        <a class="dropdown-item" href="{{ route('products',['type_id'=>1]) }}">چاپ بنر</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('products',['type_id'=>3]) }}">هدایای تبلیغاتی</a>
+                        @foreach($digitalTypes as $digitalType)
+                            <a class="dropdown-item" href="{{route('order.create',['id'=>$digitalType->id,'cat'=>'d'])}}">{{$digitalType->title}}</a>
+                        @endforeach
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                        <a class="dropdown-item" href="{{route('order.create',['type'=>'visit_card'])}}">چاپ کارت--}}
+{{--                            ویزیت</a>--}}
+{{--                        <a class="dropdown-item" href="{{route('order.create',['type'=>'envelope'])}}">چاپ پاکت نامه</a>--}}
+{{--                        <a class="dropdown-item" href="{{route('order.create',['type'=>'factor'])}}">چاپ فاکتور</a>--}}
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                        <a class="dropdown-item" href="{{route('order.create',['type'=>'color'])}}">چاپ رنگی</a>--}}
+{{--                        <a class="dropdown-item" href="{{route('order.create',['type'=>'plot'])}}">چاپ پلات - نقشه</a>--}}
+{{--                        <a class="dropdown-item" href="{{ route('products',['type_id'=>2]) }}">چاپ اعلامیه</a>--}}
+{{--                        <a class="dropdown-item" href="{{ route('products',['type_id'=>1]) }}">چاپ بنر</a>--}}
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                        <a class="dropdown-item" href="{{ route('products',['type_id'=>3]) }}">هدایای تبلیغاتی</a>--}}
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('order.create',['id'=>2])}}">
+                        <span class="">
+                            چاپ بنر
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('order.create',['id'=>2])}}">
+                        <span class="">
+                            چاپ کتاب و جزوه
+                        </span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about.us') }}">

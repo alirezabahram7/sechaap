@@ -26,7 +26,7 @@ Route::get('add-to-cart/{id}', 'ProductsController@addToCart')->name('add.to.car
 Route::patch('update-cart', 'ProductsController@update');
 Route::delete('remove-from-cart', 'ProductsController@remove');
 
-Route::get('/order/create', 'OrderController@create')->name('order.create');
+Route::get('/order/create/{type}', 'OrderController@create')->name('order.create');
 Route::get('/product/{type_id}', 'ProductController@showByType')->name('products');
 
 Route::get('/profile', 'UserController@profile')->name('profile');
