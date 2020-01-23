@@ -1156,12 +1156,49 @@ a.text-light:focus, a.text-light:hover {
     /*background-color: #aeea00;*/
     /*border-radius: 0 0 40% 40%;*/
 }
+
+.helpers-icons i.fa{
+    color: darkred;
+    font-size: 20px;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+}
+
+.helpers-icons i.fa:hover{
+    /*background-color: whitesmoke;*/
+    color: white;
+}
 .bg-main-color{
     background-color: rgba(202,31,49,100);
     color: whitesmoke;
 
 }
 
+.helper {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.helper-text {
+    visibility: hidden;
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.helper:hover .helper-text {
+    visibility: visible;
+}
 .text-on-image{
     position: absolute;
     width: 100%;
@@ -1185,4 +1222,12 @@ a.text-light:focus, a.text-light:hover {
     width: 25px;
     top: 0;
     left: 0;
+}
+.type-divider{
+    width: 25%;
+    background-color: #ffaa1a;
+    color: #0c0c0c;
+    padding: 20px 20px 10px 10px;
+    box-shadow: white 2px 2px 8px;
+
 }

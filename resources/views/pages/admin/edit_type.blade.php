@@ -4,7 +4,7 @@
     <div class="d-flex flex-column justify-content-around dashboard-content">
         <div class="container bg-secondary-color p-4 mb-3">
             <div class="form-header-title">
-                ایجاد دسته بندی جدید
+                ویرایش دسته بندی جدید
             </div>
             @include('layouts.message')
             <form action="{{ url('admin/type/'.$type->id) }}" method="post" class="form-group" enctype="multipart/form-data">

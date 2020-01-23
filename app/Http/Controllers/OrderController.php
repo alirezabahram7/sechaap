@@ -8,6 +8,7 @@ use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Type;
 
 class OrderController extends Controller
 {
@@ -73,11 +74,11 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Type $type
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Type $type)
     {
-        $type = $request->type;
         $ext = 'images/*';
         $ext_name = 'عکس';
         if ($type == 'book' || $type == 'thesis' || $type == 'color') {
@@ -87,7 +88,11 @@ class OrderController extends Controller
             $ext = 'application/pdf | image/vnd.dwg';
             $ext_name = 'پی دی اف و فایل dwg';
         }
-        return view('pages.create-order', compact('type', 'ext', 'ext_name'));
+
+        $additionTypes = $type->additionTypes;
+        $additions = $type->additions;
+
+        return view('pages.create-order', compact('type', 'ext', 'ext_name','additionTypes','additions'));
     }
 
     /**

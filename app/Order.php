@@ -11,6 +11,7 @@ class Order extends Model
         'user_name',
         'phone',
         'product_id',
+        'type_id',
         'numbers',
         'price',
         'order_status_id',
@@ -19,16 +20,9 @@ class Order extends Model
         'description'
     ];
 
-    public function banner()
-    {
-        return $this->hasOne(Banner::class);
+    public function files(){
+        return $this->hasMany(File::class);
     }
-
-    public function announcement()
-    {
-        return $this->hasOne(Announcement::class);
-    }
-
     public function product()
     {
         return $this->belongsTo(Product::class);
@@ -42,5 +36,5 @@ class Order extends Model
     {
         return $this->belongsTo(OrderStatus::class, 'order_status_id');
     }
-    
+
 }
