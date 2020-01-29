@@ -10,7 +10,7 @@
 .nav-link:hover {
   border-radius: 0 20% 0 20%;
   background-color: #ca1f31;
-  box-shadow: 5px 5px 5px #04677c;
+  /*box-shadow: 5px 5px 5px #04677c;*/
 }
 .nav-link:hover span {
   color: white;

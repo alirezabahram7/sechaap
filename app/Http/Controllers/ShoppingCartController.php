@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $orders = session()->get('cart');
-        return view('pages.cart',compact('orders'));
+        return view('pages.cart', compact('orders'));
     }
+
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
@@ -20,7 +22,15 @@ class ShoppingCartController extends Controller
         if (!$cart) {
             $cart = [];
         }
-        $requestData=$request->all();
+        $requestData = $request->all();
+        if ($request->hasfile('file')) {
+            foreach ($request->file('file') as $i => $file) {
+                $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path() . '/files/orders', $name);
+                $requestData['file'][$i] = $name;
+            }
+        }
+
 
         array_push($cart, $requestData);
 
@@ -68,16 +78,16 @@ class ShoppingCartController extends Controller
     public function remove($index)
     {
 
-            $cart = session()->get('cart');
+        $cart = session()->get('cart');
 
-            if (isset($cart[$index])) {
+        if (isset($cart[$index])) {
 
-                unset($cart[$index]);
+            unset($cart[$index]);
 
-                session()->put('cart', $cart);
-            }
+            session()->put('cart', $cart);
+        }
 
-           return back();
+        return back();
 
     }
 }

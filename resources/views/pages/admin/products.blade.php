@@ -21,9 +21,6 @@
                         نام محصول
                     </th>
                     <th class="table-th">
-                        قیمت
-                    </th>
-                    <th class="table-th">
                         توضیحات
                     </th>
                     <th class="table-th">
@@ -50,9 +47,6 @@
                             <a href="{{ route('admin.edit.product',['id' => $product->id ]) }}">
                                 {{ $product->title }}
                             </a>
-                        </td>
-                        <td class="table-td">
-                            {{\Morilog\Jalali\CalendarUtils::convertNumbers($product->price)}} تومان
                         </td>
                         <td class="table-td">
                             {{ mb_substr($product->description,0,30) }} ...

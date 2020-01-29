@@ -22,7 +22,7 @@ Route::get('/home', function () {
 });
 
 Route::get('cart', 'ShoppingCartController@index')->name('cart.index');
-Route::get('add-to-cart', 'ShoppingCartController@addToCart')->name('add.to.cart');
+Route::post('add-to-cart', 'ShoppingCartController@addToCart')->name('add.to.cart');
 Route::patch('update-cart', 'ProductsController@update');
 Route::get('remove-from-cart/{index}', 'ShoppingCartController@remove')->name('remove.from.cart');
 

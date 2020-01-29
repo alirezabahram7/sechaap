@@ -257,8 +257,8 @@ td.active a{
     background-color: #b9b9b9;
     height: 70px;
     padding: 5px;
-    box-shadow: 0 2px 10px 0 rgba(4,103,124,2);
-    border-top: 5px solid rgba(4,103,124,100);
+    box-shadow: 0 1px 15px 0 grey;
+    border-top: 6px solid rgba(4,103,124,10);
 }
 
 div.form-group {
@@ -749,7 +749,6 @@ font-weight: bold;
 border: dotted 1px #f0f0f0;
 }
 .nav-link {
-
     color: #848484 !important;
     font-weight: 400;
 }
@@ -1180,7 +1179,7 @@ a.text-light:focus, a.text-light:hover {
 .helper {
     position: relative;
     display: inline-block;
-    border-bottom: 0.5px dotted whitesmoke;
+    border-bottom: 1px dotted black;
 }
 
 .helper-text {
@@ -1225,12 +1224,11 @@ a.text-light:focus, a.text-light:hover {
     left: 0;
 }
 .type-divider{
-    width: 15%;
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
     border-radius: 15%;
-    border: goldenrod solid 10px;
+    border-bottom: goldenrod solid 1px;
     color: #0c0c0c;
-    padding: 20px 20px 10px 10px;
-    box-shadow: white 2px 2px 8px;
+    /*padding: 20px 20px 10px 10px;*/
+    /*box-shadow: white 2px 2px 8px;*/
 
 }

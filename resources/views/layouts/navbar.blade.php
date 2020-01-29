@@ -4,7 +4,15 @@
             <ul class="navbar-nav mr-auto list-group list-group-horizontal">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cart.index') }}">
-                        <i class="fa fa-shopping-basket"></i>
+                        @if(session()->get('cart'))
+                            <span class="position-absolute z-depth-0 badge badge-pill badge-warning">
+                                {{ \Morilog\Jalali\CalendarUtils::convertNumbers(sizeof(session()->get('cart'))) }}
+                        </span>
+                        @endif
+
+                        <i class="fa fa-shopping-basket">
+                        </i>
+
                         <span class="">سبد خرید</span>
                     </a>
                 </li>
@@ -113,7 +121,8 @@
                        چاپ افست
                          </span>
                     </a>
-                    <div class="dropdown-menu text-right  bg-whitesmoke pt-2 pb-2 pl-3" aria-labelledby="navbarDropdown2">
+                    <div class="dropdown-menu text-right  bg-whitesmoke pt-2 pb-2 pl-3"
+                         aria-labelledby="navbarDropdown2">
                         @foreach($offsetTypes as $offsetType)
                             <a class="dropdown-item"
                                href="{{route('order.create',['id'=>$offsetType->id,'cat'=>'of'])}}">

@@ -92,37 +92,36 @@ class OrderController extends Controller
         $additionTypes = $type->additionTypes;
         $additions = $type->additions;
 
-        return view('pages.create-order', compact('type', 'ext', 'ext_name','additionTypes','additions'));
+        return view('pages.create-order', compact('type', 'ext', 'ext_name', 'additionTypes', 'additions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        dd($request->all());
-        $requestData = $request->all();
+        $requestData = session()->get('cart');
         $trackingCode = Str::random(10);
-        $requestData['tracking_code'] = $trackingCode;
-        $order = Order::create($requestData);
-        // if its type is banner or announcement
-        $requestData['order_id'] = $order->id;
-        if ($request->type_id == 'بنر') {
-            Banner::create($requestData);
+//        $requestData['tracking_code'] = $trackingCode;
+        foreach ($requestData as $datum) {
+            $datum['tracking_code'] = $trackingCode;
+            $order = Order::create($datum);
+            foreach ($datum['file'] as $file) {
+                $order->files()->create(['name' => $file]);
+            }
+           $order->additions()->sync($datum['addition']);
         }
-        if ($request->type_id == 'اعلامیه') {
-            Announcement::create($requestData);
-        }
-        return redirect('', $trackingCode)->with('message', 'سفارش با موفقیت ثبت شد');
+
+        return redirect('/', $trackingCode)->with('message', 'سفارش با موفقیت ثبت شد');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
@@ -133,7 +132,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
@@ -144,8 +143,8 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Order $order
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
@@ -166,7 +165,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

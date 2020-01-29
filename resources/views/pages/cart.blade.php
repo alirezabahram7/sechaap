@@ -7,7 +7,10 @@
         ?>
         <div class=" d-md-flex justify-content-around d-sm-block mb-3 ">
             <div class="col-md-9 col-sm-12 dashboard-content">
-                @if($orders)
+                <div class="form-header-title">
+             سبد خرید
+                </div>
+            @if($orders)
                     @foreach($orders as $i=>$order)
                         <div class="itembox">
                             <div class="d-flex justify-content-between">
@@ -66,8 +69,21 @@
 
                         </div>
                     @endforeach
+                <div class="d-flex justify-content-center">
+                    <form action="{{ route('order.store') }}" method="post">
+                        @csrf
+                        <div class="row d-flex ">
+                            <div class="form-group my-form-group mt-3">
+                                <button type="submit" class="btn btn-danger justify-content-center my-btn">پرداخت
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 @else
-                    <p>سبد خرید خالی ست</p>
+                    <div class="text-center text-dark">
+                    <strong class="">سبد خرید خالی ست</strong>
+                    </div>
                 @endif
                 {{--                <div class="myTableBox col-12">--}}
                 {{--                    <table class="table table-striped table-hover bg-light list-table" id="myTable">--}}
