@@ -2,13 +2,15 @@
 
 @section('content')
     <div class="container bg-secondary-color p-4 mb-3">
-        <form action="#" class="form-group">
+        <form action="{{ route('add.to.cart') }}" method="get" class="form-group">
+            @csrf
             <div class="d-flex flex-column" >
                 <div class="form-header-title">
                     ایجاد سفارش جدید
                     ({{ $type->title }})
                 </div>
-
+                <input type="text" name="type_id" value="{{ $type->id }}" hidden>
+                <input type="text" name="type_title" value="{{ $type->title }}" hidden>
                 <div class="row controls ">
                     <div class="form-group my-form-group">
                         <label for="avatar">بارگزاری فایل </label>
@@ -31,22 +33,32 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                 <div class="container mr-5">
-                @foreach($additionTypes as $additionType)
+                @foreach($additionTypes as $i=>$additionType)
                     <div class="d-flex justify-content-start type-divider mt-5">
                         <h5>
-                {{ $additionType->title }} :
+                {{ $additionType->title }}
+                            <i class="fa fa-arrow-circle-down"></i>
                         </h5>
                     </div>
                     @foreach($additions as $addition)
                         @if($addition->addition_type_id == $additionType->id)
-                            <div class="d-flex justify-content-start mt-4 mr-4">
-                            <label for="title"> {{ $addition->title }} </label>
-                                <div class="helpers-icons helper"><i class="fa fa-question">
-                                    </i>
-                                    <span class="helper-text">{{ $addition->description }}</span>
+                            <div class="d-flex justify-content-start mt-4">
+                                <div class="col-3 text-right">
+                                    <label for="title"> {{ $addition->title }} </label>
+                                    @if($addition->image!=null)
+                                        <img src="{{asset('./files/'.$addition->image)}}"
+                                             class="col-3">
+                                    @endif
+                                    <div class="helpers-icons helper"><i class="fa fa-question">
+                                        </i>
+                                        <span class="helper-text">{{ $addition->description }}</span>
+                                    </div>
                                 </div>
-                            <input type="checkbox" class="my-checkbox" name="addition[]" value="{{ $addition->id }}">
 
+                                <div class="col-1">
+                            <input type="radio" class="my-checkbox" name="addition[{{$i}}]" value="{{ $addition->id }}">
+                            <input type="text"  name="addition_type[{{$addition->id}}]" value="{{ $addition->title }}" hidden>
+                                </div>
                             </div>
                         @endif
                     @endforeach

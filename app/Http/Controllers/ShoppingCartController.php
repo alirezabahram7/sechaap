@@ -6,66 +6,55 @@ use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
+    public function index(){
+        $orders = session()->get('cart');
+        return view('pages.cart',compact('orders'));
+    }
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
-        $product = Product::find($id);
-
-        if(!$product) {
-
-            abort(404);
-
-        }
-
         $cart = session()->get('cart');
-
-        // if cart is empty then this the first product
-        if(!$cart) {
-
-            $cart = [
-                $id => [
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "price" => $product->price,
-                    "photo" => $product->photo
-                ]
-            ];
-
-            session()->put('cart', $cart);
-
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        if (!$cart) {
+            $cart = [];
         }
+        $requestData=$request->all();
 
-        // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
-
-            $cart[$id]['quantity']++;
-
-            session()->put('cart', $cart);
-
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-
-        }
-
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price,
-            "photo" => $product->photo
-        ];
+        array_push($cart, $requestData);
 
         session()->put('cart', $cart);
+        return redirect()->to('/cart')->with('message', 'سفارش با موفقیت به سبد اضافه شد');
 
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+
+//        // if cart not empty then check if this product exist then increment quantity
+//        if(isset($cart[$id])) {
+//
+//            $cart[$id]['quantity']++;
+//
+//            session()->put('cart', $cart);
+//
+//            return redirect()->back()->with('success', 'Product added to cart successfully!');
+//
+//        }
+
+        // if item not exist in cart then add to cart with quantity = 1
+//        $cart[$id] = [
+//            "name" => $product->name,
+//            "quantity" => 1,
+//            "price" => $product->price,
+//            "photo" => $product->photo
+//        ];
+//
+//        session()->put('cart', $cart);
+//
+//        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
+
     public function update(Request $request)
     {
-        if($request->id and $request->quantity)
-        {
+        if ($request->id and $request->quantity) {
             $cart = session()->get('cart');
 
             $cart[$request->id]["quantity"] = $request->quantity;
@@ -76,20 +65,19 @@ class ShoppingCartController extends Controller
         }
     }
 
-    public function remove(Request $request)
+    public function remove($index)
     {
-        if($request->id) {
 
             $cart = session()->get('cart');
 
-            if(isset($cart[$request->id])) {
+            if (isset($cart[$index])) {
 
-                unset($cart[$request->id]);
+                unset($cart[$index]);
 
                 session()->put('cart', $cart);
             }
 
-            session()->flash('success', 'Product removed successfully');
-        }
+           return back();
+
     }
 }

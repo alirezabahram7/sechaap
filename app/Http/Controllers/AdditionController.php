@@ -47,7 +47,16 @@ class AdditionController extends Controller
      */
     public function store(AdditionRequest $request)
     {
-        Addition::create($request->all());
+        $requestData = $request->all();
+
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $name = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/files/', $name);
+            $requestData['image'] = $name;
+        }
+        Addition::create($requestData);
+
         return back()->with('message','نوع جدید با موفقیت ایجاد شد');
     }
 
@@ -83,7 +92,15 @@ class AdditionController extends Controller
      */
     public function update(Request $request, Addition $addition)
     {
-        $addition->update($request->all());
+        $requestData = $request->all();
+
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $name = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path() . '/files/', $name);
+            $requestData['image'] = $name;
+        }
+        $addition->update($requestData);
         return back()->with('message','نوع جدید با موفقیت ویرایش شد');
     }
 

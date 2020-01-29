@@ -1,17 +1,7 @@
 <div class="sidebar">
     <table class="table table-striped table-hover sidebar-table">
         <tr class="sidebar-tr">
-            <td class="sidebar-td {{(request()->is('admin')) ? 'active' : ''}}">
-                <a href="{{ route('dashboard') }}" class="text-light">
-                    <div class="col-12">
-                        <i class="fa fa-dashboard"></i>
-                        <div class="d-none d-lg-inline-block">داشبورد</div>
-                    </div>
-                </a>
-            </td>
-        </tr>
-        <tr class="sidebar-tr">
-            <td class="sidebar-td {{(request()->is(['admin/order'])) ? 'active' : ''}}">
+            <td class="sidebar-td {{(request()->is(['admin/order','admin','admin/order/status/*'])) ? 'active' : ''}}">
                 <a href="#" id="orders-menu">
                     <div class="col-12">
                         <i class="fa fa-list-alt"></i>

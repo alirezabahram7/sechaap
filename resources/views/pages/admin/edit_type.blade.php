@@ -31,10 +31,15 @@
 
                             </div>
                         </div>
-                        <div class="form-group col-md-4 col-sm-12 text-center">
+                        <div class="form-group col-md-2 col-sm-12 text-center">
                             <label for="price"> قیمت پایه</label>
                             <input type="text" class="form-control my-form-control" name="price"
                                    value="{{ $type->price}}" >
+                        </div>
+                        <div class="form-group col-md-2 col-sm-12 text-center">
+                            <label for="price"> مازاد افست</label>
+                            <input type="text" class="form-control my-form-control" name="add_price"
+                                   value="{{ $type->add_price}}" >
                         </div>
                     </div>
                     <br>

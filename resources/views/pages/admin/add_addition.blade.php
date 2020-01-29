@@ -43,7 +43,13 @@
                         </div>
                     </div>
                     <br>
-
+                    <div class="form-group my-form-group col-10 text-center">
+                        <label for="avatar">بارگزاری تصویر </label>
+                        <div class="input-group entry justify-content-center">
+                            <input type="file" class="btn btn-primary browndiv text-right"
+                                   name="image" id="avatar" accept="image/*">
+                        </div>
+                    </div>
 
                     <div class="form-group my-form-group col-10 text-center">
                         <label for="description">توضیحات</label>

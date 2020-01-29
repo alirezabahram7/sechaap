@@ -103,6 +103,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $requestData = $request->all();
         $trackingCode = Str::random(10);
         $requestData['tracking_code'] = $trackingCode;

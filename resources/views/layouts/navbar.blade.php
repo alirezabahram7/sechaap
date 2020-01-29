@@ -3,7 +3,7 @@
         <div class="">
             <ul class="navbar-nav mr-auto list-group list-group-horizontal">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('cart.index') }}">
                         <i class="fa fa-shopping-basket"></i>
                         <span class="">سبد خرید</span>
                     </a>
@@ -113,10 +113,14 @@
                        چاپ افست
                          </span>
                     </a>
-                    <div class="dropdown-menu w-100 bg-whitesmoke text-md-center" aria-labelledby="navbarDropdown2">
+                    <div class="dropdown-menu text-right  bg-whitesmoke pt-2 pb-2 pl-3" aria-labelledby="navbarDropdown2">
                         @foreach($offsetTypes as $offsetType)
                             <a class="dropdown-item"
-                               href="{{route('order.create',['id'=>$offsetType->id,'cat'=>'of'])}}">{{$offsetType->title}}</a>
+                               href="{{route('order.create',['id'=>$offsetType->id,'cat'=>'of'])}}">
+                                <i class="fa fa-{{$offsetType->icon}}"></i>
+                                {{$offsetType->title}}
+                                <div class="dropdown-divider"></div>
+                            </a>
                         @endforeach
                     </div>
                 </li>
@@ -127,10 +131,14 @@
                         چاپ دیجیتال
                          </span>
                     </a>
-                    <div class="dropdown-menu w-100 bg-whitesmoke text-md-center" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu text-right bg-whitesmoke pt-2 pb-2 pl-3" aria-labelledby="navbarDropdown">
                         @foreach($digitalTypes as $digitalType)
                             <a class="dropdown-item"
-                               href="{{route('order.create',['id'=>$digitalType->id,'cat'=>'d'])}}">{{$digitalType->title}}</a>
+                               href="{{route('order.create',['id'=>$digitalType->id,'cat'=>'d'])}}">
+                                <i class="fa fa-{{$digitalType->icon}}"></i>
+                                {{$digitalType->title}}
+                                <div class="dropdown-divider"></div>
+                            </a>
                         @endforeach
                         {{--                        <div class="dropdown-divider"></div>--}}
                         {{--                        <a class="dropdown-item" href="{{route('order.create',['type'=>'visit_card'])}}">چاپ کارت--}}
@@ -147,16 +155,23 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('order.create',['id'=>2])}}">
+                    <a class="nav-link" href="{{route('order.create',['id'=>1])}}">
                         <span class="">
-                            چاپ بنر
+                            بنر
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('order.create',['id'=>2])}}">
                         <span class="">
-                            چاپ کتاب و جزوه
+                            اعلامیه
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('order.create',['id'=>2])}}">
+                        <span class="">
+                            کتاب و جزوه
                         </span>
                     </a>
                 </li>

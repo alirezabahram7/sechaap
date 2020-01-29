@@ -33,7 +33,7 @@
                             <label for="type_id">دسته بندی نوع</label>
                             <select class="form-control my-form-control" name="addition_type_id">
                                 @foreach($additionTypes as $additionType)
-                                    <option value="{{ $additionType->id }}">{{ $additionType->title }}</option>
+                                    <option value="{{ $additionType->id }}" {{ $additionType->id==$addition->addition_type_id ? 'selected':'' }}>{{ $additionType->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -44,7 +44,16 @@
                         </div>
                     </div>
                     <br>
+                    <div class="form-group my-form-group col-10 text-center">
+                        <img src="{{asset('./files/'.$addition->image)}}"
+                             class="img-circle rounded-circle thumbnail thumbnail-width">
+                        <label for="avatar">بارگزاری تصویر </label>
+                        <div class="input-group entry justify-content-center">
+                            <input type="file" class="btn btn-primary browndiv text-right"
+                                   name="image" id="avatar" accept="image/*">
+                        </div>
 
+                    </div>
 
                     <div class="form-group my-form-group col-10 text-center">
                         <label for="description">توضیحات</label>

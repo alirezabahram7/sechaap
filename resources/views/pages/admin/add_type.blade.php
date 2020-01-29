@@ -38,7 +38,7 @@
                         <div class="form-group col-md-2 col-sm-12 text-center">
                             <label for="price"> مازاد افست</label>
                             <input type="text" class="form-control my-form-control" name="add_price"
-                                   value="{{ old('add_price') }}" >
+                                   value="{{ old('add_price') !=null ?  old('add_price'):0}}" >
                         </div>
                     </div>
                     <br>

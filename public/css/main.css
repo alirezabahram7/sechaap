@@ -1180,7 +1180,7 @@ a.text-light:focus, a.text-light:hover {
 .helper {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
+    border-bottom: 0.5px dotted whitesmoke;
 }
 
 .helper-text {
@@ -1213,8 +1213,9 @@ a.text-light:focus, a.text-light:hover {
     background-color: rgba(0,0,0,0.7);
 }
 .mybadge{
-    padding: 6px;
+    padding: 3px;
     border-radius: 10px;
+    font-size: 10px;
 }
 
 .my-checkbox{
@@ -1224,8 +1225,10 @@ a.text-light:focus, a.text-light:hover {
     left: 0;
 }
 .type-divider{
-    width: 25%;
-    background-color: #ffaa1a;
+    width: 15%;
+    background-color: whitesmoke;
+    border-radius: 15%;
+    border: goldenrod solid 10px;
     color: #0c0c0c;
     padding: 20px 20px 10px 10px;
     box-shadow: white 2px 2px 8px;

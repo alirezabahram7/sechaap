@@ -21,12 +21,13 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::get('cart', 'ProductsController@cart');
-Route::get('add-to-cart/{id}', 'ProductsController@addToCart')->name('add.to.cart');
+Route::get('cart', 'ShoppingCartController@index')->name('cart.index');
+Route::get('add-to-cart', 'ShoppingCartController@addToCart')->name('add.to.cart');
 Route::patch('update-cart', 'ProductsController@update');
-Route::delete('remove-from-cart', 'ProductsController@remove');
+Route::get('remove-from-cart/{index}', 'ShoppingCartController@remove')->name('remove.from.cart');
 
 Route::get('/order/create/{type}', 'OrderController@create')->name('order.create');
+Route::post('/order', 'OrderController@store')->name('order.store');
 Route::get('/product/{type_id}', 'ProductController@showByType')->name('products');
 
 Route::get('/profile', 'UserController@profile')->name('profile');
@@ -53,7 +54,7 @@ Route::get('about-us','AdminController@aboutUs')->name('about.us');
 
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    Route::get('/','AdminController@dashboard')->name('dashboard');
+    Route::get('/','OrderController@index')->name('dashboard');
     Route::get('/logout', 'AdminController@adminLogout')->name('admin.logout');
     Route::get('/order', 'OrderController@index')->name('total.orders');
     Route::get('/users', 'AdminController@usersList')->name('users.list');

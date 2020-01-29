@@ -18,6 +18,6 @@ class Type extends Model
     }
 
     public function additionTypes(){
-        return $this->hasManyThrough(AdditionType::class, Addition::class,'type_id','id','id','addition_type_id');
+        return $this->hasManyThrough(AdditionType::class, Addition::class,'type_id','id','id','addition_type_id')->distinct();
     }
 }

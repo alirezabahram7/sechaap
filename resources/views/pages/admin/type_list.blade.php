@@ -16,10 +16,16 @@
                         نوع چاپ
                     </th>
                     <th class="table-th">
-                       قیمت پایه
+                        قیمت پایه
+                    </th>
+                    <th class="table-th">
+                        مازاد افست
                     </th>
                     <th class="table-th">
                         توضیحات
+                    </th>
+                    <th class="table-th">
+                        ویرایش
                     </th>
 
                 </tr>
@@ -38,11 +44,14 @@
                         </td>
                         <td class="table-td">
                             <a href="{{ url('admin/edit-type/'.$type->id) }}">
-                                @if($type->category_id != null)
-                                {{ $type->category->title }}
-                                    @else
-                                    ---
-                                    @endif
+                                @if($type->is_offset == 1)
+                                    افست
+                                @endif
+                                -
+                                @if($type->is_digital == 1)
+                                    دیجیتال
+                                @endif
+
                             </a>
                         </td>
                         <td class="table-td">
@@ -51,7 +60,17 @@
                             </a>
                         </td>
                         <td class="table-td">
+                            <a href="{{ url('admin/edit-type/'.$type->id) }}">
+                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($type->add_price)}}
+                            </a>
+                        </td>
+                        <td class="table-td">
                             {{ mb_substr($type->description,0,20) }} ...
+                        </td>
+                        <td class="table-td">
+                            <a href="{{ url('admin/edit-type/'.$type->id) }}">
+                                <i class="fa fa-edit"></i>
+                            </a>
                         </td>
 
                     </tr>
