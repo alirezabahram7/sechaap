@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Announcement;
 use App\Banner;
 use App\Order;
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -77,22 +78,15 @@ class OrderController extends Controller
      * @param Type $type
      * @return \Illuminate\Http\Response
      */
-    public function create(Type $type)
+    public function create(Type $type,Request $request)
     {
-        $ext = 'images/*';
-        $ext_name = 'عکس';
-        if ($type == 'book' || $type == 'thesis' || $type == 'color') {
-            $ext = 'application/pdf';
-            $ext_name = 'پی دی اف';
-        } else if ($type == 'plot') {
-            $ext = 'application/pdf | image/vnd.dwg';
-            $ext_name = 'پی دی اف و فایل dwg';
-        }
-
+        $product='';
         $additionTypes = $type->additionTypes;
         $additions = $type->additions;
-
-        return view('pages.create-order', compact('type', 'ext', 'ext_name', 'additionTypes', 'additions'));
+        if($request->productId){
+            $product = Product::findOrFail($request->productId);
+        }
+        return view('pages.create-order', compact('type', 'product', 'additionTypes', 'additions'));
     }
 
     /**
@@ -108,10 +102,14 @@ class OrderController extends Controller
 //        $requestData['tracking_code'] = $trackingCode;
         foreach ($requestData as $datum) {
             $datum['tracking_code'] = $trackingCode;
+            if (auth()->check()){
+                $datum['user_id'] = auth()->id();
+            }
             $order = Order::create($datum);
+            if(isset($datum['file'])){
             foreach ($datum['file'] as $file) {
                 $order->files()->create(['name' => $file]);
-            }
+            }}
            $order->additions()->sync($datum['addition']);
         }
 
@@ -137,7 +135,8 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('pages.admin.edit_order', compact('order'));
+        $additions =$order->additions;
+        return view('pages.admin.edit_order', compact('order','additions'));
     }
 
     /**

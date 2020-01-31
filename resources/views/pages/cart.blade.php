@@ -7,7 +7,7 @@
         ?>
         <div class=" d-md-flex justify-content-around d-sm-block mb-3 ">
             <div class="col-md-9 col-sm-12 dashboard-content">
-                <div class="form-header-title">
+                <div class="form-header-title text-light">
              سبد خرید
                 </div>
             @if($orders)
@@ -44,8 +44,8 @@
                                 </div>
                                 <div>
                                     <div class="">
-                                        @if(isset($order->photo))
-                                            <img src="{{asset('./files/'.$order->photo)}}"
+                                        @if(isset($order['photo']))
+                                            <img src="{{asset('./files/'.$order['photo'])}}"
                                                  class="w-25">
                                         @else
                                             <img src="{{asset('./mainImg/custom.png')}}"

@@ -77,12 +77,21 @@
                         {{ auth()->user()->name }}
                          </span>
                         </a>
-                        <div class="dropdown-menu w-100 bg-whitesmoke text-md-center" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('profile') }}">پیگیری سفارشات</a>
+                        <div class="dropdown-menu  bg-whitesmoke text-right pt-2 pb-2 pl-3" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('profile') }}">
+                                <i class="fa fa-first-order"></i>
+                                پیگیری سفارشات
+                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('edit.pass') }}">تغییر رمز عبور</a>
+                            <a class="dropdown-item" href="{{ route('edit.pass') }}">
+                                <i class="fa fa-key"></i>
+                                تغییر رمز عبور
+                            </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout">خروج</a>
+                            <a class="dropdown-item" href="/logout">
+                                <i class="fa fa-sign-out"></i>
+                                خروج
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item dropdown d-block d-lg-none col-sm-1"></li>
@@ -164,7 +173,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('order.create',['id'=>1])}}">
+                    <a class="nav-link" href="{{route('products',['id'=>1])}}">
                         <span class="">
                             بنر
                         </span>

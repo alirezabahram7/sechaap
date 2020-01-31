@@ -39,7 +39,7 @@
                         <div class="form-group col-md-4 col-sm-12 text-center">
                             <label for="price"> قیمت مازاد</label>
                             <input type="text" class="form-control my-form-control" name="price"
-                                   value="{{ old('price') }}" >
+                                   value="{{ old('add_price') !=null ?  old('add_price'):0}}" >
                         </div>
                     </div>
                     <br>

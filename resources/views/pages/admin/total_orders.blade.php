@@ -20,9 +20,9 @@
                     <th class="table-th">
                         نام محصول
                     </th>
-                    <th class="table-th">
-                        تعداد
-                    </th>
+{{--                    <th class="table-th">--}}
+{{--                        تعداد--}}
+{{--                    </th>--}}
                     <th class="table-th">
                         پرداختی
                     </th>
@@ -63,11 +63,11 @@
                                 {{ $order->product_id!=null ? $order->product->title:'سفارشی' }}
                             </a>
                         </td>
-                        <td class="table-td">
-                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">
-                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->numbers)}}
-                            </a>
-                        </td>
+{{--                        <td class="table-td">--}}
+{{--                            <a href="{{ route('edit.order',['id'=>$order->id]) }}">--}}
+{{--                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->numbers)}}--}}
+{{--                            </a>--}}
+{{--                        </td>--}}
                         <td class="table-td">
                             {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->price)}} تومان
                         </td>

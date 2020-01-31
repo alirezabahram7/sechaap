@@ -807,7 +807,7 @@ border: dotted 1px #f0f0f0;
 .dashboard-content {
     background-color: #E1E1E1;
     height: 100%;
-    color: white !important;
+    color: black !important;
     padding: 20px;
 }
 

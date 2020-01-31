@@ -1,5 +1,5 @@
 
-<div class="container-fluid" style="background-color: rgb(0, 0, 0);">
+<div class="container-fluid bg-secondary">
     <footer class="page-footer font-small mdb-color lighten-3 pt-4">
         <div class="container text-center text-md-left">
 
@@ -10,7 +10,8 @@
 
                 <hr class="clearfix w-100 d-md-none">
                 <div class="col-md-12 text-center mx-auto my-4">
-                    <h5 class="font-weight-bold text-uppercase mb-4" style="color:white;">مارا دنبال کنید</h5>
+                    <strong class="type-divider text-light mb-5">ما را دنبال کنید</strong>
+                    <br><br>
                     <!-- Facebook -->
                     <a  class="btn-floating btn-fb" href="#">
                         <img src="{{ asset('./mainImg/icons/1.png') }}" alt="" srcset="">
@@ -40,7 +41,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3" style="color:white;">© 2018 Copyright:
+        <div class="footer-copyright text-center py-3 type-divider" style="color:white;">© 2018 Copyright:
             <a> alib327@gmail.com</a>
         </div>
         <!-- Copyright -->

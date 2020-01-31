@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -32,11 +33,14 @@ class ProductController extends Controller
      * @param $typeId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showByType($typeId)
+    public function showByType($typeId,Request $request)
     {
-        $products = Product::where('type_id', $typeId)->paginate(30);
-
-        return view('pages.products', compact('products'));
+        $products = Product::where('type_id', $typeId);
+        if($request->bannerType){
+            $products = $products->where('banner_type',$request->bannerType);
+        }
+        $products = $products->paginate(30);
+        return view('pages.products', compact('products','typeId'));
     }
 
     /**

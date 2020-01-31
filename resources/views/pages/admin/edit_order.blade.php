@@ -16,7 +16,7 @@
                         <div class="form-group col-md-4 text-center">
                             <label for="type">گروه محصولی</label>
                             <input type="text" class="form-control my-form-control" name="type"
-                                   value="{{ $order->product->type['title']  }}" readonly>
+                                   value="{{ isset($order->product)?$order->product->type['title']:'-'  }}" readonly>
                         </div>
                         <div class="form-group col-md-4 text-center">
                             <label for="product_name">عنوان سفارش </label>
@@ -56,6 +56,22 @@
                         </div>
                     </div>
                     <br>
+                    <div class="text-center">
+                        <label for="address">مشخصات</label>
+                    </div>
+                    <div class="form-group my-form-group col-6 text-right bg-light text-dark p-2 mb-4">
+
+                        <br>
+                            @foreach($additions as $i => $addition)
+                                {{\Morilog\Jalali\CalendarUtils::convertNumbers($i+1)}} -
+                            {{$addition->type->title}} :
+                                {{$addition->title}}
+                                <br>
+
+                            @endforeach
+
+
+                    </div>
                     <div class="d-flex justify-content-between">
 
                         <div class="form-group my-form-group col-6 text-center">
@@ -77,7 +93,8 @@
                         <label for="order_status_id">وضعیت سفارش</label>
                         <select type="text" class="form-control my-form-control" name="order_status_id">
                             @foreach($statuses as $status)
-                                <option value="{{ $status->id }}" {{ $order->order_status_id==$status->id ? 'selected':'' }}>{{ $status->title }}</option>
+                                <option
+                                    value="{{ $status->id }}" {{ $order->order_status_id==$status->id ? 'selected':'' }}>{{ $status->title }}</option>
                             @endforeach
                         </select>
                     </div>

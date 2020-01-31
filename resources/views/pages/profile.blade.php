@@ -85,10 +85,10 @@
                                     {{\Morilog\Jalali\CalendarUtils::convertNumbers($j+1)}}
                                 </td>
                                 <td class="table-td">
-                                    {{ $order->product->type->title }}
+                                    {{ isset($order->product) ? $order->product->type->title: $order->type->title }}
                                 </td>
                                 <td class="table-td">
-                                    {{ $order->product->title }}
+                                    {{ isset($order->product) ? $order->product->title:"سفارشی" }}
                                 </td>
                                 <td class="table-td">
                                     {{ \Morilog\Jalali\CalendarUtils::convertNumbers($order->price) }}
