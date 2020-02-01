@@ -1232,3 +1232,8 @@ a.text-light:focus, a.text-light:hover {
     /*box-shadow: white 2px 2px 8px;*/
 
 }
+
+.big-icon{
+    font-size: 150px;
+    width: 50px;
+}

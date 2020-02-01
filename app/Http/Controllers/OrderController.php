@@ -8,6 +8,7 @@ use App\Order;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use App\Type;
 
@@ -16,7 +17,7 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -76,7 +77,7 @@ class OrderController extends Controller
      * Show the form for creating a new resource.
      *
      * @param Type $type
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(Type $type,Request $request)
     {
@@ -89,38 +90,45 @@ class OrderController extends Controller
         return view('pages.create-order', compact('type', 'product', 'additionTypes', 'additions'));
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function store()
     {
         $requestData = session()->get('cart');
-        $trackingCode = Str::random(10);
-//        $requestData['tracking_code'] = $trackingCode;
-        foreach ($requestData as $datum) {
-            $datum['tracking_code'] = $trackingCode;
-            if (auth()->check()){
-                $datum['user_id'] = auth()->id();
-            }
-            $order = Order::create($datum);
-            if(isset($datum['file'])){
-            foreach ($datum['file'] as $file) {
-                $order->files()->create(['name' => $file]);
-            }}
-           $order->additions()->sync($datum['addition']);
-        }
+        if($requestData) {
+            $trackingCode = Str::random(10);
+            session()->put('code', $trackingCode);
 
-        return redirect('/', $trackingCode)->with('message', 'سفارش با موفقیت ثبت شد');
+//        $requestData['tracking_code'] = $trackingCode;
+            foreach ($requestData as $datum) {
+                $datum['tracking_code'] = $trackingCode;
+                if (auth()->check()) {
+                    $datum['user_id'] = auth()->id();
+                }
+                $order = Order::create($datum);
+                if (isset($datum['file'])) {
+                    foreach ($datum['file'] as $file) {
+                        $order->files()->create(['name' => $file]);
+                    }
+                }
+                $order->additions()->sync($datum['addition']);
+            }
+            session()->forget('cart');
+        }elseif (session()->get('code')){
+            $trackingCode = session()->get('code');
+        }else{
+            return redirect()->to('/')->with('error','دسترسی به این صفحه مقدور نیست');
+        }
+        return view('pages.tracking_code', compact('trackingCode'))->with('message', 'سفارش با موفقیت ثبت شد');
     }
 
     /**
      * Display the specified resource.
      *
      * @param \App\Order $order
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Order $order)
     {
@@ -131,7 +139,7 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Order $order
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Order $order)
     {
@@ -144,7 +152,7 @@ class OrderController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Order $order
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Order $order)
     {
@@ -165,7 +173,7 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Order $order
-     * @return \Illuminate\Http\Response
+     * @return Response
      * @throws \Exception
      */
     public function destroy(Order $order)
@@ -175,4 +183,7 @@ class OrderController extends Controller
         return back()->with('message', 'سفارش با موفقیت حذف شد');
     }
 
+    public function trackingCode(){
+
+    }
 }

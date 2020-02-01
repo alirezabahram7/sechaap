@@ -14,7 +14,7 @@
                     @foreach($orders as $i=>$order)
                         <div class="itembox">
                             <div class="d-flex justify-content-between">
-                                <div>
+                                <div class="col-8">
                                     <div class="row">
                                         <strong> نوع سفارش : </strong>
                                         {{ isset($order['type_title']) ? $order['type_title']:'-' }}
@@ -46,10 +46,10 @@
                                     <div class="">
                                         @if(isset($order['photo']))
                                             <img src="{{asset('./files/'.$order['photo'])}}"
-                                                 class="w-25">
+                                                 class="w-50">
                                         @else
                                             <img src="{{asset('./mainImg/custom.png')}}"
-                                                 class="w-25">
+                                                 class="w-50">
                                         @endif
                                     </div>
                                     <div class="services-icons">
