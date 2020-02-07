@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::latest()->get();
         return view('pages.admin.products', compact('products'));
     }
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
         if($request->bannerType){
             $products = $products->where('banner_type',$request->bannerType);
         }
-        $products = $products->paginate(30);
+        $products = $products->latest()->paginate(30);
         return view('pages.products', compact('products','typeId'));
     }
 

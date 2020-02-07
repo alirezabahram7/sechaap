@@ -23,7 +23,7 @@ class AdditionController extends Controller
     }
 
     public function index(){
-        $additions = Addition::all();
+        $additions = Addition::latest()->get();
         return view('pages.admin.addition_list',compact('additions'));
 
     }

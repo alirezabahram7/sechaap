@@ -54,7 +54,7 @@
 
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">
-                            <button type="submit" class="btn btn-danger justify-content-center my-btn">ایجاد
+                            <button type="submit" class="btn btn-danger justify-content-center my-btn">ویرایش
                             </button>
                         </div>
                     </div>

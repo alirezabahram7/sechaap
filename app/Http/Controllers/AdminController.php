@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function usersList()
     {
-        $users = User::all();
+        $users = User::latest()->get();
         return view('pages.admin.users_list', compact('users'));
     }
 
