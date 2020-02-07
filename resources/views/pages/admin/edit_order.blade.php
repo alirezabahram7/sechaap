@@ -64,7 +64,7 @@
                         <br>
                             @foreach($additions as $i => $addition)
                                 {{\Morilog\Jalali\CalendarUtils::convertNumbers($i+1)}} -
-                            {{$addition->type->title}} :
+                            {{$addition->additionType->title}} :
                                 {{$addition->title}}
                                 <br>
 
