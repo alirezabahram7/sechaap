@@ -77,6 +77,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     Route::get('/image', 'ImageController@edit')->name('admin.edit.images');
     Route::patch('/image', 'ImageController@update')->name('admin.update.images');
+    Route::get('/delete-image/{image}', 'ImageController@destroy')->name('admin.delete.images');
 
     Route::get('/text', 'TextController@edit')->name('admin.edit.texts');
     Route::patch('/text', 'TextController@update')->name('admin.update.texts');

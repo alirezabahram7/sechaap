@@ -71,6 +71,22 @@ class ImageController extends Controller
     public function update(Request $request)
     {
         $images = $request->all();
+        if(array_key_exists('file',$images)){
+            foreach ($images['file'] as $j => $banner){
+                $imageFile = $banner;
+                $name = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+                $imageFile->move(public_path() . '/files/', $name);
+
+                $image = new Image;
+                $image->image = $name;
+                $image->is_home_banners =1;
+                $image->persian_name = 'بنر شماره'.$j;
+                $image->name = 'banner'.$j;
+
+                $image->save();
+
+            }
+        }
         foreach ($images as $i => $image) {
 
 //                dd($text);
@@ -89,17 +105,21 @@ class ImageController extends Controller
 
             }
         }
+
         return back()->with('message','تغییرات با موفقیت اعمال شد');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image $media
-     * @return Response
+     * @param \App\Image $media
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Image $media)
+    public function destroy($imageId)
     {
-        //
+        $image=Image::findOrFail($imageId);
+        $image->delete();
+        return back();
     }
 }
