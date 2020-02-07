@@ -3,7 +3,7 @@
 @section('content')
     <div class="container bg-secondary-color p-4 mb-3">
         <div class="d-flex justify-content-end">
-            <div class="position-fixed itembox bg-warning  z-depth-0 text-center">
+            <div class="position-fixed itembox bg-warning  z-depth-1-half text-center">
                 <strong>
                     قیمت :
                 </strong>
@@ -12,7 +12,7 @@
                 {{ \Morilog\Jalali\CalendarUtils::convertNumbers($type->price) }} تومان
             </div>
         </div>
-        <form action="{{ route('add.to.cart') }}" method="post" class="form-group" enctype="multipart/form-data">
+        <form id="formId" action="{{ route('add.to.cart') }}" method="post" class="form-group" enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column">
                 <div class="form-header-title">
@@ -28,7 +28,7 @@
                             <label for="avatar">بارگزاری فایل </label>
                             <div class="input-group entry justify-content-center">
                                 <input type="file" class="btn btn-primary browndiv text-right"
-                                       name="file[]" id="file[]">
+                                       name="file[]" id="file[]" required>
                                 <button class="btn btn-success btn-add" type="button">
                                     +
                                 </button>
@@ -60,6 +60,28 @@
                     <input type="text" name="product_name" value="{{ $product->title }}" hidden>
                     <input type="text" name="photo" value="{{ $product->photo }}" hidden>
                 @endif
+                @if($type->id == 1 or $type->id == 2)
+                <div class="row">
+                        <div class="form-group my-form-group col-4">
+                            <label for="description">از طرف</label>
+                            <input type="text" class="form-control my-form-control" name="from"
+                                   required>{{old('from')}}</input>
+                        </div>
+                    <div class="form-group my-form-group col-4">
+                        <label for="description">برای</label>
+                        <input type="text" class="form-control my-form-control" name="to"
+                               required>{{old('to')}}</input>
+                    </div>
+                    @if($type->id == 1)
+                    <div class="form-group my-form-group col-4">
+                        <label for="description">مناسبت</label>
+                        <input type="text" class="form-control my-form-control" name="topic"
+                               >{{old('topic')}}</input>
+                    </div>
+                        @endif
+                    </div>
+
+                @endif
                 <div class="container">
                     @foreach($additionTypes as $i=>$additionType)
                         <div class="itembox">
@@ -89,7 +111,7 @@
 
                                             <div class="col-2">
                                                 <input type="radio" class="my-checkbox" name="addition[{{$i}}]"
-                                                       value="{{ $addition->id }}">
+                                                      required id="{{ $addition->id }}" value="{{ $addition->id }}">
                                                 <input type="text" name="addition_type[{{$addition->id}}]"
                                                        value="{{ $addition->title }}" hidden>
                                             </div>
@@ -105,9 +127,15 @@
                 </div>
                 <div class="row">
                     <div class="form-group my-form-group col-10">
+                        @if($type->id == 2)
+                            <label for="description">توضیحات ( ساعت مراسم - محل برکزاری - آدرس دقیق)</label>
+                            <textarea type="text" class="form-control my-form-control" name="description"
+                                      rows="5" required>{{old('description')}}</textarea>
+                            @else
                         <label for="description">توضیحات</label>
                         <textarea type="text" class="form-control my-form-control" name="description"
                                   rows="5">{{old('description')}}</textarea>
+                            @endif
                     </div>
                 </div>
                 <div class="row d-flex">
@@ -142,6 +170,35 @@
             });
         });
 
+        // $("#formId").validate({
+        //     onkeyup:false,
+        //
+        //     rules: {
+        //         "file[]" : "required",
+        //     },
+        //
+        //     messages: {
+        //          "file[]" : {required : "فایل بارگزاری نشده"}  ,
+        //          "addition[]" : {required : "فایل بارگزاری نشده"}
+        //     },
+        //
+        //     // Submit the form
+        //     // submitHandler: function(form) {
+        //     //     theUrl = '/add-to-cart';
+        //     //     var params = $(form).serialize();
+        //     //     $.ajax ({
+        //     //         type: "POST",
+        //     //         url: theUrl,
+        //     //         data: params,
+        //     //         processData: false,
+        //     //         async: false,
+        //     //         success: function(returnData) {
+        //     //             $('#content').html(returnData);
+        //     //         }
+        //     //     });
+        //     // }
+        //     //
+        // });
     </script>
 
 @endsection

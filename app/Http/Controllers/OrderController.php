@@ -107,6 +107,7 @@ class OrderController extends Controller
                 if (auth()->check()) {
                     $datum['user_id'] = auth()->id();
                 }
+
                 $order = Order::create($datum);
                 if (isset($datum['file'])) {
                     foreach ($datum['file'] as $file) {

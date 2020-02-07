@@ -30,7 +30,13 @@ class ShoppingCartController extends Controller
                 $requestData['file'][$i] = $name;
             }
         }
-
+        if ( $requestData['type_id']==1 or  $requestData['type_id']==2){
+             $requestData['description'] = array_key_exists('description', $requestData) ?   $requestData['description']:'';
+             $requestData['description'] =  $requestData['description'].'---- از طرف :'. $requestData['from'].'---- برای :'. $requestData['to'];
+            if(array_key_exists('topic', $requestData)){
+                 $requestData['description'] =  $requestData['description'].'--- مناسبت :'. $requestData['topic'];
+            }
+        }
 
         array_push($cart, $requestData);
 

@@ -25,5 +25,7 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
 </head>
 

@@ -139,6 +139,7 @@ return array(
         "time" => "زمان",
         "available" => "موجود",
         "size" => "اندازه",
-        "dateOfBirth" => "تاریخ تولد"
+        "dateOfBirth" => "تاریخ تولد",
+        "addition" => "مشخصات"
     ),
 );
