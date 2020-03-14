@@ -119,9 +119,9 @@
                                                        value="{{ $addition->title }}" hidden>
                                             </div>
                                         </div>
-                                        <div>
-                                            {{ $addition->price }}
-                                        </div>
+{{--                                        <div>--}}
+{{--                                            {{ $addition->price }}--}}
+{{--                                        </div>--}}
                                     </div>
                                 @endif
                             @endforeach
