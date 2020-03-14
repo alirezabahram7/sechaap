@@ -9,7 +9,10 @@
                 </strong>
                 <br>
 {{--                <input type="text" name="price" class="w-25 bg-warning"  value="0" hidden>--}}
-                {{ \Morilog\Jalali\CalendarUtils::convertNumbers($type->price) }} تومان
+                <span class="total-price" data-total-price = {{$type->price}}>
+                {{ \Morilog\Jalali\CalendarUtils::convertNumbers($type->price) }}
+                </span>
+                تومان
             </div>
         </div>
         <form id="formId" action="{{ route('add.to.cart') }}" method="post" class="form-group" enctype="multipart/form-data">
@@ -110,7 +113,7 @@
                                             </div>
 
                                             <div class="col-2">
-                                                <input type="radio" class="my-checkbox" name="addition[{{$i}}]"
+                                                <input type="radio" class="my-checkbox addition-price-data" data-addition-type-id = "{{$additionType->id}}" data-addition-price = "{{$addition->price}}" name="addition[{{$i}}]"
                                                       required id="{{ $addition->id }}" value="{{ $addition->id }}">
                                                 <input type="text" name="addition_type[{{$addition->id}}]"
                                                        value="{{ $addition->title }}" hidden>
@@ -148,7 +151,25 @@
         </form>
     </div>
 
+
+@endsection
+@section('script')
     <script>
+        $(document).ready(function() {
+            let addition = [];
+            $('.addition-price-data').click(function () {
+                let total_path = $('.total-price');
+                let total_price = parseInt(total_path.attr('data-total-price'));
+                let addition_price = parseInt($(this).attr('data-addition-price'));
+                let addition_id = parseInt($(this).attr('data-addition-type-id'));
+                addition[addition_id] = addition_price;
+                total_price = addition.reduce((a, b) => a + b, 0);
+                total_path.text(total_price);
+                total_path.attr('data-total-price', total_price);
+            })
+        });
+
+
         $(function () {
             $(document).on('click', '.btn-add', function (e) {
                 e.preventDefault();
@@ -200,5 +221,4 @@
         //     //
         // });
     </script>
-
 @endsection

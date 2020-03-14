@@ -15,3 +15,5 @@
 @include('layouts.footer')
 </body>
 </html>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+@yield('script')
