@@ -180,7 +180,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('order.create',['id'=>2])}}">
+                    <a class="nav-link" href="{{route('products',['id'=>2])}}">
                         <span class="">
                             اعلامیه
                         </span>

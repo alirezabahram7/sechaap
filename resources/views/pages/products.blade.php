@@ -58,6 +58,19 @@
                     </div>
                 </div>
             </div>
+            @elseif($typeId==2)
+                <div class="itembox">
+                        <div class="col-5 type-divider center">
+                            <a href="{{route('order.create',['id'=>2])}}">
+                                <img class="img-responsive my-circle-img"
+                                     src="{{ asset('./mainImg/customize.jpeg') }}">
+                                <br>
+                                <strong class="">سفارشی سازی اعلامیه</strong>
+                            </a>
+                        </div>
+
+
+                </div>
         @endif
 
         <div class="container ">
