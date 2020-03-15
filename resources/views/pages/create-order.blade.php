@@ -24,7 +24,7 @@
                 </div>
                 <input type="text" name="type_id" value="{{ $type->id }}" hidden>
                 <input type="text" name="type_title" value="{{ $type->title }}" hidden>
-                <input type="text" name="price" value="1000" hidden>
+                <input type="text" name="price"  id="price" value="{{$type->price}}" hidden>
                 @if(!$product)
                     <div class="row controls ">
                         <div class="form-group my-form-group">
@@ -119,9 +119,9 @@
                                                        value="{{ $addition->title }}" hidden>
                                             </div>
                                         </div>
-{{--                                        <div>--}}
-{{--                                            {{ $addition->price }}--}}
-{{--                                        </div>--}}
+                                        <div class="text-middle mt-4 type-divider ">
+                                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers($addition->price).'+ تومان' }}
+                                        </div>
                                     </div>
                                 @endif
                             @endforeach
@@ -157,15 +157,17 @@
     <script>
         $(document).ready(function() {
             let addition = [];
+            let base_price =  parseInt($('#price').val());
             $('.addition-price-data').click(function () {
                 let total_path = $('.total-price');
                 let total_price = parseInt(total_path.attr('data-total-price'));
                 let addition_price = parseInt($(this).attr('data-addition-price'));
                 let addition_id = parseInt($(this).attr('data-addition-type-id'));
                 addition[addition_id] = addition_price;
-                total_price = addition.reduce((a, b) => a + b, 0);
+                total_price = addition.reduce((a, b) => a + b, base_price);
                 total_path.text(total_price);
                 total_path.attr('data-total-price', total_price);
+                $('#price').val(total_price);
             })
         });
 
