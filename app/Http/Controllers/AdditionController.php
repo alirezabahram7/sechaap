@@ -114,6 +114,6 @@ class AdditionController extends Controller
     {
         $addition->delete();
 
-        return back()->with('message',' با موفقیت حذف شد');
+        return redirect()->to('/admin/addition')->with('message',' با موفقیت حذف شد');
     }
 }

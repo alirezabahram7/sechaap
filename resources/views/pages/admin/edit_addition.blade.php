@@ -63,13 +63,21 @@
                     <br>
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">
-                            <button type="submit" class="btn btn-danger justify-content-center my-btn">ایجاد
+                            <button type="submit" class="btn btn-danger justify-content-center my-btn">ویرایش
                             </button>
                         </div>
+
                     </div>
                 </div>
             </form>
-
+            <form action="{{ route('addition.delete',['id' => $addition->id ]) }}" method="post" class="form-group" enctype="multipart/form-data">
+                @csrf
+                @method('delete')
+            <div class="form-group my-form-group mt-3 d-flex justify-content-center">
+                <button type="submit" class="btn btn-danger justify-content-center my-btn">حذف
+                </button>
+            </div>
+            </form>
         </div>
 
     </div>

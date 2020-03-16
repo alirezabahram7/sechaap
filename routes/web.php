@@ -93,5 +93,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('edit-addition/{addition}','AdditionController@edit')->name('addition.create');
     Route::post('addition','AdditionController@store')->name('addition.store');
     Route::patch('addition/{addition}','AdditionController@update')->name('addition.update');
+    Route::delete('addition/{addition}','AdditionController@destroy')->name('addition.delete');
     Route::get('addition','AdditionController@index')->name('addition.list');
 });

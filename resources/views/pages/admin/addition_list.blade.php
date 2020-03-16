@@ -24,7 +24,9 @@
                     <th class="table-th">
                         توضیحات
                     </th>
-
+                    <th class="table-th">
+                        اعمال
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,6 +66,12 @@
                         </td>
                         <td class="table-td">
                             {{ mb_substr($addition->description,0,20) }} ...
+                        </td>
+
+                        <td class="table-td">
+                            <a href="{{url('admin/edit-addition/'.$addition->id) }}}}">
+                            <i class="fa fa-edit"></i>
+                            </a>
                         </td>
 
                     </tr>
