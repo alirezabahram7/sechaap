@@ -114,7 +114,9 @@ class OrderController extends Controller
                         $order->files()->create(['name' => $file]);
                     }
                 }
-                $order->additions()->sync($datum['addition']);
+                if($order->addditon !=null) {
+                    $order->additions()->sync($datum['addition']);
+                }
             }
             session()->forget('cart');
         }elseif (session()->get('code')){

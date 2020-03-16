@@ -12,6 +12,27 @@
                 @csrf
                 @method('patch')
                 <div class="">
+
+                    <div class="itembox text-center">
+                        @if($order->product_id==null)
+                    @foreach($order->files as $file)
+                        <a href="{{'/files/orders/'.$file->name}}" target="_blank">
+                        {{$file->name}}
+                        </a>
+                        <br>
+                        @endforeach
+                        @else
+                            @if($order->product->photo)
+                                <div class="col-md-5 center">
+                                <img class="img-responsive my-circle-img"
+                                     src="{{ asset('./files/'.$order->product->photo) }}">
+                            @else
+                                <img class="img-thumbnail rounded-circle rounded img-responsive my-circle-img"
+                                     src="{{ asset('./pic/nopro.png') }}">
+                            @endif
+                                </div>
+                            @endif
+                    </div>
                     <div class="d-flex justify-content-between">
                         <div class="form-group col-md-4 text-center">
                             <label for="type">گروه محصولی</label>
