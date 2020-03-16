@@ -75,7 +75,11 @@
                             {{ $order->tracking_code }}
                         </td>
                         <td class="table-td">
+                            @if($order->user_id > 0)
+                                {{\Morilog\Jalali\CalendarUtils::convertNumbers(auth()->user()->phone)}}
+                            @else
                             {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->phone)}}
+                                @endif
                         </td>
                         <td class="table-td">
                             @if($order->user_id > 0)
