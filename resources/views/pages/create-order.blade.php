@@ -5,17 +5,23 @@
         <div class="d-flex justify-content-end">
             <div class="position-fixed itembox bg-warning  z-depth-1-half text-center">
                 <strong>
-                    قیمت :
+                    قیمت واحد:
                 </strong>
                 <br>
-{{--                <input type="text" name="price" class="w-25 bg-warning"  value="0" hidden>--}}
-                <span class="total-price" data-total-price = {{$type->price}}>
+                {{--                <input type="text" name="price" class="w-25 bg-warning"  value="0" hidden>--}}
+                <span class="total-price" data-total-price= {{$type->price}}>
                 {{ \Morilog\Jalali\CalendarUtils::convertNumbers($type->price) }}
                 </span>
                 تومان
+                <br>
+                X
+                <span class="total-nums" data-total-nums="1">
+               1
+                </span>
             </div>
         </div>
-        <form id="formId" action="{{ route('add.to.cart') }}" method="post" class="form-group" enctype="multipart/form-data">
+        <form id="formId" action="{{ route('add.to.cart') }}" method="post" class="form-group"
+              enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column">
                 <div class="form-header-title">
@@ -24,7 +30,8 @@
                 </div>
                 <input type="text" name="type_id" value="{{ $type->id }}" hidden>
                 <input type="text" name="type_title" value="{{ $type->title }}" hidden>
-                <input type="text" name="price"  id="price" value="{{$type->price}}" hidden>
+                <input type="text" name="price" id="price" value="{{$type->price}}" hidden>
+                <input type="text" name="nums" id="nums" value="1" hidden>
                 @if(!$product)
                     <div class="row controls ">
                         <div class="form-group my-form-group">
@@ -32,9 +39,14 @@
                             <div class="input-group entry justify-content-center">
                                 <input type="file" class="btn btn-primary browndiv text-right"
                                        name="file[]" id="file[]" required>
-                                <button class="btn btn-success btn-add" type="button">
-                                    +
-                                </button>
+                                @if($type->id !=3)
+                                    <button class="btn btn-success btn-add" type="button">
+                                        +
+                                    </button>
+                                @else
+                                    <span class="mr-2" id="page_count"></span>
+                                    صفحه
+                                @endif
                             </div>
 
                         </div>
@@ -64,23 +76,23 @@
                     <input type="text" name="photo" value="{{ $product->photo }}" hidden>
                 @endif
                 @if($type->id == 1 or $type->id == 2)
-                <div class="row">
+                    <div class="row">
                         <div class="form-group my-form-group col-4">
                             <label for="description">از طرف</label>
                             <input type="text" class="form-control my-form-control" name="from"
                                    required>{{old('from')}}</input>
                         </div>
-                    <div class="form-group my-form-group col-4">
-                        <label for="description">برای</label>
-                        <input type="text" class="form-control my-form-control" name="to"
-                               required>{{old('to')}}</input>
-                    </div>
-                    @if($type->id == 1)
-                    <div class="form-group my-form-group col-4">
-                        <label for="description">مناسبت</label>
-                        <input type="text" class="form-control my-form-control" name="topic"
-                               >{{old('topic')}}</input>
-                    </div>
+                        <div class="form-group my-form-group col-4">
+                            <label for="description">برای</label>
+                            <input type="text" class="form-control my-form-control" name="to"
+                                   required>{{old('to')}}</input>
+                        </div>
+                        @if($type->id == 1)
+                            <div class="form-group my-form-group col-4">
+                                <label for="description">مناسبت</label>
+                                <input type="text" class="form-control my-form-control" name="topic"
+                                >{{old('topic')}}</input>
+                            </div>
                         @endif
                     </div>
 
@@ -113,14 +125,30 @@
                                             </div>
 
                                             <div class="col-2">
-                                                <input type="radio" class="my-checkbox addition-price-data" data-addition-type-id = "{{$additionType->id}}" data-addition-price = "{{$addition->price}}" name="addition[{{$i}}]"
-                                                      required id="{{ $addition->id }}" value="{{ $addition->id }}">
+                                                @if($additionType->id==2)
+                                                    <input type="radio" class="my-checkbox addition-nums-data"
+                                                           data-addition-type-id="{{$additionType->id}}"
+                                                           data-addition-nums="{{$addition->price}}"
+                                                           name="addition[{{$i}}]"
+                                                           required id="{{ $addition->id }}" value="{{ $addition->id }}">
+                                                    @else
+                                                <input type="radio" class="my-checkbox addition-price-data"
+                                                       data-addition-type-id="{{$additionType->id}}"
+                                                       data-addition-price="{{$addition->price}}"
+                                                       name="addition[{{$i}}]"
+                                                       required id="{{ $addition->id }}" value="{{ $addition->id }}">
+                                                @endif
                                                 <input type="text" name="addition_type[{{$addition->id}}]"
                                                        value="{{ $addition->title }}" hidden>
                                             </div>
                                         </div>
                                         <div class="text-middle mt-4 type-divider ">
-                                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers($addition->price).'+ تومان' }}
+                                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers($addition->price) }}
+                                            @if($additionType->id == 2)
+                                                 تومان X
+                                            @else
+                                                + تومان
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
@@ -134,11 +162,11 @@
                             <label for="description">توضیحات ( ساعت مراسم - محل برکزاری - آدرس دقیق)</label>
                             <textarea type="text" class="form-control my-form-control" name="description"
                                       rows="5" required>{{old('description')}}</textarea>
-                            @else
-                        <label for="description">توضیحات</label>
-                        <textarea type="text" class="form-control my-form-control" name="description"
-                                  rows="5">{{old('description')}}</textarea>
-                            @endif
+                        @else
+                            <label for="description">توضیحات</label>
+                            <textarea type="text" class="form-control my-form-control" name="description"
+                                      rows="5">{{old('description')}}</textarea>
+                        @endif
                     </div>
                 </div>
                 <div class="row d-flex">
@@ -155,9 +183,10 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let addition = [];
-            let base_price =  parseInt($('#price').val());
+            let base_price = parseInt($('#price').val());
+            // let base_nums = parseInt($('#nums').val());
             $('.addition-price-data').click(function () {
                 let total_path = $('.total-price');
                 let total_price = parseInt(total_path.attr('data-total-price'));
@@ -171,6 +200,25 @@
             })
         });
 
+        $(document).ready(function () {
+            let addition = [];
+            let base_nums = parseInt($('#nums').val());
+            // let base_price = parseInt($('#price').val());
+            $('.addition-nums-data').click(function () {
+                let total_path = $('.total-nums');
+                // let total_pat = $('.total-price');
+                let total_nums = parseInt(total_path.attr('data-total-nums'));
+                let addition_nums = parseInt($(this).attr('data-addition-nums'));
+                let addition_id = parseInt($(this).attr('data-addition-type-id'));
+                addition[addition_id] = addition_nums;
+                total_nums = addition.reduce((a, b) => a + b -1, base_nums);
+                total_path.text(total_nums);
+                let total_price = (base_price * total_nums);
+                // total_pat.attr('data-total-price', total_price);
+                total_path.attr('data-total-nums', total_nums);
+                $('#nums').val(total_nums);
+            })
+        });
 
         $(function () {
             $(document).on('click', '.btn-add', function (e) {
@@ -193,6 +241,20 @@
             });
         });
 
+        var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+        // The workerSrc property shall be specified.
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+
+        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+            // Initial/first page rendering
+            renderPage(pageNum);
+        });
         // $("#formId").validate({
         //     onkeyup:false,
         //
