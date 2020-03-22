@@ -15,7 +15,7 @@
                 تومان
                 <br>
                 X
-                <span class="total-nums" data-total-nums="1">
+                <span class="total-nums" id="total-nums" data-total-nums="1">
                1
                 </span>
             </div>
@@ -37,13 +37,16 @@
                         <div class="form-group my-form-group">
                             <label for="avatar">بارگزاری فایل </label>
                             <div class="input-group entry justify-content-center">
-                                <input type="file" class="btn btn-primary browndiv text-right"
-                                       name="file[]" id="file[]" required>
                                 @if($type->id !=3)
+                                    <input type="file" class="btn btn-primary browndiv text-right"
+                                           name="file[]" id="file[]" required>
                                     <button class="btn btn-success btn-add" type="button">
                                         +
                                     </button>
                                 @else
+                                    <input type="file" class="btn btn-primary browndiv text-right selected-file"
+                                           name="file[]" id="file[]" accept="application/pdf"
+                                           placeholder="فایل را با فرمت پی دی اف انتخاب کنید" required>
                                     <span class="mr-2" id="page_count"></span>
                                     صفحه
                                 @endif
@@ -130,13 +133,15 @@
                                                            data-addition-type-id="{{$additionType->id}}"
                                                            data-addition-nums="{{$addition->price}}"
                                                            name="addition[{{$i}}]"
-                                                           required id="{{ $addition->id }}" value="{{ $addition->id }}">
-                                                    @else
-                                                <input type="radio" class="my-checkbox addition-price-data"
-                                                       data-addition-type-id="{{$additionType->id}}"
-                                                       data-addition-price="{{$addition->price}}"
-                                                       name="addition[{{$i}}]"
-                                                       required id="{{ $addition->id }}" value="{{ $addition->id }}">
+                                                           required id="{{ $addition->id }}"
+                                                           value="{{ $addition->id }}">
+                                                @else
+                                                    <input type="radio" class="my-checkbox addition-price-data"
+                                                           data-addition-type-id="{{$additionType->id}}"
+                                                           data-addition-price="{{$addition->price}}"
+                                                           name="addition[{{$i}}]"
+                                                           required id="{{ $addition->id }}"
+                                                           value="{{ $addition->id }}">
                                                 @endif
                                                 <input type="text" name="addition_type[{{$addition->id}}]"
                                                        value="{{ $addition->title }}" hidden>
@@ -145,7 +150,7 @@
                                         <div class="text-middle mt-4 type-divider ">
                                             {{ \Morilog\Jalali\CalendarUtils::convertNumbers($addition->price) }}
                                             @if($additionType->id == 2)
-                                                 تومان X
+                                                تومان X
                                             @else
                                                 + تومان
                                             @endif
@@ -186,7 +191,7 @@
         $(document).ready(function () {
             let addition = [];
             let base_price = parseInt($('#price').val());
-            // let base_nums = parseInt($('#nums').val());
+            let base_nums = parseInt($('#nums').val());
             $('.addition-price-data').click(function () {
                 let total_path = $('.total-price');
                 let total_price = parseInt(total_path.attr('data-total-price'));
@@ -211,7 +216,7 @@
                 let addition_nums = parseInt($(this).attr('data-addition-nums'));
                 let addition_id = parseInt($(this).attr('data-addition-type-id'));
                 addition[addition_id] = addition_nums;
-                total_nums = addition.reduce((a, b) => a + b -1, base_nums);
+                total_nums = addition.reduce((a, b) => a + b - 1, base_nums);
                 total_path.text(total_nums);
                 let total_price = (base_price * total_nums);
                 // total_pat.attr('data-total-price', total_price);
@@ -242,19 +247,32 @@
         });
 
         var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
-        var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-        // The workerSrc property shall be specified.
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        document.querySelector(".selected-file").addEventListener("change", function (e) {
+            var file = e.target.files[0];
+            if (file.type != "application/pdf") {
+                console.error(file.name, "is not a pdf file.")
+                return
+            }
+            var fileReader = new FileReader();
 
+            fileReader.onload = function () {
+                var typedarray = new Uint8Array(this.result);
+                var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-        pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
-            pdfDoc = pdfDoc_;
-            document.getElementById('page_count').textContent = pdfDoc.numPages;
+// The workerSrc property shall be specified.
+                pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+                pdfjsLib.getDocument(typedarray).promise.then(function (pdfDoc_) {
+                    pdfDoc = pdfDoc_;
+                    document.getElementById('page_count').textContent = pdfDoc.numPages;
+                    document.getElementById('nums').value=pdfDoc.numPages;
+                    document.getElementById('total-nums').textContent = pdfDoc.numPages;
+                });
+            };
 
-            // Initial/first page rendering
-            renderPage(pageNum);
+            fileReader.readAsArrayBuffer(file);
         });
+
         // $("#formId").validate({
         //     onkeyup:false,
         //
