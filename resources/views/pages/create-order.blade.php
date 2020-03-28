@@ -5,19 +5,20 @@
         <div class="d-flex justify-content-end">
             <div class="position-fixed itembox bg-warning  z-depth-1-half text-center">
                 <strong>
-                    قیمت واحد:
+                    قیمت :
                 </strong>
                 <br>
                 {{--                <input type="text" name="price" class="w-25 bg-warning"  value="0" hidden>--}}
-                <span class="total-price" data-total-price= {{$type->price}}>
+                <span id="total-price" class="total-price" data-total-price= {{$type->price}}>
                 {{ \Morilog\Jalali\CalendarUtils::convertNumbers($type->price) }}
                 </span>
                 تومان
-{{--                <br>--}}
-{{--                X--}}
-{{--                <span class="total-nums" id="total-nums" data-total-nums="1">--}}
-{{--               1--}}
-{{--                </span>--}}
+                @if($type->id == 3)
+                    <br>
+{{--                    X--}}
+                    <input class="total-nums" id="total-nums" data-total-nums="1" value="1"  hidden/>
+
+                @endif
             </div>
         </div>
         <form id="formId" action="{{ route('add.to.cart') }}" method="post" class="form-group"
@@ -258,14 +259,16 @@
             fileReader.onload = function () {
                 var typedarray = new Uint8Array(this.result);
                 var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
+                let base_price = parseInt(document.getElementById('price').value);
 // The workerSrc property shall be specified.
                 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
                 pdfjsLib.getDocument(typedarray).promise.then(function (pdfDoc_) {
                     pdfDoc = pdfDoc_;
                     document.getElementById('page_count').textContent = pdfDoc.numPages;
-                    document.getElementById('nums').value=pdfDoc.numPages;
-                    document.getElementById('total-nums').textContent = pdfDoc.numPages;
+                    document.getElementById('nums').value = pdfDoc.numPages;
+                    document.getElementById('total-nums').value = pdfDoc.numPages;
+                    // total_price_path.text(base_price * total_nums);
+                    document.getElementById('total-price').textContent = base_price * pdfDoc.numPages;
                 });
             };
 
