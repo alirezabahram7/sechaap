@@ -13,11 +13,11 @@
                 {{ \Morilog\Jalali\CalendarUtils::convertNumbers($type->price) }}
                 </span>
                 تومان
-                <br>
-                X
-                <span class="total-nums" id="total-nums" data-total-nums="1">
-               1
-                </span>
+{{--                <br>--}}
+{{--                X--}}
+{{--                <span class="total-nums" id="total-nums" data-total-nums="1">--}}
+{{--               1--}}
+{{--                </span>--}}
             </div>
         </div>
         <form id="formId" action="{{ route('add.to.cart') }}" method="post" class="form-group"
@@ -31,7 +31,7 @@
                 <input type="text" name="type_id" value="{{ $type->id }}" hidden>
                 <input type="text" name="type_title" value="{{ $type->title }}" hidden>
                 <input type="text" name="price" id="price" value="{{$type->price}}" hidden>
-                <input type="text" name="nums" id="nums" value="1" hidden>
+                <input type="text" name="nums" id="nums" class="nums" value="1" hidden>
                 @if(!$product)
                     <div class="row controls ">
                         <div class="form-group my-form-group">
@@ -191,15 +191,15 @@
         $(document).ready(function () {
             let addition = [];
             let base_price = parseInt($('#price').val());
-            let base_nums = parseInt($('#nums').val());
             $('.addition-price-data').click(function () {
+                let base_nums = parseInt($('#nums').val());
                 let total_path = $('.total-price');
                 let total_price = parseInt(total_path.attr('data-total-price'));
                 let addition_price = parseInt($(this).attr('data-addition-price'));
                 let addition_id = parseInt($(this).attr('data-addition-type-id'));
                 addition[addition_id] = addition_price;
                 total_price = addition.reduce((a, b) => a + b, base_price);
-                total_path.text(total_price);
+                total_path.text(total_price * base_nums);
                 total_path.attr('data-total-price', total_price);
                 $('#price').val(total_price);
             })
@@ -208,18 +208,17 @@
         $(document).ready(function () {
             let addition = [];
             let base_nums = parseInt($('#nums').val());
-            // let base_price = parseInt($('#price').val());
             $('.addition-nums-data').click(function () {
                 let total_path = $('.total-nums');
-                // let total_pat = $('.total-price');
+                let total_price_path = $('.total-price');
+                let base_price = parseInt($('#price').val());
                 let total_nums = parseInt(total_path.attr('data-total-nums'));
                 let addition_nums = parseInt($(this).attr('data-addition-nums'));
                 let addition_id = parseInt($(this).attr('data-addition-type-id'));
                 addition[addition_id] = addition_nums;
                 total_nums = addition.reduce((a, b) => a + b - 1, base_nums);
+                total_price_path.text(base_price * total_nums);
                 total_path.text(total_nums);
-                let total_price = (base_price * total_nums);
-                // total_pat.attr('data-total-price', total_price);
                 total_path.attr('data-total-nums', total_nums);
                 $('#nums').val(total_nums);
             })
