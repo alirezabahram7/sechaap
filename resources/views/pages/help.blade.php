@@ -4,11 +4,11 @@
     <div class="d-flex flex-column justify-content-around dashboard-content">
         <div class="container bg-secondary-color p-4 mb-3 text-right">
             <div class="form-header-title">
-                درباره ی ما
+               راهنمای سایت
             </div>
             <span class="m-4">
                 <?php
-                $paragraphs = explode(PHP_EOL, $texts[2]->text);
+                $paragraphs = explode(PHP_EOL, $texts[0]->text);
                 ?>
 
                 @foreach($paragraphs as $paragraph)

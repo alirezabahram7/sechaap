@@ -51,6 +51,7 @@ Route::get('message','MessageController@create')->name('contact.us');
 Route::post('message','MessageController@store')->name('store.message');
 
 Route::get('about-us','AdminController@aboutUs')->name('about.us');
+Route::get('help','AdminController@help')->name('help');
 
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {

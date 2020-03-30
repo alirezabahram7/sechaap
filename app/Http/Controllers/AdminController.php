@@ -217,4 +217,11 @@ class AdminController extends Controller
     public function aboutUs() {
         return view('pages.about_us');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function help() {
+        return view('pages.help');
+    }
 }
