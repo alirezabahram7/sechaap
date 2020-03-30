@@ -119,6 +119,8 @@ class ImageController extends Controller
     public function destroy($imageId)
     {
         $image=Image::findOrFail($imageId);
+        $filePath = public_path() . '/files/'.$image->image;
+        unlink($filePath);
         $image->delete();
         return back();
     }
