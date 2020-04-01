@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid dashboard-content center">
-        <div class="itembox col-6 d-flex flex-column justify-content-around">
+        <div class="itembox col-12 col-md-6 d-flex flex-column justify-content-around">
             <i class="fa fa-credit-card text-success" style="font-size: 40px;"></i>
             <div class=" text-success d-md-flex justify-content-around d-sm-block mb-3 p-5 text-center">
                 <div>

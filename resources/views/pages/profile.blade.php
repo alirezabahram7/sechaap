@@ -44,14 +44,18 @@
                                     تغییر رمز عبور
                                 </a>
                             </div>
-
+                            <div class="d-flex  justify-content-center mt-3">
+                                <a class="btn btn-danger" href="/logout">
+                                   خروج
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             @endif
             <div class="col-md-9 col-sm-12 dashboard-content">
-                <div class="myTableBox col-12">
-                    <table class="table table-striped table-hover bg-light list-table" id="myTable">
+                <div class="myTableBox  col-12">
+                    <table class="table table-responsive table-striped table-hover bg-light list-table" id="myTable">
                         <thead class="myTableHeader">
                         <tr class="table-tr">
                             <th class="table-th">

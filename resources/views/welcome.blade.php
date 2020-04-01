@@ -6,7 +6,9 @@
     ?>
     <div class="">
         @include('layouts.slider')
+        <div class="d-none d-md-block">
         @include('layouts.benefits')
+        </div>
         @include('layouts.services')
         @include('layouts.summary')
         @include('layouts.offset_or_digital')

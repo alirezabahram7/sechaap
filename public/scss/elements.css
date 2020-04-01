@@ -63,7 +63,7 @@ td.active i {
   box-shadow: 0 2px 5px 0 #04677c, 0 2px 10px 0 #04677c;
   height: 100% !important;
   border-radius: 2px !important;
-  width: 50px !important;
+  width: 100% !important;
 }
 
 i.fa {

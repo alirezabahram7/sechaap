@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light text-danger">
-    <div class="container-fluid d-flex justify-content-between">
+    <div class="container-fluid d-md-flex justify-content-between">
         <div class="">
-            <ul class="navbar-nav mr-auto list-group list-group-horizontal">
+            <ul class="col-sm-12 navbar-nav mr-auto list-group list-group-horizontal">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cart.index') }}">
                         @if(session()->get('cart'))
@@ -62,8 +62,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item dropdown d-block d-lg-none col-sm-1"></li>
-                    <li class="nav-item dropdown d-block d-lg-none">
+                    <li class="nav-item dropdown d-block d-lg-none mr-5">
                         <a class="nav-link" href="/login" role="button">
                          <span class="">
                         ورود یا ثبت نام</span>
@@ -94,8 +93,8 @@
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown d-block d-lg-none col-sm-1"></li>
-                    <li class="nav-item dropdown d-block d-lg-none">
+{{--                    <li class="nav-item dropdown d-block d-lg-none col-sm-1"></li>--}}
+                    <li class="nav-item dropdown d-block d-lg-none mr-5">
                         <a class="nav-link" href="{{ route('profile') }}" role="button">
                          <span class="">
                         {{ auth()->user()->name }}</span>

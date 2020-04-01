@@ -41,7 +41,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3 type-divider" style="color:white;">© 2018 Copyright:
+        <div class="footer-copyright text-center py-3 type-divider" style="color:white;">© 2019 Copyright:
             <a> alib327@gmail.com</a>
         </div>
         <!-- Copyright -->

@@ -1,89 +1,94 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="dashboard-content container text-dark text-center">
         @if($typeId==1)
-            <div class="itembox">
-                <div class="d-flex justify-content-around">
-                    <div class="col-3 type-divider">
-                        <a href="{{ route('products',['id '=>$typeId,'bannerType'=>8]) }}">
-                            <img class="img-responsive my-circle-img "
-                                 src="{{ asset('./mainImg/mecca.jpg') }}">
-                            <br>
-                            <strong class="">بنر مکه</strong>
-                        </a>
-                    </div>
-                    <div class="col-3 type-divider">
-                        <a href="{{ route('products',['id '=>$typeId,'bannerType'=>9]) }}">
-                            <img class="img-responsive my-circle-img"
-                                 src="{{ asset('./mainImg/karbala.jpg') }}">
-                            <br>
-                            <strong class="">بنر کربلایی</strong>
-                        </a>
-                    </div>
-                    <div class="col-3 type-divider">
-                        <a href="{{ route('products',['id '=>$typeId,'bannerType'=>10]) }}">
-                            <img class="img-responsive my-circle-img"
-                                 src="{{ asset('./mainImg/cond.jpg') }}">
-                            <br>
-                            <strong class="">بنر تسلیت</strong>
-                        </a>
-                    </div>
-                </div>
-                <br>
-                <div class="d-flex justify-content-around">
-                    <div class="col-3 type-divider">
-                        <a href="{{ route('products',['id '=>$typeId,'bannerType'=>11]) }}">
-                            <img class="img-responsive my-circle-img "
-                                 src="{{ asset('./mainImg/ayad.jpg') }}">
-                            <br>
-                            <strong class="">بنر اعیاد و شهادت ها</strong>
-                        </a>
-                    </div>
-                    <div class="col-3 type-divider">
-                        <a href="{{route('order.create',['id'=>1])}}">
-                            <img class="img-responsive my-circle-img"
-                                 src="{{ asset('./mainImg/customize.jpeg') }}">
-                            <br>
-                            <strong class="">سفارشی سازی بنر</strong>
-                        </a>
-                    </div>
-                    <div class="col-3 type-divider">
-                        <a href="{{ route('products',['id '=>$typeId]) }}">
-                            <img class="img-responsive my-circle-img"
-                                 src="{{ asset('./mainImg/allbanners.jpg') }}">
-                            <br>
-                            <strong class="">همه</strong>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @elseif($typeId==2)
+            <div id="accordion">
+                <h3>انواع بنر</h3>
+                <div>
                 <div class="itembox">
-                        <div class="col-5 type-divider center">
-                            <a href="{{route('order.create',['id'=>2])}}">
+                    <div class="d-block d-md-flex justify-content-around">
+                        <div class="col-md-3 type-divider">
+                            <a href="{{ route('products',['id '=>$typeId,'bannerType'=>8]) }}">
+                                <img class="img-responsive my-circle-img "
+                                     src="{{ asset('./mainImg/mecca.jpg') }}">
+                                <br>
+                                <strong class="">بنر مکه</strong>
+                            </a>
+                        </div>
+                        <div class="col-md-3 type-divider">
+                            <a href="{{ route('products',['id '=>$typeId,'bannerType'=>9]) }}">
+                                <img class="img-responsive my-circle-img"
+                                     src="{{ asset('./mainImg/karbala.jpg') }}">
+                                <br>
+                                <strong class="">بنر کربلایی</strong>
+                            </a>
+                        </div>
+                        <div class="col-md-3 type-divider">
+                            <a href="{{ route('products',['id '=>$typeId,'bannerType'=>10]) }}">
+                                <img class="img-responsive my-circle-img"
+                                     src="{{ asset('./mainImg/cond.jpg') }}">
+                                <br>
+                                <strong class="">بنر تسلیت</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-block d-md-flex justify-content-around">
+                        <div class="col-md-3 type-divider">
+                            <a href="{{ route('products',['id '=>$typeId,'bannerType'=>11]) }}">
+                                <img class="img-responsive my-circle-img "
+                                     src="{{ asset('./mainImg/ayad.jpg') }}">
+                                <br>
+                                <strong class="">بنر اعیاد و شهادت ها</strong>
+                            </a>
+                        </div>
+                        <div class="col-md-3 type-divider">
+                            <a href="{{route('order.create',['id'=>1])}}">
                                 <img class="img-responsive my-circle-img"
                                      src="{{ asset('./mainImg/customize.jpeg') }}">
                                 <br>
-                                <strong class="">سفارشی سازی اعلامیه</strong>
+                                <strong class="">سفارشی سازی بنر</strong>
                             </a>
                         </div>
-
-
+                        <div class="col-md-3 type-divider">
+                            <a href="{{ route('products',['id '=>$typeId]) }}">
+                                <img class="img-responsive my-circle-img"
+                                     src="{{ asset('./mainImg/allbanners.jpg') }}">
+                                <br>
+                                <strong class="">همه</strong>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                </div>
+            </div>
+        @elseif($typeId==2)
+            <div class="itembox">
+                <div class="col-md-5 type-divider center">
+                    <a href="{{route('order.create',['id'=>2])}}">
+                        <img class="img-responsive my-circle-img"
+                             src="{{ asset('./mainImg/customize.jpeg') }}">
+                        <br>
+                        <strong class="">سفارشی سازی اعلامیه</strong>
+                    </a>
+                </div>
+
+
+            </div>
         @endif
 
         <div class="container ">
             <?php
             $i = 1;
             ?>
-            <div class="row d-flex justify-content-center">
+            <div class="row d-block d-md-flex justify-content-center">
                 @foreach($products as $product)
-                    <div class="col-3 card-body my-card-body rounded d-flex flex-column border-secondary itembox_lists"
+                    <div
+                        class="col-md-3 card-body my-card-body rounded d-flex flex-column border-secondary itembox_lists"
                     >
                         <div class="align-items-start">
                             <a href="{{ route('order.create', ['id' => $typeId,'productId'=>$product->id]) }}">
-                                <span class="float-left">
+                                <span class="center">
                                     @if($product->photo)
                                         <img class="img-responsive my-circle-img"
                                              src="{{ asset('./files/'.$product->photo) }}">
@@ -97,7 +102,7 @@
                         <div class="d-flex justify-content-center">
                             <span
                                 class="info-title">{{ \Morilog\Jalali\CalendarUtils::convertNumbers($product->title) }}</span>
-                            </a>
+
                         </div>
                         <br>
                         <div class="d-flex justify-content-center">
@@ -145,3 +150,4 @@
         </div>
     </div>
 @endsection
+

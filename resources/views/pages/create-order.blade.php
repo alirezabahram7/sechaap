@@ -1,9 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container bg-secondary-color p-4 mb-3">
         <div class="d-flex justify-content-end">
-            <div class="position-fixed itembox bg-warning  z-depth-1-half text-center">
+            <div class="position-fixed itembox bg-transparent-warning  z-depth-2 text-center">
                 <strong>
                     قیمت :
                 </strong>
@@ -39,9 +38,9 @@
                             <label for="avatar">بارگزاری فایل </label>
                             <div class="input-group entry justify-content-center">
                                 @if($type->id !=3)
-                                    <input type="file" class="btn btn-primary browndiv text-right"
+                                    <input type="file" class="btn btn-primary browndiv text-right text-dark col-10 col-md-4"
                                            name="file[]" id="file[]" required>
-                                    <button class="btn btn-success btn-add" type="button">
+                                    <button class="col-2 col-md-1 btn btn-success btn-add" type="button">
                                         +
                                     </button>
                                 @else
@@ -56,7 +55,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="d-flex justify-content-center col-4">
+                    <div class="d-flex justify-content-center col-12 col-md-4">
                         <div class=" rounded border-secondary itembox">
                             <div class="">
                                 <span class="">
@@ -81,18 +80,18 @@
                 @endif
                 @if($type->id == 1 or $type->id == 2)
                     <div class="row">
-                        <div class="form-group my-form-group col-4">
+                        <div class="form-group my-form-group col-12 col-md-4">
                             <label for="description">از طرف</label>
                             <input type="text" class="form-control my-form-control" name="from"
                                    required>{{old('from')}}</input>
                         </div>
-                        <div class="form-group my-form-group col-4">
+                        <div class="form-group my-form-group col-12 col-md-4">
                             <label for="description">برای</label>
                             <input type="text" class="form-control my-form-control" name="to"
                                    required>{{old('to')}}</input>
                         </div>
                         @if($type->id == 1)
-                            <div class="form-group my-form-group col-4">
+                            <div class="form-group my-form-group col-12 col-md-4">
                                 <label for="description">مناسبت</label>
                                 <input type="text" class="form-control my-form-control" name="topic"
                                 >{{old('topic')}}</input>
@@ -113,12 +112,12 @@
                             @foreach($additions as $addition)
                                 @if($addition->addition_type_id == $additionType->id)
                                     <div class="d-flex justify-content-start">
-                                        <div class="d-flex justify-content-start mt-4 col-3">
+                                        <div class="d-flex justify-content-start mt-4 col-10 col-md-3">
                                             <div class="col-9 text-right">
                                                 <label for="title"> {{ $addition->title }} </label>
                                                 @if($addition->image!=null)
                                                     <img src="{{asset('./files/'.$addition->image)}}"
-                                                         class="col-5">
+                                                         class="col-10 col-md-5">
                                                 @endif
                                                 @if($addition->description!='')
                                                     <div class="helper"><i class="fa fa-question w-25">
@@ -148,7 +147,7 @@
                                                        value="{{ $addition->title }}" hidden>
                                             </div>
                                         </div>
-                                        <div class="text-middle mt-4 type-divider ">
+                                        <div class="text-middle mt-4 type-divider d-none d-md-block">
                                             {{ \Morilog\Jalali\CalendarUtils::convertNumbers($addition->price) }}
                                             @if($additionType->id == 2)
                                                 تومان X
@@ -163,7 +162,7 @@
                     @endforeach
                 </div>
                 <div class="row">
-                    <div class="form-group my-form-group col-10">
+                    <div class="form-group my-form-group col-12 col-md-10">
                         @if($type->id == 2)
                             <label for="description">توضیحات ( ساعت مراسم - محل برکزاری - آدرس دقیق)</label>
                             <textarea type="text" class="form-control my-form-control" name="description"

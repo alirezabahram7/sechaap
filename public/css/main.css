@@ -3,19 +3,19 @@
     src: url("../font/IRANSansWeb.woff") format("woff");*/
 }
 
-html, body {
-    font-family: 'IRANSansWeb';
-    font-weight: normal;
-    font-style: normal;
-    height: 100%;
-    min-height: 100%;
-    direction: rtl;
-}
-
 body {
     background: white;
     background-repeat: no-repeat;
     background-size: 100%;
+    direction: rtl;
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    font-family: 'IRANSansWeb';
+    height: 100%;
+    min-height: 100%;
     direction: rtl;
 }
 
@@ -964,7 +964,9 @@ border: dotted 1px #f0f0f0;
 .float-left{}
 /*.float-right{background: #6f6f6f !important;}*/
 
-.form-control{}
+.login-form-control{
+    height:8vw;
+}
 .form-group{}
 
 .btn{}
@@ -1028,7 +1030,9 @@ background-color:
 .bg-secondary{}
 .bg-success{}
 .bg-transparent{}
-.bg-warning{}
+.bg-transparent-warning{
+    background-color: rgba(235, 194, 49,0.8);
+}
 .bg-white{}
 .bg-secondary-color{
     background-color: rgba(4,103,124,100);

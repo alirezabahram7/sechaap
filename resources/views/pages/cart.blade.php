@@ -8,13 +8,24 @@
         <div class=" d-md-flex justify-content-around d-sm-block mb-3 ">
             <div class="col-md-9 col-sm-12 dashboard-content">
                 <div class="form-header-title text-light">
-             سبد خرید
+                    سبد خرید
                 </div>
-            @if($orders)
+                @if($orders)
                     @foreach($orders as $i=>$order)
                         <div class="itembox">
+                            <div class="d-flex d-md-none justify-content-center">
+                                <div class="">
+                                    @if(isset($order['photo']))
+                                        <img src="{{asset('./files/'.$order['photo'])}}"
+                                             class="w-100">
+                                    @else
+                                        <img src="{{asset('./mainImg/custom.png')}}"
+                                             class="w-100">
+                                    @endif
+                                </div>
+                            </div>
                             <div class="d-flex justify-content-between">
-                                <div class="col-8">
+                                <div class="col-12 col-md-8">
                                     <div class="row">
                                         <strong> نوع سفارش : </strong>
                                         {{ isset($order['type_title']) ? $order['type_title']:'-' }}
@@ -42,7 +53,7 @@
                                         {{$order['description']}}
                                     </div>
                                 </div>
-                                <div>
+                                <div class="d-none d-md-block">
                                     <div class="">
                                         @if(isset($order['photo']))
                                             <img src="{{asset('./files/'.$order['photo'])}}"
@@ -66,24 +77,38 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="d-flex justify-content-center d-md-none services-icons">
+                                <a href="{{ route('remove.from.cart',['index'=>$i]) }}">
+                                    <div class="">
 
-                        </div>
-                    @endforeach
-                <div class="d-flex justify-content-center">
-                    <form action="{{ route('order.store') }}" method="post">
-                        @csrf
-                        <div class="row d-flex ">
-                            <div class="form-group my-form-group mt-3">
-                                <button type="submit" class="btn btn-danger justify-content-center my-btn">پرداخت
-                                </button>
+                                        <div>
+                                            <span class="text-danger">حذف از سبد خرید</span>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <i class="fa fa-trash w-25 font-weight-bolder"></i>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    @endforeach
+                    <div class="d-flex justify-content-center">
+                        <form action="{{ route('order.store') }}" method="post">
+                            @csrf
+                            <div class="row d-flex ">
+                                <div class="form-group my-form-group mt-3">
+                                    <button type="submit" class="btn btn-danger justify-content-center my-btn">پرداخت
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 @else
                     <div class="text-center text-dark">
-                    <strong class="">سبد خرید خالی ست</strong>
+                        <strong class="">سبد خرید خالی ست</strong>
                     </div>
+                    <br>
+
                 @endif
                 {{--                <div class="myTableBox col-12">--}}
                 {{--                    <table class="table table-striped table-hover bg-light list-table" id="myTable">--}}
@@ -143,34 +168,37 @@
             </div>
 
         </div>
-        <script>
-            $(document).ready(function () {
-                $('#myTable').DataTable();
-            });
-            $('#myTable').DataTable({
-                language: {
-                    processing: "در حال پردازش ...",
-                    search: "جستجو",
-                    lengthMenu: "نمایش _MENU_ ورودی",
-                    info: "نمایش ورودی  _START_  تا _END_ از _TOTAL_ ورودی",
-                    infoEmpty: "نمایش ورودی 0 تا 0 از 0 ورودی",
-                    infoFiltered: "_فیلتر شده ی _MAX_ ورودی در کل",
-                    infoPostFix: "",
-                    loadingRecords: "در حال بارگذاری رکوردها ...",
-                    zeroRecords: "هیچ",
-                    emptyTable: "جدول خالی",
-                    Show: "نمایش",
-                    paginate: {
-                        first: "ابتدا",
-                        previous: "قبلی",
-                        next: "بعدی",
-                        last: "آخر"
-                    },
-                    aria: {
-                        sortAscending: "مرتب سازی صعودی :",
-                        sortDescending: "مرتب سازی نزولی :"
-                    }
+            @include('layouts.services')
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+        $('#myTable').DataTable({
+            language: {
+                processing: "در حال پردازش ...",
+                search: "جستجو",
+                lengthMenu: "نمایش _MENU_ ورودی",
+                info: "نمایش ورودی  _START_  تا _END_ از _TOTAL_ ورودی",
+                infoEmpty: "نمایش ورودی 0 تا 0 از 0 ورودی",
+                infoFiltered: "_فیلتر شده ی _MAX_ ورودی در کل",
+                infoPostFix: "",
+                loadingRecords: "در حال بارگذاری رکوردها ...",
+                zeroRecords: "هیچ",
+                emptyTable: "جدول خالی",
+                Show: "نمایش",
+                paginate: {
+                    first: "ابتدا",
+                    previous: "قبلی",
+                    next: "بعدی",
+                    last: "آخر"
+                },
+                aria: {
+                    sortAscending: "مرتب سازی صعودی :",
+                    sortDescending: "مرتب سازی نزولی :"
                 }
-            });
-        </script>
+            }
+        });
+    </script>
 @endsection
