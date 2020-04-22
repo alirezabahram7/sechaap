@@ -52,7 +52,7 @@ class AdditionController extends Controller
         if ($request->has('image')) {
             $image = $request->file('image');
             $name = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path() . '/files/', $name);
+            $image->move('./files/', $name);
             $requestData['image'] = $name;
         }
         Addition::create($requestData);
@@ -97,7 +97,7 @@ class AdditionController extends Controller
         if ($request->has('image')) {
             $image = $request->file('image');
             $name = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path() . '/files/', $name);
+            $image->move('./files/', $name);
             $requestData['image'] = $name;
         }
         $addition->update($requestData);

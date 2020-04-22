@@ -26,7 +26,7 @@ class ShoppingCartController extends Controller
         if ($request->hasfile('file')) {
             foreach ($request->file('file') as $i => $file) {
                 $name = uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path() . '/files/orders', $name);
+                $file->move('./files/orders', $name);
                 $requestData['file'][$i] = $name;
             }
         }

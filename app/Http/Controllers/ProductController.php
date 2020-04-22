@@ -72,7 +72,7 @@ class ProductController extends Controller
         if ($request->has('photo')) {
             $image = $request->file('photo');
             $name = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path() . '/files/', $name);
+            $image->move('./files/', $name);
             $product->photo = $name;
         }
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
         if ($request->has('photo')) {
             $image = $request->file('photo');
             $name = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path() . '/files/', $name);
+            $image->move( './files/', $name);
             $product->photo = $name;
         }
 

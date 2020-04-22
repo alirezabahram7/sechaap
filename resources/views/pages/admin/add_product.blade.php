@@ -27,10 +27,10 @@
                         </div>
                         <div class="form-group col-md-4 col-sm-12 text-center justify-content-start" id="banner-type">
                             <label for="price">نوع بنر</label>
-                            <select class="form-control my-form-control product_type" name="banner_type">
+                            <select class="form-control my-form-control banner_type" name="banner_type">
                                 <option value="0">متفرقه</option>
                                 <option value="8">مکه</option>
-                                <option value="9">کریلا</option>
+                                <option value="9">کربلا</option>
                                 <option value="10">تسلیت</option>
                                 <option value="11">اعیاد و شهادت</option>
                             </select>

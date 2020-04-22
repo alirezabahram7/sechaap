@@ -75,7 +75,7 @@ class ImageController extends Controller
             foreach ($images['file'] as $j => $banner){
                 $imageFile = $banner;
                 $name = uniqid() . '.' . $imageFile->getClientOriginalExtension();
-                $imageFile->move(public_path() . '/files/', $name);
+                $imageFile->move('./files/', $name);
 
                 $image = new Image;
                 $image->image = $name;
@@ -95,7 +95,7 @@ class ImageController extends Controller
 
                     $imageFile = $request->file($i);
                     $name = uniqid() . '.' . $imageFile->getClientOriginalExtension();
-                    $imageFile->move(public_path() . '/files/', $name);
+                    $imageFile->move('./files/', $name);
 
                     $entry = Image::findOrFail($i);
                     $entry->image = $name;
@@ -119,7 +119,7 @@ class ImageController extends Controller
     public function destroy($imageId)
     {
         $image=Image::findOrFail($imageId);
-        $filePath = public_path() . '/files/'.$image->image;
+        $filePath = './files/'.$image->image;
         unlink($filePath);
         $image->delete();
         return back();

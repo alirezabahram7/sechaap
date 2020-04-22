@@ -15,7 +15,7 @@
                     <div class="d-md-flex d-sm-block justify-content-between">
                         <div class="form-group col-md-4 col-sm-12 text-center">
                             <label for="type_id">گروه محصولی</label>
-                            <select class="form-control my-form-control" name="type_id">
+                            <select class="form-control my-form-control product_type" name="type_id">
                                 @foreach($types as $type)
                                     <option value="{{ $type->id }}" {{ $product->type_id == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>
                                 @endforeach
@@ -26,10 +26,17 @@
                             <input type="text" class="form-control my-form-control" name="title"
                                    value="{{ $product->title  }}">
                         </div>
-                        <div class="form-group col-md-4 col-sm-12 text-center">
-                            <label for="price">قیمت</label>
-                            <input type="text" class="form-control my-form-control" name="price"
-                                   value="{{ $product->price }}" >
+
+                        <div class="form-group col-md-4 col-sm-12 text-center justify-content-start" id="banner-type">
+                            <label for="price">نوع بنر</label>
+                            <select class="form-control my-form-control banner_type" name="banner_type">
+                                <?php
+                                $banner_types = [0=>'متفرقه',8=>'مکه',9=>'کربلا',10=>'تسلیت',11=>'اعیاد و شهادت']
+                                ?>
+                                    @foreach($banner_types as $j=>$banner_type)
+                                        <option value="{{ $j }}" {{ $product->banner_type == $j ? 'selected' : '' }}>{{ $banner_type }}</option>
+                                    @endforeach
+                            </select>
                         </div>
                     </div>
                     <br>
@@ -92,6 +99,15 @@
             });
         });
 
+        $(document).ready(function () {
+            $("select.product_type").change(function () {
+                if ($(this).val() == 1) {
+                    $("#banner-type").show();
+                } else {
+                    $("#banner-type").hide();
+                }
+            });
+        });
     </script>
 
 @endsection
