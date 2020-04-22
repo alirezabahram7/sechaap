@@ -20,7 +20,6 @@
         <!-- Icon -->
         <div class="fadeIn first pt-5" style="padding-top:20px;">
                 <img class="img-responsive login-icon" src="/mainImg/admin-login.ico" id="icon" alt="User Icon"/>
-
         </div>
 
         <!-- Login Form -->

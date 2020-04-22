@@ -51,7 +51,7 @@
                 @foreach($orders as $j => $order)
                     <tr class="table-tr">
                         <td class="table-td">
-                            {{ \Morilog\Jalali\CalendarUtils::convertNumbers($j+1) }}
+                            {{ ($j+1) }}
                         </td>
                         <td class="table-td">
                             <a href="{{ route('edit.order',['id'=>$order->id]) }}">
@@ -75,11 +75,7 @@
                             {{ $order->tracking_code }}
                         </td>
                         <td class="table-td">
-                            @if($order->user_id > 0)
-                                {{\Morilog\Jalali\CalendarUtils::convertNumbers(auth()->user()->phone)}}
-                            @else
                             {{\Morilog\Jalali\CalendarUtils::convertNumbers($order->phone)}}
-                                @endif
                         </td>
                         <td class="table-td">
                             @if($order->user_id > 0)

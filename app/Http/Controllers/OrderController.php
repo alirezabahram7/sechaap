@@ -64,7 +64,7 @@ class OrderController extends Controller
     public function search(Request $request)
     {
         if ($request->tracking_code != '') {
-            $orders[0] = Order::where('tracking_code', $request->tracking_code)->first();
+            $orders = Order::where('tracking_code', $request->tracking_code)->get();
             if ($orders) {
                 return view('pages.profile', compact('orders'));
             }
@@ -106,6 +106,7 @@ class OrderController extends Controller
                 $datum['tracking_code'] = $trackingCode;
                 if (auth()->check()) {
                     $datum['user_id'] = auth()->id();
+                    $datum['phone'] = auth()->user()->phone;
                 }
 
                 $order = Order::create($datum);
