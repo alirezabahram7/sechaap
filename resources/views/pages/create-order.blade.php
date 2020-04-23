@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-end">
             <div class="position-fixed itembox bg-transparent-warning  z-depth-2 text-center">
                 <strong>
-                    قیمت :
+                    قیمت واحد:
                 </strong>
                 <br>
                 {{--                <input type="text" name="price" class="w-25 bg-warning"  value="0" hidden>--}}
@@ -93,8 +93,7 @@
                         @if($type->id == 1)
                             <div class="form-group my-form-group col-12 col-md-4">
                                 <label for="description">مناسبت</label>
-                                <input type="text" class="form-control my-form-control" name="topic"
-                                >{{old('topic')}}</input>
+                                <input type="text" class="form-control my-form-control" name="topic">{{old('topic')}}</input>
                             </div>
                         @endif
                     </div>
@@ -172,6 +171,12 @@
                             <textarea type="text" class="form-control my-form-control" name="description"
                                       rows="5">{{old('description')}}</textarea>
                         @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group my-form-group col-4 col-md-2">
+                            <label for="numbers">تعداد</label>
+                        <input type="number" class="form-control my-form-control" name="numbers" value="1" min="1">{{old('numbers')}}</input>
                     </div>
                 </div>
                 <div class="row d-flex">
