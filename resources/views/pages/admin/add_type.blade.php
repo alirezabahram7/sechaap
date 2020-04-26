@@ -50,7 +50,12 @@
                                   rows="6" >{{ old('description') }}</textarea>
                     </div>
                     <br>
-
+                    <div class="form-group col-md-4 col-sm-12 text-center">
+                        <div>
+                            <label for="title">فیلد تعداد دارد ؟ </label>
+                            <input type="checkbox" class="my-checkbox" name="has_nums" value="1">
+                        </div>
+                    </div>
                     <div class="row d-flex ">
                         <div class="form-group my-form-group mt-3">
                             <button type="submit" class="btn btn-danger justify-content-center my-btn">ایجاد

@@ -138,8 +138,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $filePath = './files/'.$product->photo;
+        unlink($filePath);
         $product->delete();
-        return back()->with('message', 'محصول با موفقیت حذف شد');
+        return redirect()->to('/admin/product')->with('message',' با موفقیت حذف شد');
     }
 
 

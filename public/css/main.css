@@ -1189,6 +1189,7 @@ a.text-light:focus, a.text-light:hover {
 }
 
 .helper-text {
+    width: 200px;
     visibility: hidden;
     background-color: whitesmoke;
     color: black;

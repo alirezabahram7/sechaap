@@ -119,8 +119,8 @@
                                                          class="col-10 col-md-5">
                                                 @endif
                                                 @if($addition->description!='')
-                                                    <div class="helper"><i class="fa fa-question w-25">
-                                                        </i>
+                                                    <div class="helper">
+                                                        <i class="fa fa-question w-25"></i>
                                                         <span class="helper-text">{{ $addition->description }}</span>
                                                     </div>
                                                 @endif
@@ -173,12 +173,14 @@
                         @endif
                     </div>
                 </div>
+                @if($type->has_nums)
                 <div class="row">
                     <div class="form-group my-form-group col-4 col-md-2">
                             <label for="numbers">تعداد</label>
                         <input type="number" class="form-control my-form-control" name="numbers" value="1" min="1">{{old('numbers')}}</input>
                     </div>
                 </div>
+                @endif
                 <div class="row d-flex">
                     <div class="form-group my-form-group mt-3">
                         <button type="submit" class="btn btn-danger justify-content-center my-btn">افزودن به سبد خرید
