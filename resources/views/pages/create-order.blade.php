@@ -38,11 +38,12 @@
                             <label for="avatar">بارگزاری فایل </label>
                             <div class="input-group entry justify-content-center">
                                 @if($type->id !=3)
-                                    <input type="file" class="btn btn-primary browndiv text-right text-dark col-10 col-md-4"
+                                    <input type="file" class="btn btn-primary browndiv text-right text-dark col-10 col-md-4 selected-image"
                                            name="file[]" id="file[]" required>
                                     <button class="col-2 col-md-1 btn btn-success btn-add" type="button">
                                         +
                                     </button>
+                                    <span class="mr-2" id="img-resolution"></span>
                                 @else
                                     <input type="file" class="btn btn-primary browndiv text-right selected-file"
                                            name="file[]" id="file[]" accept="application/pdf"
@@ -78,6 +79,7 @@
                     <input type="text" name="product_name" value="{{ $product->title }}" hidden>
                     <input type="text" name="photo" value="{{ $product->photo }}" hidden>
                 @endif
+                @if($product)
                 @if($type->id == 1 or $type->id == 2)
                     <div class="row">
                         <div class="form-group my-form-group col-12 col-md-4">
@@ -98,6 +100,7 @@
                         @endif
                     </div>
 
+                @endif
                 @endif
                 <div class="container">
                     @foreach($additionTypes as $i=>$additionType)
@@ -121,7 +124,7 @@
                                                 @if($addition->description!='')
                                                     <div class="helper">
                                                         <i class="fa fa-question w-25"></i>
-                                                        <span class="helper-text">{{ $addition->description }}</span>
+                                                        <span class="helper-text" style="width: 200px;">{{ $addition->description }}</span>
                                                     </div>
                                                 @endif
                                             </div>
@@ -231,6 +234,19 @@
             })
         });
 
+        var _URL = window.URL || window.webkitURL;
+        $(".selected-image").change(function (e) {
+            var file, img;
+            if ((file = this.files[0])) {
+                img = new Image();
+                var objectUrl = _URL.createObjectURL(file);
+                img.onload = function () {
+                    $('#img-resolution').text("رزولوشن: "+this.width+"X"+this.height);
+                    _URL.revokeObjectURL(objectUrl);
+                };
+                img.src = objectUrl;
+            }
+        });
         $(function () {
             $(document).on('click', '.btn-add', function (e) {
                 e.preventDefault();
@@ -280,6 +296,8 @@
 
             fileReader.readAsArrayBuffer(file);
         });
+
+
 
         // $("#formId").validate({
         //     onkeyup:false,
