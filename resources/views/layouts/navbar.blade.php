@@ -171,20 +171,56 @@
                         {{--                        <a class="dropdown-item" href="{{ route('products',['type_id'=>3]) }}">هدایای تبلیغاتی</a>--}}
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('products',['id'=>1])}}">
-                        <span class="">
-                            بنر
-                        </span>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBanner" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <span class="">
+                       بنر
+                         </span>
                     </a>
+                    <div class="dropdown-menu text-right  bg-whitesmoke pt-2 pb-2 pl-3"
+                         aria-labelledby="navbarDropdownBanner">
+                            <a class="dropdown-item"
+                               href="{{route('products',['id'=>1])}}">
+                                <i class="fa fa-flag"></i>
+                                بنر آماده
+                                <div class="dropdown-divider"></div>
+                            </a>
+                        <a class="dropdown-item"
+                           href="{{route('order.create',['id'=>16])}}">
+                            <i class="fa fa-paint-brush"></i>
+                          بنر سفارشی
+                            <div class="dropdown-divider"></div>
+                        </a>
+
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('products',['id'=>2])}}">
-                        <span class="">
-                            اعلامیه
-                        </span>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAnn" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <span class="">
+                       اعلامیه
+                         </span>
                     </a>
+                    <div class="dropdown-menu text-right  bg-whitesmoke pt-2 pb-2 pl-3"
+                         aria-labelledby="navbarDropdownAnn">
+                        <a class="dropdown-item"
+                           href="{{route('products',['id'=>2])}}">
+                            <i class="fa fa-address-card"></i>
+                            اعلامیه آماده
+                            <div class="dropdown-divider"></div>
+                        </a>
+                        <a class="dropdown-item"
+                           href="{{route('order.create',['id'=>17])}}">
+                            <i class="fa fa-paint-brush"></i>
+                            اعلامیه سفارشی
+                            <div class="dropdown-divider"></div>
+                        </a>
+
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('order.create',['id'=>3])}}">
                         <span class="">

@@ -7,7 +7,7 @@
                 <div>
                 <div class="itembox">
                     <div class="d-block d-md-flex justify-content-around">
-                        <div class="col-md-3 type-divider">
+                        <div class="col-md-2 type-divider">
                             <a href="{{ route('products',['id '=>$typeId,'bannerType'=>8]) }}">
                                 <img class="img-responsive my-circle-img "
                                      src="{{ asset('./mainImg/mecca.jpg') }}">
@@ -15,7 +15,7 @@
                                 <strong class="">بنر مکه</strong>
                             </a>
                         </div>
-                        <div class="col-md-3 type-divider">
+                        <div class="col-md-2 type-divider">
                             <a href="{{ route('products',['id '=>$typeId,'bannerType'=>9]) }}">
                                 <img class="img-responsive my-circle-img"
                                      src="{{ asset('./mainImg/karbala.jpg') }}">
@@ -23,7 +23,7 @@
                                 <strong class="">بنر کربلایی</strong>
                             </a>
                         </div>
-                        <div class="col-md-3 type-divider">
+                        <div class="col-md-2 type-divider">
                             <a href="{{ route('products',['id '=>$typeId,'bannerType'=>10]) }}">
                                 <img class="img-responsive my-circle-img"
                                      src="{{ asset('./mainImg/cond.jpg') }}">
@@ -31,10 +31,10 @@
                                 <strong class="">بنر تسلیت</strong>
                             </a>
                         </div>
-                    </div>
-                    <br>
-                    <div class="d-block d-md-flex justify-content-around">
-                        <div class="col-md-3 type-divider">
+
+
+
+                        <div class="col-md-2 type-divider">
                             <a href="{{ route('products',['id '=>$typeId,'bannerType'=>11]) }}">
                                 <img class="img-responsive my-circle-img "
                                      src="{{ asset('./mainImg/ayad.jpg') }}">
@@ -42,39 +42,39 @@
                                 <strong class="">بنر اعیاد و شهادت ها</strong>
                             </a>
                         </div>
-                        <div class="col-md-3 type-divider">
-                            <a href="{{route('order.create',['id'=>1])}}">
-                                <img class="img-responsive my-circle-img"
-                                     src="{{ asset('./mainImg/customize.jpeg') }}">
-                                <br>
-                                <strong class="">سفارشی سازی بنر</strong>
-                            </a>
-                        </div>
-                        <div class="col-md-3 type-divider">
-                            <a href="{{ route('products',['id '=>$typeId]) }}">
-                                <img class="img-responsive my-circle-img"
-                                     src="{{ asset('./mainImg/allbanners.jpg') }}">
-                                <br>
-                                <strong class="">همه</strong>
-                            </a>
-                        </div>
-                    </div>
+{{--                        <div class="col-md-3 type-divider">--}}
+{{--                            <a href="{{route('order.create',['id'=>16])}}">--}}
+{{--                                <img class="img-responsive my-circle-img"--}}
+{{--                                     src="{{ asset('./mainImg/customize.jpeg') }}">--}}
+{{--                                <br>--}}
+{{--                                <strong class="">سفارشی سازی بنر</strong>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-3 type-divider">--}}
+{{--                            <a href="{{ route('products',['id '=>$typeId]) }}">--}}
+{{--                                <img class="img-responsive my-circle-img"--}}
+{{--                                     src="{{ asset('./mainImg/allbanners.jpg') }}">--}}
+{{--                                <br>--}}
+{{--                                <strong class="">همه</strong>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+
                 </div>
                 </div>
             </div>
-        @elseif($typeId==2)
-            <div class="itembox">
-                <div class="col-md-5 type-divider center">
-                    <a href="{{route('order.create',['id'=>2])}}">
-                        <img class="img-responsive my-circle-img"
-                             src="{{ asset('./mainImg/customize.jpeg') }}">
-                        <br>
-                        <strong class="">سفارشی سازی اعلامیه</strong>
-                    </a>
-                </div>
+{{--        @elseif($typeId==2)--}}
+{{--            <div class="itembox">--}}
+{{--                <div class="col-md-5 type-divider center">--}}
+{{--                    <a href="{{route('order.create',['id'=>17])}}">--}}
+{{--                        <img class="img-responsive my-circle-img"--}}
+{{--                             src="{{ asset('./mainImg/customize.jpeg') }}">--}}
+{{--                        <br>--}}
+{{--                        <strong class="">سفارشی سازی اعلامیه</strong>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
 
-            </div>
+{{--            </div>--}}
         @endif
 
         <div class="container ">

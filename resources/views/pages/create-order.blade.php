@@ -241,7 +241,7 @@
                 img = new Image();
                 var objectUrl = _URL.createObjectURL(file);
                 img.onload = function () {
-                    $('#img-resolution').text("رزولوشن: "+this.width+"X"+this.height);
+                    $('#img-resolution').text("رزولوشن: "+this.width+"x"+this.height);
                     _URL.revokeObjectURL(objectUrl);
                 };
                 img.src = objectUrl;
