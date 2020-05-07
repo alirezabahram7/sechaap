@@ -7,9 +7,15 @@
         @endif
         <div class="col-6 col-md-2 d-md-flex pt-3 pt-md-0 flex-md-column justify-content-start">
             <div class="services-icons">
-        <a href="{{route('order.create',['id'=>$type->id,'cat'=>'all'])}}">
-            <i class="fa fa-{{$type->icon}}"></i>
-        </a>
+                @if($type->id==1 or $type->id==2)
+                    <a href="{{route('products',['id'=>$type->id,'cat'=>'all'])}}">
+                        <i class="fa fa-{{$type->icon}}"></i>
+                    </a>
+                @else
+                    <a href="{{route('order.create',['id'=>$type->id,'cat'=>'all'])}}">
+                        <i class="fa fa-{{$type->icon}}"></i>
+                    </a>
+                @endif
             </div>
             <div>
                 {{$type->title}}

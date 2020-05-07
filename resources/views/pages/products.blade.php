@@ -83,9 +83,7 @@
             ?>
             <div class="row d-block d-md-flex justify-content-center">
                 @foreach($products as $product)
-                    <div
-                        class="col-md-3 card-body my-card-body rounded d-flex flex-column border-secondary itembox_lists"
-                    >
+                    <div class="col-md-3 card-body my-card-body rounded d-flex flex-column border-secondary itembox_lists">
                         <div class="align-items-start">
                             <a href="{{ route('order.create', ['id' => $typeId,'productId'=>$product->id]) }}">
                                 <span class="center">
