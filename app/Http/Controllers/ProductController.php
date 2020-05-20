@@ -110,6 +110,8 @@ class ProductController extends Controller
     {
         $product->update($request->all());
         if ($request->has('photo')) {
+            $filePath = './files/'.$product->photo;
+            unlink($filePath);
             $image = $request->file('photo');
             $name = uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move( './files/', $name);
