@@ -14,8 +14,8 @@
                 تومان
                 @if($type->id == 3)
                     <br>
-{{--                    X--}}
-                    <input class="total-nums" id="total-nums" data-total-nums="1" value="1"  hidden/>
+                    {{--                    X--}}
+                    <input class="total-nums" id="total-nums" data-total-nums="1" value="1" hidden/>
 
                 @endif
             </div>
@@ -32,18 +32,26 @@
                 <input type="text" name="type_title" value="{{ $type->title }}" hidden>
                 <input type="text" name="price" id="price" value="{{$type->price}}" hidden>
                 <input type="text" name="nums" id="nums" class="nums" value="1" hidden>
+                <input type="text" name="size" id="size" class="size" value="1" hidden>
                 @if(!$product)
                     <div class="row controls ">
                         <div class="form-group my-form-group">
                             <label for="avatar">بارگزاری فایل </label>
                             <div class="input-group entry justify-content-center">
                                 @if($type->id !=3)
-                                    <input type="file" class="btn btn-primary browndiv text-right text-dark col-10 col-md-4 selected-image"
-                                           name="file[]" id="file[]" required>
-                                    <button class="col-2 col-md-1 btn btn-success btn-add" type="button">
-                                        +
-                                    </button>
-                                    <span class="mr-2" id="img-resolution"></span>
+                                    @if($type->id == 16)
+                                        <input type="file"
+                                               class="btn btn-primary browndiv text-right text-dark col-10 col-md-4 selected-image"
+                                               name="file[]" id="file[]" required>
+                                        <span class="mr-2" id="img-resolution"></span>
+                                    @else
+                                        <input type="file"
+                                               class="btn btn-primary browndiv text-right text-dark col-10 col-md-4"
+                                               name="file[]" id="file[]" required>
+                                        <button class="col-2 col-md-1 btn btn-success btn-add" type="button">
+                                            +
+                                        </button>
+                                    @endif
                                 @else
                                     <input type="file" class="btn btn-primary browndiv text-right selected-file"
                                            name="file[]" id="file[]" accept="application/pdf"
@@ -80,30 +88,48 @@
                     <input type="text" name="photo" value="{{ $product->photo }}" hidden>
                 @endif
                 @if($product)
-                @if($type->id == 1 or $type->id == 2)
-                    <div class="row">
-                        <div class="form-group my-form-group col-12 col-md-4">
-                            <label for="description">از طرف</label>
-                            <input type="text" class="form-control my-form-control" name="from"
-                                   required>{{old('from')}}</input>
-                        </div>
-                        <div class="form-group my-form-group col-12 col-md-4">
-                            <label for="description">برای</label>
-                            <input type="text" class="form-control my-form-control" name="to"
-                                   required>{{old('to')}}</input>
-                        </div>
-                        @if($type->id == 1)
+                    @if($type->id == 1 or $type->id == 2)
+                        <div class="row">
                             <div class="form-group my-form-group col-12 col-md-4">
-                                <label for="description">مناسبت</label>
-                                <input type="text" class="form-control my-form-control" name="topic">{{old('topic')}}</input>
+                                <label for="description">از طرف</label>
+                                <input type="text" class="form-control my-form-control" name="from"
+                                       required>{{old('from')}}</input>
                             </div>
-                        @endif
-                    </div>
+                            <div class="form-group my-form-group col-12 col-md-4">
+                                <label for="description">برای</label>
+                                <input type="text" class="form-control my-form-control" name="to"
+                                       required>{{old('to')}}</input>
+                            </div>
+                            @if($type->id == 1)
+                                <div class="form-group my-form-group col-12 col-md-4">
+                                    <label for="description">مناسبت</label>
+                                    <input type="text" class="form-control my-form-control"
+                                           name="topic">{{old('topic')}}</input>
+                                </div>
+                            @endif
+                        </div>
 
-                @endif
+                    @endif
                 @endif
                 <div class="container">
                     @foreach($additionTypes as $i=>$additionType)
+{{--                        @if($type->is_offset==1 or $type->is_digital==1 or $type->id == 1)--}}
+{{--                            <div class="">--}}
+{{--                            {{ $additionType->title }}--}}
+{{--                            <select name="data" id="select-addition">--}}
+{{--                                @foreach($additions as $addition)--}}
+{{--                                    @if($addition->addition_type_id == $additionType->id)--}}
+{{--                                    <option --}}
+{{--                                       data-addition-type-id="{{$additionType->id}}"--}}
+{{--                                       data-addition-price="{{$addition->price}}"--}}
+{{--                                       name="addition[{{$i}}]"--}}
+{{--                                       id="{{ $addition->id }}"--}}
+{{--                                       value="{{ $addition->id }}">{{ $addition->title }}--}}
+{{--                                    @endif--}}
+{{--                                    @endforeach--}}
+{{--                            </select>--}}
+{{--                            </div>--}}
+{{--                            @else--}}
                         <div class="itembox">
                             <div class="d-flex justify-content-start type-divider">
                                 <h5>
@@ -124,7 +150,8 @@
                                                 @if($addition->description!='')
                                                     <div class="helper">
                                                         <i class="fa fa-question w-25"></i>
-                                                        <span class="helper-text" style="width: 200px;">{{ $addition->description }}</span>
+                                                        <span class="helper-text"
+                                                              style="width: 200px;">{{ $addition->description }}</span>
                                                     </div>
                                                 @endif
                                             </div>
@@ -161,6 +188,7 @@
                                 @endif
                             @endforeach
                         </div>
+{{--                        @endif--}}
                     @endforeach
                 </div>
                 <div class="row">
@@ -177,12 +205,13 @@
                     </div>
                 </div>
                 @if($type->has_nums)
-                <div class="row">
-                    <div class="form-group my-form-group col-4 col-md-2">
+                    <div class="row">
+                        <div class="form-group my-form-group col-4 col-md-2">
                             <label for="numbers">تعداد</label>
-                        <input type="number" class="form-control my-form-control" name="numbers" value="1" min="1">{{old('numbers')}}</input>
+                            <input type="number" class="form-control my-form-control" name="numbers" value="1"
+                                   min="1">{{old('numbers')}}</input>
+                        </div>
                     </div>
-                </div>
                 @endif
                 <div class="row d-flex">
                     <div class="form-group my-form-group mt-3">
@@ -241,7 +270,11 @@
                 img = new Image();
                 var objectUrl = _URL.createObjectURL(file);
                 img.onload = function () {
-                    $('#img-resolution').text("رزولوشن: "+this.width+"x"+this.height);
+                    $('#img-resolution').text("سایز بنر : " + Math.round(this.width / 28.35) + "x" + Math.round(this.height / 28.35));
+                    let base_price = parseInt($('#price').val());
+                    let size = Math.round(Math.round(this.width / 28.35) * Math.round(this.height / 28.35));
+                    $('#total-price').text(base_price * size);
+                    $('#size').val(size);
                     _URL.revokeObjectURL(objectUrl);
                 };
                 img.src = objectUrl;
@@ -296,7 +329,6 @@
 
             fileReader.readAsArrayBuffer(file);
         });
-
 
 
         // $("#formId").validate({

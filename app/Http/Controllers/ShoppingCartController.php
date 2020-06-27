@@ -38,7 +38,7 @@ class ShoppingCartController extends Controller
             }
         }
 
-        $requestData['price'] = $requestData['price']*$requestData['nums']*$requestData['numbers'];
+        $requestData['price'] = $requestData['price']*$requestData['nums']*$requestData['numbers']*$requestData['size'];
         array_push($cart, $requestData);
 
         session()->put('cart', $cart);
